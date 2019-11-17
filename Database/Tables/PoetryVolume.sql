@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[PoetryVolume]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(), 
+    [Name] NVARCHAR(50) NOT NULL, 
+    [AuthorId] UNIQUEIDENTIFIER NULL FOREIGN KEY REFERENCES [Writer](Id), 
+    [ObjectTypeId] INT NOT NULL, 
+    [Description] NVARCHAR(MAX) NULL, 
+    [WrittenFromDate] DATE NULL, 
+    [WrittenToDate] DATE NOT NULL, 
+    [CoverId] UNIQUEIDENTIFIER NULL FOREIGN KEY REFERENCES [Image](Id)
+)

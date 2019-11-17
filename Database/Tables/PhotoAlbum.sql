@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[PhotoAlbum]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(), 
+    [Title] NVARCHAR(50) NOT NULL, 
+    [AuthorId] UNIQUEIDENTIFIER NOT NULL FOREIGN KEY REFERENCES [User](Id), 
+    [CoverId] UNIQUEIDENTIFIER NULL FOREIGN KEY REFERENCES [Image](Id), 
+    [ObjectTypeId] INT NOT NULL, 
+    [Description] NVARCHAR(MAX) NOT NULL, 
+    [CapturedFromDate] DATE NULL, 
+    [CapturedToDate] DATE NOT NULL 
+)

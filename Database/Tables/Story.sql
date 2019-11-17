@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[Story]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [Content] NVARCHAR(MAX) NOT NULL, 
+    [Title] NVARCHAR(MAX) NOT NULL, 
+    [ObjectTypeId] INT NOT NULL, 
+    [AuthorId] UNIQUEIDENTIFIER NOT NULL FOREIGN KEY REFERENCES [Writer](Id), 
+    [Description] NVARCHAR(MAX) NULL
+)

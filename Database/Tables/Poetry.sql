@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[Poetry]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [ObjectTypeId] INT NOT NULL, 
+    [Title] NVARCHAR(50) NOT NULL, 
+    [Content] NVARCHAR(MAX) NOT NULL, 
+    [VolumeId] UNIQUEIDENTIFIER NOT NULL FOREIGN KEY REFERENCES [PoetryVolume](Id), 
+    [Order] INT NOT NULL
+)

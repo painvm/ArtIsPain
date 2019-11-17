@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="ab4a906b-48f5-424d-926b-85f5f5d4be26" ChangeDateTime="11/15/2019 19:12:10">
+    <Property Name="ElementName" Value="[dbo].[User].[First Name]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[User]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FirstName" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2f4d3877-90f0-4231-bd1b-bf90c28082cc" ChangeDateTime="11/15/2019 19:13:46">
+    <Property Name="ElementName" Value="[dbo].[User].[CreatedDa]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[User]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RegistrationDate" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="cd6cfc63-b2c6-487c-825b-aef89eae13d2" ChangeDateTime="11/16/2019 05:43:11">
+    <Property Name="ElementName" Value="[dbo].[PhotoAlbum].[StartDate]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PhotoAlbum]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CapturedFromDate" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2e88eb85-d5cc-4a20-8e67-83d8da3bdfed" ChangeDateTime="11/16/2019 05:43:19">
+    <Property Name="ElementName" Value="[dbo].[PhotoAlbum].[EndDate]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PhotoAlbum]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CapturedToDate" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9ad98cc4-ff9b-4dfb-8137-fb456a98084e" ChangeDateTime="11/16/2019 06:27:26">
+    <Property Name="ElementName" Value="[dbo].[PoetryVolumne].[WrittenFrom]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PoetryVolumne]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="WrittenDateFrom" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e239ada2-ef8a-4998-b7c9-468a1c51c1fd" ChangeDateTime="11/16/2019 06:29:46">
+    <Property Name="ElementName" Value="[dbo].[PoetryVolumne].[WrittenDateFrom]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PoetryVolumne]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="WrittenFromDate" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b340142a-6dba-4b65-8d78-2940736b3253" ChangeDateTime="11/16/2019 10:27:56">
+    <Property Name="ElementName" Value="[dbo].[Writer].[First Name]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Writer]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FirstName" />
+  </Operation>
+</Operations>

@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[Song]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(), 
+    [Title] NVARCHAR(50) NOT NULL, 
+    [ObjectTypeId] INT NOT NULL, 
+    [AlbumId] UNIQUEIDENTIFIER NOT NULL FOREIGN KEY REFERENCES MusicalAlbum(Id), 
+    [AuthorId] UNIQUEIDENTIFIER NOT NULL, 
+    [Length] TIME NOT NULL, 
+    [Order] INT NULL, 
+    [IsBonusTrack] BIT NULL, 
+)

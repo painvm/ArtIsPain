@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[MusicalAlbum]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(), 
+    [Url] NVARCHAR(MAX) NULL, 
+    [CoverId] UNIQUEIDENTIFIER NULL FOREIGN KEY REFERENCES [Image](Id), 
+    [Title] NVARCHAR(50) NOT NULL, 
+    [ObjectTypeId] INT NOT NULL, 
+    [Description] NVARCHAR(MAX) NULL, 
+    [StartDate] DATE NULL, 
+    [ReleaseDate] DATE NOT NULL
+)
