@@ -2,7 +2,7 @@
 
 namespace ArtIsPain.Shared
 {
-    public interface IObjectType
+    public interface IEntity
     {
         Guid Id { get; set; }
         int ObjectTypeId { get; set; }

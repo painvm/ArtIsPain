@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ArtIsPain.Shared.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ArtIsPain.Shared
 {
-    public abstract class HumanBeingEntity : IObjectType, IObjectTypeWithImage
+    public abstract class Person : IEntity, IEntityWithImage, IDescribable
     {
         public Guid Id { get; set; }
 
@@ -12,8 +13,6 @@ namespace ArtIsPain.Shared
 
         public Guid ImageId { get; set; }
 
-        public bool IsActive { get; set; }
-
-        public string Summary { get; set; }
+        public string Description { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ArtIsPain.Shared
 {
-    public class Poetry : TextEntity, IVolumeItem
+    public class Poetry : Text, IVolumeItem
     {
         public int Order { get; set; }
 

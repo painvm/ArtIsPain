@@ -4,14 +4,8 @@ using System.Text;
 
 namespace ArtIsPain.Shared
 {
-    public class Band : HumanBeingEntity, IAuthor
+    public class Band : Artist
     {
-        public string BandName { get; set; }
 
-        public DateTime StartActivityDate { get; set; }
-
-        public DateTime? EndActivityDate { get; set; }
-
-        public bool IsDead { get; set; }
     }
 }

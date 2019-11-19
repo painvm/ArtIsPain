@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ArtIsPain.Shared
 {
-    public class PoetryVolume : VolumeEntity, IAuthorized
+    public class PoetryVolume : Volume, IAuthorized
     {
         public Guid AuthorId { get; set; }
     }

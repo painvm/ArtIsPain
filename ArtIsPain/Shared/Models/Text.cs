@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ArtIsPain.Shared
 {
-    public abstract class VolumeEntity : IObjectType, ITitled
+    public abstract class Text : IEntity, ITitled
     {
         public Guid Id { get; set; }
 
@@ -12,10 +12,6 @@ namespace ArtIsPain.Shared
 
         public string Title { get; set; }
 
-        public string Description { get; set; }
-
-        public DateTime? StartDate { get; set; }
-
-        public DateTime CompletedDate { get; set; }
+        public string Content { get; set; }
     }
 }

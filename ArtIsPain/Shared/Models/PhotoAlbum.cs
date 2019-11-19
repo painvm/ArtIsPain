@@ -4,9 +4,8 @@ using System.Text;
 
 namespace ArtIsPain.Shared
 {
-    public class PhotoAlbum : VolumeEntity, IObjectTypeWithImage, IAuthorized
+    public class PhotoAlbum : Volume, IAuthorized
     {
-        public Guid ImageId { get; set; }
         public Guid AuthorId  {get; set; }
 }
 }

@@ -1,15 +1,12 @@
-﻿using System;
+﻿using ArtIsPain.Shared.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ArtIsPain.Shared
+namespace ArtIsPain.Shared.Models
 {
-    public class SoloArtist : HumanBeingEntity, IAuthor
+    public class SoloArtist : Artist
     {
-        public DateTime StartActivityDate { get; set; }
 
-        public DateTime? EndActivityDate { get; set; }
-
-        public bool IsDead { get; set; }
     }
 }

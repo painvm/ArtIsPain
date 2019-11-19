@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ArtIsPain.Shared
 {
-    public class Song : ITitled, IObjectType, IVolumeItem
+    public class Song : ITitled, IEntity, IVolumeItem
     {
         public Guid Id { get; set; }
 

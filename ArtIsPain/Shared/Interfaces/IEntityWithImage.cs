@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ArtIsPain.Shared
 {
-    public interface IObjectTypeWithImage
+    public interface IEntityWithImage
     {
         Guid ImageId { get; set; }
     }
