@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[Band]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(), 
+    [ObjectTypeId] UNIQUEIDENTIFIER NOT NULL, 
+    [FormationDate] DATE NOT NULL, 
+    [EndDate] DATE NULL, 
+    [Biography] NVARCHAR(MAX) NULL, 
+    [ImageId] UNIQUEIDENTIFIER NULL
+)

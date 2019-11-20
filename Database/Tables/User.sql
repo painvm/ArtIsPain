@@ -5,9 +5,8 @@
     [LastName] NVARCHAR(50) NOT NULL, 
     [LastLoginDate] DATETIME NULL, 
     [RegistrationDate] DATETIME NULL, 
-    [Username] NVARCHAR(255) NOT NULL, 
+    [Username] NVARCHAR(64) NOT NULL, 
     [ObjectTypeId] INT NOT NULL, 
-    [IsActive] BIT NULL, 
     [AvatarId] UNIQUEIDENTIFIER NULL FOREIGN KEY REFERENCES [Image](Id), 
     [Summary] NVARCHAR(MAX) NULL, 
 )
