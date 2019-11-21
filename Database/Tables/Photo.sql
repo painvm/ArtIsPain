@@ -6,7 +6,7 @@
     [AlbumId] UNIQUEIDENTIFIER NOT NULL, 
     [Order] INT NULL
 
-	CONSTRAINT PK_Photo PRIMARY KEY([Id], [ImageId]),
+	CONSTRAINT PK_Photo PRIMARY KEY([Id]),
 	CONSTRAINT FK_Photo FOREIGN KEY([ImageId]) REFERENCES dbo.[Image] ([Id]),
 						FOREIGN KEY([AlbumId]) REFERENCES dbo.[PhotoAlbum](Id),
 )

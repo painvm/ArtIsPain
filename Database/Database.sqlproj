@@ -65,12 +65,13 @@
     <Build Include="Tables\Poetry.sql" />
     <Build Include="Tables\User.sql" />
     <Build Include="Tables\PhotoAlbum.sql" />
-    <Build Include="Tables\ImageType.sql" />
     <Build Include="Tables\PoetryVolume.sql" />
     <Build Include="Tables\Writer.sql" />
     <Build Include="Tables\Story.sql" />
     <Build Include="Tables\Photo.sql" />
     <Build Include="Tables\Band.sql" />
+    <Build Include="Tables\ObjectType.sql" />
+    <Build Include="Tables\Photographer.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Database.refactorlog" />

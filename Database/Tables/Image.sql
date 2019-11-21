@@ -1,9 +1,8 @@
 ﻿CREATE TABLE [dbo].[Image]
 (
 	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(), 
-    [Name] NVARCHAR(50) NULL, 
     [ObjectTypeId] INT NOT NULL, 
-    [VolumeId] UNIQUEIDENTIFIER NULL FOREIGN KEY REFERENCES [PhotoAlbum](Id), 
-	[Order] INT NULL, 
-    [Content] IMAGE NOT NULL, 
+    [Content] IMAGE NOT NULL,
+
+	CONSTRAINT FK_Image_ObjectType FOREIGN KEY([ObjectTypeId]) REFERENCES dbo.[ObjectType]([Id]),
 )
