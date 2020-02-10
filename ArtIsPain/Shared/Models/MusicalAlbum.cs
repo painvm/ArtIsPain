@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ArtIsPain.Shared.Models;
+using System;
 
 namespace ArtIsPain.Shared
 {
@@ -9,5 +8,7 @@ namespace ArtIsPain.Shared
         public string Url { get; set; }
 
         public Guid AuthorId { get; set; }
+
+        public AlbumCover Image { get; set; }
     }
 }

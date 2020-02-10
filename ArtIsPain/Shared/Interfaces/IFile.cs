@@ -6,6 +6,6 @@ namespace ArtIsPain.Shared
 {
     public interface IFile
     {
-        string Name { get; set; }
+        byte[] Content { get; set; }
     }
 }

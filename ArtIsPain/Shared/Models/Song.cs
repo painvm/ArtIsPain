@@ -19,5 +19,7 @@ namespace ArtIsPain.Shared
         public int Order { get; set; }
 
         public bool IsBonusTrack { get; set; }
+
+        public MusicalAlbum Album { get; set; }
     }
 }

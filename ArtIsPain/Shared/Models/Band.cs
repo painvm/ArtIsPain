@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArtIsPain.Shared.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,6 +7,6 @@ namespace ArtIsPain.Shared
 {
     public class Band : Artist
     {
-
+        public BandLogo Image { get; set; }
     }
 }

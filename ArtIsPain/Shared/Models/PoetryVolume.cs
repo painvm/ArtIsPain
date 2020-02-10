@@ -4,8 +4,8 @@ using System.Text;
 
 namespace ArtIsPain.Shared
 {
-    public class PoetryVolume : Volume, IAuthorized
+    public class PoetryVolume : Volume
     {
-        public Guid AuthorId { get; set; }
+        public ICollection<Writer> Authors { get; set; }
     }
 }
