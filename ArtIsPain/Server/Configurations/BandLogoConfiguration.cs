@@ -9,8 +9,8 @@ namespace ArtIsPain.Server.Configurations
         public void Configure(EntityTypeBuilder<BandLogo> builder)
         {
             builder.HasOne(x => x.Band)
-                    .WithOne(x => x.Image)
-                    .HasForeignKey<BandLogo>(x => x.ObjectId)
+                    .WithMany()
+                    .HasForeignKey(x => x.ObjectId)
                     .OnDelete(DeleteBehavior.NoAction);
         }
     }
