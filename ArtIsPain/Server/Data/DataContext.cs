@@ -16,8 +16,7 @@ namespace ArtIsPain.Server.Data
         public DbSet<BandLogo> BandLogos { get; set; }
         public DbSet<MusicalAlbum> MusicalAlbums { get; set; }
         public DbSet<Song> Songs { get; set; }
-
-
+        public DbSet<PoetryVolumeAuthorship> PoetryVolumeAuthorships { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -26,6 +25,8 @@ namespace ArtIsPain.Server.Data
             modelBuilder.ApplyConfiguration<Image>(new ImageConfiguration());
             modelBuilder.ApplyConfiguration<AlbumCover>(new AlbumCoverConfiguration());
             modelBuilder.ApplyConfiguration<Song>(new SongConfiguration());
+            modelBuilder.ApplyConfiguration<PoetryVolumeAuthorship>(new PoetryVolumeAuthorshipConfiguration());
+            modelBuilder.ApplyConfiguration<StoryAuthorship>(new StoryAuthorshipConfiguration());
         }
     }
 }

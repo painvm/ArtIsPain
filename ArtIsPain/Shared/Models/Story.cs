@@ -1,4 +1,5 @@
 ﻿using ArtIsPain.Shared.Interfaces;
+using ArtIsPain.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,5 +13,8 @@ namespace ArtIsPain.Shared
         public string Description { get; set; }
 
         public Guid AuthorId { get; set; }
+
+        public ICollection<StoryAuthorship> StoryAuthorships { get; set; }
+
     }
 }
