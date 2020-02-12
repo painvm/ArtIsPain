@@ -17,6 +17,8 @@ namespace ArtIsPain.Server.Data
         public DbSet<MusicalAlbum> MusicalAlbums { get; set; }
         public DbSet<Song> Songs { get; set; }
         public DbSet<PoetryVolumeAuthorship> PoetryVolumeAuthorships { get; set; }
+        public DbSet<StoryAuthorship> StoryAuthorships { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

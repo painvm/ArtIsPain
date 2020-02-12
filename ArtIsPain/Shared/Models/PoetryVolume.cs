@@ -7,6 +7,6 @@ namespace ArtIsPain.Shared
 {
     public class PoetryVolume : Volume
     {
-        public ICollection<PoetryVolumeAuthorship> PoetryVolumeOwnerships { get; set; }
+        public ICollection<PoetryVolumeAuthorship> PoetryVolumeAuthorships { get; set; }
     }
 }
