@@ -1,12 +1,16 @@
 ﻿using ArtIsPain.Shared;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Configurations
 {
-    public class MusicalAlbumConfiguration : IEntityTypeConfiguration<MusicalAlbum>
+    public class PhotoConfiguration : IEntityTypeConfiguration<Photo>
     {
-        public void Configure(EntityTypeBuilder<MusicalAlbum> builder)
+        public void Configure(EntityTypeBuilder<Photo> builder)
         {
             builder.HasOne(x => x.Image)
                     .WithMany()

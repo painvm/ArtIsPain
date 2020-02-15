@@ -1,10 +1,6 @@
 ﻿using ArtIsPain.Shared;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Configurations
 {
@@ -16,6 +12,9 @@ namespace ArtIsPain.Server.Configurations
                     .WithMany()
                     .HasForeignKey(x => x.VolumeId)
                     .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Property(x => x.VolumeId)
+                    .IsRequired(false);
         }
     }
 }

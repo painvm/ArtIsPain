@@ -1,5 +1,4 @@
-﻿using ArtIsPain.Shared;
-using ArtIsPain.Shared.Models;
+﻿using ArtIsPain.Shared.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

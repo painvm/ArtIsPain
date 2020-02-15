@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ArtIsPain.Shared;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Data.Interfaces
 {
-    interface ISeedDataBuilder<T>
+    public interface ISeedDataBuilder
     {
-        ICollection<T> CreateSeedData();
+        IQueryable<IEntity> CreateSeedData();
     }
 }

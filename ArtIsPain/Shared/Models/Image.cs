@@ -8,7 +8,7 @@ namespace ArtIsPain.Shared
 
         public int ObjectTypeId { get; set; }
 
-        public Guid ObjectId { get; set; }
+        public Guid? ObjectId { get; set; }
 
         public byte[] Content { get; set; }
     }

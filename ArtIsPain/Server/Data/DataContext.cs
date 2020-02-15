@@ -1,35 +1,53 @@
-﻿using ArtIsPain.Server.Configurations;
+﻿using ArtIsPain.Server.Data.Interfaces;
 using ArtIsPain.Shared;
 using ArtIsPain.Shared.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace ArtIsPain.Server.Data
 {
     public class DataContext : DbContext
     {
-        public DataContext(DbContextOptions<DataContext> options) : base(options)
-        { 
+        private readonly IEnumerable<ISeedDataBuilder> _seedDataBuilders;
+
+        public DataContext(DbContextOptions<DataContext> options, IEnumerable<ISeedDataBuilder> seedDataBuilders) : base(options)
+        {
+            _seedDataBuilders = seedDataBuilders;
         }
 
+        #region DbSets
+
         public DbSet<Band> Bands { get; set; }
+
+        public DbSet<Poetry> Poetries { get; set; }
+
         public DbSet<BandLogo> BandLogos { get; set; }
+
         public DbSet<MusicalAlbum> MusicalAlbums { get; set; }
+
         public DbSet<Song> Songs { get; set; }
+
+        public DbSet<Photo> Photos { get; set; }
+
         public DbSet<PoetryVolumeAuthorship> PoetryVolumeAuthorships { get; set; }
+
+        public DbSet<Writer> Writers { get; set; }
+
         public DbSet<StoryAuthorship> StoryAuthorships { get; set; }
 
+        #endregion DbSets
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration<Band>(new BandConfiguration());
-            modelBuilder.ApplyConfiguration<BandLogo>(new BandLogoConfiguration());
-            modelBuilder.ApplyConfiguration<Image>(new ImageConfiguration());
-            modelBuilder.ApplyConfiguration<AlbumCover>(new AlbumCoverConfiguration());
-            modelBuilder.ApplyConfiguration<Song>(new SongConfiguration());
-            modelBuilder.ApplyConfiguration<PoetryVolumeAuthorship>(new PoetryVolumeAuthorshipConfiguration());
-            modelBuilder.ApplyConfiguration<StoryAuthorship>(new StoryAuthorshipConfiguration());
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            foreach (var dataBuilder in _seedDataBuilders)
+            {
+                var data = dataBuilder.CreateSeedData();
+
+                modelBuilder.Entity(data.ElementType).HasData(data);
+            }
         }
     }
 }
-

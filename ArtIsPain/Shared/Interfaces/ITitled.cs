@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ArtIsPain.Shared
+﻿namespace ArtIsPain.Shared
 {
     public interface ITitled
     {

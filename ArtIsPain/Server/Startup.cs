@@ -1,4 +1,6 @@
 using ArtIsPain.Server.Data;
+using ArtIsPain.Server.Data.Interfaces;
+using ArtIsPain.Server.Data.Seed;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -21,6 +23,11 @@ namespace ArtIsPain.Server
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<ISeedDataBuilder, BandBuilder>();
+            services.AddScoped<ISeedDataBuilder, BandLogoBuilder>();
+            services.AddScoped<ISeedDataBuilder, WriterBuilder>();
+            services.AddScoped<ISeedDataBuilder, SongBuilder>();
+
             services.AddDbContext<DataContext>(
                 db => db.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 

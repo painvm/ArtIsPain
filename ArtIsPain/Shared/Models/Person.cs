@@ -1,7 +1,5 @@
 ﻿using ArtIsPain.Shared.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ArtIsPain.Shared
 {
@@ -11,7 +9,7 @@ namespace ArtIsPain.Shared
 
         public int ObjectTypeId { get; set; }
 
-        public Guid ImageId { get; set; }
+        public Guid? ImageId { get; set; }
 
         public string Description { get; set; }
     }

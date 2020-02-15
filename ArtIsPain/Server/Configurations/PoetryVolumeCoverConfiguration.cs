@@ -4,15 +4,17 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ArtIsPain.Server.Configurations
 {
-    public class BandLogoConfiguration : IEntityTypeConfiguration<BandLogo>
+    public class PoetryVolumeCoverConfiguration : IEntityTypeConfiguration<PoetryVolumeCover>
     {
-        public void Configure(EntityTypeBuilder<BandLogo> builder)
+        public void Configure(EntityTypeBuilder<PoetryVolumeCover> builder)
         {
-            builder.HasOne(x => x.Band)
+            builder.HasOne(x => x.PoetryVolume)
                     .WithMany()
                     .HasForeignKey(x => x.ObjectId)
-                    .IsRequired(false)
                     .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Property(x => x.ObjectId)
+                    .IsRequired(false);
         }
     }
 }

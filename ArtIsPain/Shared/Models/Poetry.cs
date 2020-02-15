@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ArtIsPain.Shared
 {
@@ -8,6 +6,8 @@ namespace ArtIsPain.Shared
     {
         public int Order { get; set; }
 
-        public Guid VolumeId { get; set; }
+        public Guid? VolumeId { get; set; }
+
+        public PoetryVolume PoetryVolume { get; set; }
     }
 }
