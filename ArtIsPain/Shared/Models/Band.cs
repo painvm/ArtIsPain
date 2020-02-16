@@ -1,6 +1,4 @@
-﻿using ArtIsPain.Shared.Models;
-
-namespace ArtIsPain.Shared
+﻿namespace ArtIsPain.Shared.Models
 {
     public class Band : Artist
     {

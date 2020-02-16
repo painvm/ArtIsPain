@@ -1,7 +1,6 @@
-﻿using ArtIsPain.Shared.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace ArtIsPain.Shared
+namespace ArtIsPain.Shared.Models
 {
     public class Writer : Artist
     {

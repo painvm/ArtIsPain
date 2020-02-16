@@ -1,7 +1,7 @@
 ﻿using ArtIsPain.Shared.Interfaces;
 using System;
 
-namespace ArtIsPain.Shared
+namespace ArtIsPain.Shared.Models
 {
     public class User : Person, INamed
     {

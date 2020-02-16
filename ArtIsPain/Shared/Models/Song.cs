@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ArtIsPain.Shared
+namespace ArtIsPain.Shared.Models
 {
     public class Song : ITitled, IEntity, IVolumeItem
     {

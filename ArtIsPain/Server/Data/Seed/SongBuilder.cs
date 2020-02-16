@@ -1,5 +1,6 @@
 ﻿using ArtIsPain.Server.Data.Interfaces;
 using ArtIsPain.Shared;
+using ArtIsPain.Shared.Models;
 using Bogus;
 using System.Linq;
 

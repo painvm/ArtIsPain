@@ -1,8 +1,7 @@
 ﻿using ArtIsPain.Shared.Interfaces;
-using ArtIsPain.Shared.Models;
 using System;
 
-namespace ArtIsPain.Shared
+namespace ArtIsPain.Shared.Models
 {
     public class Photo : IEntity, IVolumeItem, ITitled, IDescribable
     {

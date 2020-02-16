@@ -1,9 +1,8 @@
 ﻿using ArtIsPain.Shared.Interfaces;
-using ArtIsPain.Shared.Models;
 using System;
 using System.Collections.Generic;
 
-namespace ArtIsPain.Shared
+namespace ArtIsPain.Shared.Models
 {
     public class Story : Text, IEntityWithImage, IDescribable, IAuthorized
     {

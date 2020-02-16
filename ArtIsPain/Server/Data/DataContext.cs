@@ -1,5 +1,4 @@
 ﻿using ArtIsPain.Server.Data.Interfaces;
-using ArtIsPain.Shared;
 using ArtIsPain.Shared.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;

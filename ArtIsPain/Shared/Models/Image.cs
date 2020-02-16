@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ArtIsPain.Shared
+namespace ArtIsPain.Shared.Models
 {
     public abstract class Image : IEntity, IFile
     {

@@ -1,7 +1,6 @@
-﻿using ArtIsPain.Shared.Models;
-using System;
+﻿using System;
 
-namespace ArtIsPain.Shared
+namespace ArtIsPain.Shared.Models
 {
     public class MusicalAlbum : Volume, IAuthorized
     {
