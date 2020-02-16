@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace ArtIsPain.Server.Dtos
+namespace ArtIsPain.Server.Dtos.Band
 {
-    public class BandDto
+    public class BandResult
     {
         public Guid Id { get; set; }
 

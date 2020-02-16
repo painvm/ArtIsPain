@@ -1,6 +1,8 @@
 ﻿using ArtIsPain.Server.Commands;
+using ArtIsPain.Server.Commands.Band;
 using ArtIsPain.Server.Data.Interfaces;
 using ArtIsPain.Server.Dtos;
+using ArtIsPain.Server.Dtos.Band;
 using ArtIsPain.Shared.Models;
 using AutoMapper;
 using MediatR;
@@ -22,10 +24,16 @@ namespace ArtIsPain.Server.Controllers
         }
 
         [HttpGet("{bandId}")]
-        public async Task<BandDto> Get(Guid bandId)
+        public async Task<BandResult> GetBandById(Guid bandId)
         {
             GetBandByIdCommand request = new GetBandByIdCommand() { BandId = bandId };
 
+            return await _mediator.Send(request);
+        }
+
+        [HttpPost]
+        public async Task<BandResult> UpsertBand(UpsertBandCommand request)
+        {
             return await _mediator.Send(request);
         }
     }

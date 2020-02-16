@@ -17,12 +17,22 @@ namespace ArtIsPain.Server.Data.Repositories
             _dataContext = dataContext;
         }
 
-        public async Task<TEntity> Add(TEntity entity)
+        public async Task<TEntity> Upsert(TEntity entityToUpsert)
         {
-            _dataContext.Set<TEntity>().Add(entity);
+            var entityFromDatabase = await _dataContext.Set<TEntity>().FindAsync(entityToUpsert.Id);
+
+            if (entityFromDatabase == null)
+            {
+                _dataContext.Set<TEntity>().Add(entityToUpsert);
+            }
+            else
+            {
+                _dataContext.Entry(entityFromDatabase).State = EntityState.Modified;
+            }
+
             await _dataContext.SaveChangesAsync();
 
-            return entity;
+            return entityToUpsert;
         }
 
         public virtual async Task<TEntity> Delete(Guid id)
@@ -48,14 +58,6 @@ namespace ArtIsPain.Server.Data.Repositories
         public async Task<List<TEntity>> GetAll()
         {
             return await _dataContext.Set<TEntity>().ToListAsync();
-        }
-
-        public async Task<TEntity> Update(TEntity entity)
-        {
-            _dataContext.Entry(entity).State = EntityState.Modified;
-            await _dataContext.SaveChangesAsync();
-
-            return entity;
         }
     }
 }

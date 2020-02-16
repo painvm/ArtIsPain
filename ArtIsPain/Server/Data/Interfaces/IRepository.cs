@@ -11,9 +11,7 @@ namespace ArtIsPain.Server.Data.Interfaces
 
         Task<T> GetById(Guid id);
 
-        Task<T> Add(T entity);
-
-        Task<T> Update(T entity);
+        Task<T> Upsert(T entity);
 
         Task<T> Delete(Guid id);
     }

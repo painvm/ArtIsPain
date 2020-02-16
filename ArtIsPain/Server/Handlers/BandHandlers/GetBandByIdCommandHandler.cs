@@ -1,14 +1,15 @@
 ﻿using ArtIsPain.Server.Commands;
 using ArtIsPain.Server.Data.Interfaces;
 using ArtIsPain.Server.Dtos;
+using ArtIsPain.Server.Dtos.Band;
 using AutoMapper;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ArtIsPain.Server.Handlers.Band
+namespace ArtIsPain.Server.Handlers.BandHandlers
 {
-    public class GetBandByIdCommandHandler : IRequestHandler<GetBandByIdCommand, BandDto>
+    public class GetBandByIdCommandHandler : IRequestHandler<GetBandByIdCommand, BandResult>
     {
         private readonly IMapper _autoMapper;
         private readonly IRepository<ArtIsPain.Shared.Models.Band> _bandRepository;
@@ -21,7 +22,7 @@ namespace ArtIsPain.Server.Handlers.Band
             _mediator = mediator;
         }
 
-        public async Task<BandDto> Handle(GetBandByIdCommand request, CancellationToken cancellationToken)
+        public async Task<BandResult> Handle(GetBandByIdCommand request, CancellationToken cancellationToken)
         {
             ArtIsPain.Shared.Models.Band band = await _bandRepository.GetById(request.BandId);
 
@@ -30,7 +31,7 @@ namespace ArtIsPain.Server.Handlers.Band
                 return null;
             }
 
-            BandDto bandToReturn = _autoMapper.Map<BandDto>(band);
+            BandResult bandToReturn = _autoMapper.Map<BandResult>(band);
 
             return bandToReturn;
         }
