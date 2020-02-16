@@ -43,7 +43,7 @@ namespace ArtIsPain.Server
             services.AddDbContext<DataContext>(
                 db => db.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddMvc().AddNewtonsoftJson().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().AddNewtonsoftJson();
             services.AddResponseCompression(opts =>
             {
                 opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
