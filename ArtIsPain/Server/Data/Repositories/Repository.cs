@@ -60,4 +60,3 @@ namespace ArtIsPain.Server.Data.Repositories
         }
     }
 }
-}
