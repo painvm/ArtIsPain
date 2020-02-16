@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtIsPain.Server", "ArtIsPa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtIsPain.Shared", "ArtIsPain\Shared\ArtIsPain.Shared.csproj", "{D545A106-08D2-4AD0-AD5B-1AC65C703A3B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{84779E1F-1C0C-45BA-ABAB-CE74800E0544}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{95FD24A1-5801-4838-813F-7E5D6E396555} = {84779E1F-1C0C-45BA-ABAB-CE74800E0544}
+		{D545A106-08D2-4AD0-AD5B-1AC65C703A3B} = {84779E1F-1C0C-45BA-ABAB-CE74800E0544}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {58EDC750-A9C8-461A-8E4A-300F5025441F}
