@@ -1,15 +1,17 @@
-﻿using System;
+﻿using ArtIsPain.Server.Dtos.Album;
+using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ArtIsPain.Server.Dtos.Album
+namespace ArtIsPain.Server.Commands.Album
 {
-    public class AlbumResult : IResult
+    public class UpsertAlbumCommand : IUpsertEntityCommand<AlbumResult>
     {
-        public Guid Id { get; set; }
+        public Guid? EntityId { get; set; }
 
-        public string BandName { get; set; }
+        public Guid BandId { get; set; }
 
         public string Title { get; set; }
 

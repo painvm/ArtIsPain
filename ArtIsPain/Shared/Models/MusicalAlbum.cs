@@ -6,8 +6,10 @@ namespace ArtIsPain.Shared.Models
     {
         public string Url { get; set; }
 
-        public Guid AuthorId { get; set; }
+        public Guid? AuthorId { get; set; }
 
         public AlbumCover Image { get; set; }
+
+        public Band Band { get; set; }
     }
 }

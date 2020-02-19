@@ -13,7 +13,14 @@ namespace ArtIsPain.Server.Configurations
                     .HasForeignKey(x => x.ImageId)
                     .OnDelete(DeleteBehavior.NoAction);
 
+            builder.HasOne(x => x.Band)
+                    .WithMany()
+                    .HasForeignKey(x => x.AuthorId)
+                    .OnDelete(DeleteBehavior.NoAction);
+
             builder.Property(x => x.ImageId)
+                    .IsRequired(false);
+            builder.Property(x => x.AuthorId)
                     .IsRequired(false);
         }
     }

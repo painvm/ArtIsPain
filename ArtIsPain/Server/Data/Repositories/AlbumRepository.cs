@@ -19,6 +19,9 @@ namespace ArtIsPain.Server.Data.Repositories
         public IQueryable<MusicalAlbum> GetAlbumsByBandId(Guid bandId)
         {
             IQueryable<MusicalAlbum> albums = _dataContext.MusicalAlbums
+                                                          .Include(x => x.Id)
+                                                          .Include(x => x.CompletedDate)
+                                                          .Include(x => x.Title)
                                                           .Where(a => a.AuthorId == bandId);
 
             return albums;

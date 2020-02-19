@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Commands.Band
 {
-    public class UpsertBandCommand : IRequest<BandResult>
+    public class UpsertBandCommand : IUpsertEntityCommand<BandResult>
     {
-        public Guid? Id { get; set; }
+        public Guid? EntityId { get; set; }
 
         public string Description { get; set; }
 

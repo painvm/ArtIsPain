@@ -13,7 +13,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ArtIsPain.Server.Handlers.AlbumHandlers
+namespace ArtIsPain.Server.Handlers.Album
 {
     public class GetAlbumsByBandIdCommandHandler : IRequestHandler<GetAlbumsByBandIdCommand, AlbumResult>
     {

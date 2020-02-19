@@ -10,7 +10,7 @@ namespace ArtIsPain.Shared.Models
 
         public string Description { get; set; }
 
-        public Guid AuthorId { get; set; }
+        public Guid? AuthorId { get; set; }
 
         public ICollection<StoryAuthorship> StoryAuthorships { get; set; }
     }

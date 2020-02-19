@@ -26,7 +26,7 @@ namespace ArtIsPain.Server.Controllers
         [HttpGet("{bandId}")]
         public async Task<BandResult> GetBandById(Guid bandId)
         {
-            GetBandByIdCommand request = new GetBandByIdCommand() { BandId = bandId };
+            GetBandByIdCommand request = new GetBandByIdCommand() { EntityId = bandId };
 
             return await _mediator.Send(request);
         }

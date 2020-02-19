@@ -1,8 +1,10 @@
-﻿using System;
+﻿using ArtIsPain.Server.Dtos.Album;
+using System;
+using System.Collections.Generic;
 
 namespace ArtIsPain.Server.Dtos.Band
 {
-    public class BandResult
+    public class BandResult : IResult
     {
         public Guid Id { get; set; }
 
@@ -13,5 +15,7 @@ namespace ArtIsPain.Server.Dtos.Band
         public DateTime FormationDate { get; set; }
 
         public DateTime? DisbandDate { get; set; }
+
+        public ICollection<AlbumPreview> Albums { get; set; }
     }
 }

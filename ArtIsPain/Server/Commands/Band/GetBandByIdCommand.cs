@@ -5,8 +5,8 @@ using System;
 
 namespace ArtIsPain.Server.Commands
 {
-    public class GetBandByIdCommand : IRequest<BandResult>
+    public class GetBandByIdCommand : IGetEntityByIdCommand<BandResult>
     {
-        public Guid BandId { get; set; }
+        public Guid EntityId { get; set; }
     }
 }
