@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Commands.Album
 {
-    public class UpsertAlbumCommand : IUpsertEntityCommand<AlbumResult>
+    public class UpsertAlbumCommand : IUpsertEntityCommand<AlbumViewModel>
     {
         public Guid? EntityId { get; set; }
 

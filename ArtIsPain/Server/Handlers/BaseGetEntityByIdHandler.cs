@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Handlers
 {
-    public abstract class BaseGetEntityByIdHandler<TEntity, TRequest, TResponse> : IRequestHandler<TRequest, TResponse> where TResponse : IResult
+    public abstract class BaseGetEntityByIdHandler<TEntity, TRequest, TResponse> : IRequestHandler<TRequest, TResponse> where TResponse : IViewModel
                                                                                                                         where TRequest : IGetEntityByIdCommand<TResponse>
                                                                                                                         where TEntity : class, IEntity
     {

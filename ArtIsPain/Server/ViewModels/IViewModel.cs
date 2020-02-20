@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Dtos
 {
-    public interface IResult
+    public interface IViewModel
     {
     }
 }

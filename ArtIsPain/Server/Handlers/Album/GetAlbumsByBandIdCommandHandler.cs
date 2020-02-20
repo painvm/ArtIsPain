@@ -15,22 +15,23 @@ using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Handlers.Album
 {
-    public class GetAlbumsByBandIdCommandHandler : IRequestHandler<GetAlbumsByBandIdCommand, AlbumResult>
+    public class GetAlbumsByBandIdCommandHandler : IRequestHandler<GetAlbumsByBandIdCommand, AlbumViewModel>
     {
         private readonly IMapper _autoMapper;
-        private readonly AlbumRepository _albumRepository;
+        private readonly IAuthorizedRepository<MusicalAlbum> _albumRepository;
 
-        public GetAlbumsByBandIdCommandHandler(IMapper autoMapper, AlbumRepository albumRepository)
+        public GetAlbumsByBandIdCommandHandler(IMapper autoMapper, IAuthorizedRepository<MusicalAlbum> albumRepository)
         {
             _autoMapper = autoMapper;
             _albumRepository = albumRepository;
         }
 
-        public async Task<AlbumResult> Handle(GetAlbumsByBandIdCommand request, CancellationToken cancellationToken)
+        public async Task<AlbumViewModel> Handle(GetAlbumsByBandIdCommand request, CancellationToken cancellationToken)
         {
-            List<MusicalAlbum> albums = await _albumRepository.GetAlbumsByBandId(request.BandId)
-                                                              .OrderBy(a => a.CompletedDate)
-                                                              .ThenBy(a => a.Title).ToListAsync();
+            List<MusicalAlbum> albums = await _albumRepository.GetEntityByAuthorId(
+                request.BandId, x => x.Include(y => y.Id)
+                                      .Include(y => y.CompletedDate)
+                                      .Include(y => y.Title)).ToListAsync();
 
             return null;
         }

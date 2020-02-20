@@ -13,16 +13,16 @@ using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Handlers.Album
 {
-    public class UpsertAlbumCommandHandler : BaseUpsertEntityCommandHandler<MusicalAlbum, UpsertAlbumCommand, AlbumResult>
+    public class UpsertAlbumCommandHandler : BaseUpsertEntityCommandHandler<MusicalAlbum, UpsertAlbumCommand, AlbumViewModel>
     {
         public UpsertAlbumCommandHandler(IMapper autoMapper, AlbumRepository albumRepository)
             : base(autoMapper, albumRepository)
         {
         }
 
-        public override async Task<AlbumResult> Handle(UpsertAlbumCommand request, CancellationToken cancellationToken)
+        public override async Task<AlbumViewModel> Handle(UpsertAlbumCommand request, CancellationToken cancellationToken)
         {
-            AlbumResult result = await base.Handle(request, cancellationToken);
+            AlbumViewModel result = await base.Handle(request, cancellationToken);
 
             return result;
         }

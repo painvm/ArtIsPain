@@ -1,8 +1,10 @@
 ﻿using ArtIsPain.Server.Data.Interfaces;
 using ArtIsPain.Shared;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Data.Repositories

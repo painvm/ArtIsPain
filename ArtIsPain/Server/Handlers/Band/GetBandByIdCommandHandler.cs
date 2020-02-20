@@ -13,16 +13,16 @@ using System.Linq;
 
 namespace ArtIsPain.Server.Handlers.Band
 {
-    public class GetBandByIdCommandHandler : BaseGetEntityByIdHandler<BandModel, GetBandByIdCommand, BandResult>
+    public class GetBandByIdCommandHandler : BaseGetEntityByIdHandler<BandModel, GetBandByIdCommand, BandViewModel>
     {
         public GetBandByIdCommandHandler(IMapper autoMapper, IRepository<BandModel> bandRepository)
             : base(autoMapper, bandRepository)
         {
         }
 
-        public override async Task<BandResult> Handle(GetBandByIdCommand request, CancellationToken cancellationToken)
+        public override async Task<BandViewModel> Handle(GetBandByIdCommand request, CancellationToken cancellationToken)
         {
-            BandResult bandToReturn = await base.Handle(request, cancellationToken);
+            BandViewModel bandToReturn = await base.Handle(request, cancellationToken);
 
             return bandToReturn;
         }

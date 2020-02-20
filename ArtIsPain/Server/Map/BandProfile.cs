@@ -11,7 +11,7 @@ namespace ArtIsPain.Server.Map
     {
         public BandProfile()
         {
-            CreateMap<Band, BandResult>()
+            CreateMap<Band, BandViewModel>()
                  .ForMember(dst => dst.FormationDate, opt => opt.MapFrom(src => src.StartActivityDate))
                  .ForMember(dst => dst.DisbandDate, opt => opt.MapFrom(src => src.EndActivityDate))
                  .ForMember(dst => dst.Name, opt => opt.MapFrom(src => src.Title));

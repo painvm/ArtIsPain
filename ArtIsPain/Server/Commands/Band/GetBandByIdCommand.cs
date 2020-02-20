@@ -5,7 +5,7 @@ using System;
 
 namespace ArtIsPain.Server.Commands
 {
-    public class GetBandByIdCommand : IGetEntityByIdCommand<BandResult>
+    public class GetBandByIdCommand : IGetEntityByIdCommand<BandViewModel>
     {
         public Guid EntityId { get; set; }
     }

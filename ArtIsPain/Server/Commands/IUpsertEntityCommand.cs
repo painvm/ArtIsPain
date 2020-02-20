@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Commands
 {
-    public interface IUpsertEntityCommand<TResponse> : IRequest<TResponse> where TResponse : IResult
+    public interface IUpsertEntityCommand<TResponse> : IRequest<TResponse> where TResponse : IViewModel
     {
         public Guid? EntityId { get; set; }
     }

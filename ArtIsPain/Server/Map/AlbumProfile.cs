@@ -13,10 +13,10 @@ namespace ArtIsPain.Server.Map
     {
         public AlbumProfile()
         {
-            CreateMap<MusicalAlbum, AlbumPreview>()
+            CreateMap<MusicalAlbum, AlbumPreviewModel>()
                 .ForMember(dst => dst.ReleaseDate, opt => opt.MapFrom(src => src.CompletedDate));
 
-            CreateMap<UpsertAlbumCommand, AlbumResult>();
+            CreateMap<UpsertAlbumCommand, AlbumViewModel>();
         }
     }
 }

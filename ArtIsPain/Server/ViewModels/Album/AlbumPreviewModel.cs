@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Dtos.Album
 {
-    public class AlbumPreview : IResult
+    public class AlbumPreviewModel : IViewModel
     {
         public Guid Id { get; set; }
 

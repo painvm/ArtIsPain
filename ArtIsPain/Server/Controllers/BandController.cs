@@ -24,7 +24,7 @@ namespace ArtIsPain.Server.Controllers
         }
 
         [HttpGet("{bandId}")]
-        public async Task<BandResult> GetBandById(Guid bandId)
+        public async Task<BandViewModel> GetBandById(Guid bandId)
         {
             GetBandByIdCommand request = new GetBandByIdCommand() { EntityId = bandId };
 
@@ -32,7 +32,7 @@ namespace ArtIsPain.Server.Controllers
         }
 
         [HttpPost]
-        public async Task<BandResult> UpsertBand(UpsertBandCommand request)
+        public async Task<BandViewModel> UpsertBand(UpsertBandCommand request)
         {
             return await _mediator.Send(request);
         }

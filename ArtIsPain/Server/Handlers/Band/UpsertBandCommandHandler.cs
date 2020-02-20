@@ -13,16 +13,16 @@ using BandModel = ArtIsPain.Shared.Models.Band;
 
 namespace ArtIsPain.Server.Handlers.Band
 {
-    public class UpsertBandCommandHandler : BaseUpsertEntityCommandHandler<BandModel, UpsertBandCommand, BandResult>
+    public class UpsertBandCommandHandler : BaseUpsertEntityCommandHandler<BandModel, UpsertBandCommand, BandViewModel>
     {
         public UpsertBandCommandHandler(IMapper autoMapper, IRepository<BandModel> albumRepository)
             : base(autoMapper, albumRepository)
         {
         }
 
-        public override async Task<BandResult> Handle(UpsertBandCommand request, CancellationToken cancellationToken)
+        public override async Task<BandViewModel> Handle(UpsertBandCommand request, CancellationToken cancellationToken)
         {
-            BandResult result = await base.Handle(request, cancellationToken);
+            BandViewModel result = await base.Handle(request, cancellationToken);
 
             return result;
         }

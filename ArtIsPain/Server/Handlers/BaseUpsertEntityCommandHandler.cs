@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Handlers.Band
 {
-    public abstract class BaseUpsertEntityCommandHandler<TEntity, TRequest, TResponse> : IRequestHandler<TRequest, TResponse> where TResponse : IResult, new()
+    public abstract class BaseUpsertEntityCommandHandler<TEntity, TRequest, TResponse> : IRequestHandler<TRequest, TResponse> where TResponse : IViewModel, new()
                                                                                                                      where TRequest : IUpsertEntityCommand<TResponse>
                                                                                                                      where TEntity : class, IEntity, new()
     {

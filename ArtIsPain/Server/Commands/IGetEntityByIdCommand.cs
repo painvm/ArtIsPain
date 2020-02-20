@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Commands
 {
-    public interface IGetEntityByIdCommand<TResponse> : IRequest<TResponse> where TResponse : IResult
+    public interface IGetEntityByIdCommand<TResponse> : IRequest<TResponse> where TResponse : IViewModel
     {
         public Guid EntityId { get; set; }
     }

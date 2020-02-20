@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ArtIsPain.Server.Dtos.Band
 {
-    public class BandResult : IResult
+    public class BandViewModel : IViewModel
     {
         public Guid Id { get; set; }
 
@@ -16,6 +16,6 @@ namespace ArtIsPain.Server.Dtos.Band
 
         public DateTime? DisbandDate { get; set; }
 
-        public ICollection<AlbumPreview> Albums { get; set; }
+        public ICollection<AlbumPreviewModel> Albums { get; set; }
     }
 }
