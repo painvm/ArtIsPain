@@ -7,5 +7,6 @@ namespace ArtIsPain.Server.Dtos
 {
     public interface IViewModel
     {
+        public Guid Id { get; set; }
     }
 }

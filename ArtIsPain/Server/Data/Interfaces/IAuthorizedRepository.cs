@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Data.Interfaces
 {
-    public interface IAuthorizedRepository<TEntity> where TEntity : class, IEntity, IAuthorized, new()
+    public interface IAuthorizedRepository<TEntity> where TEntity : class, IAuthorized, new()
     {
-        public IQueryable<TEntity> GetEntityByAuthorId(
+        public IQueryable<TEntity> GetEntitiesByAuthorId(
             Guid authorId,
-            Func<IQueryable<TEntity>, IQueryable<TEntity>> include,
+            Func<IQueryable<TEntity>, IQueryable<TEntity>> include = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null);
     }
 }

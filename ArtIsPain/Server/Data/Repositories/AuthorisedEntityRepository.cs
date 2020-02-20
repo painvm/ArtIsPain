@@ -19,7 +19,7 @@ namespace ArtIsPain.Server.Data.Repositories
             _dataContext = dataContext;
         }
 
-        public IQueryable<TEntity> GetEntityByAuthorId(
+        public IQueryable<TEntity> GetEntitiesByAuthorId(
             Guid authorId,
             Func<IQueryable<TEntity>, IQueryable<TEntity>> include,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)

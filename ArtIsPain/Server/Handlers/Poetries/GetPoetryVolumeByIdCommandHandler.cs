@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ArtIsPain.Server.Handlers.Poetry
+namespace ArtIsPain.Server.Handlers.Poetries
 {
     public class GetPoetryVolumeByIdCommandHandler : BaseGetEntityByIdHandler<PoetryVolume, GetPoetryVolumeByIdCommand, PoetryVolumeViewModel>
     {

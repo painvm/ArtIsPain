@@ -28,7 +28,7 @@ namespace ArtIsPain.Server.Handlers.Album
 
         public async Task<AlbumViewModel> Handle(GetAlbumsByBandIdCommand request, CancellationToken cancellationToken)
         {
-            List<MusicalAlbum> albums = await _albumRepository.GetEntityByAuthorId(
+            List<MusicalAlbum> albums = await _albumRepository.GetEntitiesByAuthorId(
                 request.BandId, x => x.Include(y => y.Id)
                                       .Include(y => y.CompletedDate)
                                       .Include(y => y.Title)).ToListAsync();
