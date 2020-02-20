@@ -2,11 +2,11 @@
 
 namespace ArtIsPain.Shared.Models
 {
-    public class PoetryVolumeAuthorship
+    public class PoetryVolumeAuthorship : IAuthorized
     {
         public Guid PoetryVolumeId { get; set; }
 
-        public Guid AuthorId { get; set; }
+        public Guid? AuthorId { get; set; }
 
         public PoetryVolume PoetryVolume { get; set; }
 

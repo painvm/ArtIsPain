@@ -2,11 +2,11 @@
 
 namespace ArtIsPain.Shared.Models
 {
-    public class StoryAuthorship
+    public class StoryAuthorship : IAuthorized
     {
         public Guid StoryId { get; set; }
 
-        public Guid AuthorId { get; set; }
+        public Guid? AuthorId { get; set; }
 
         public Story Story { get; set; }
 
