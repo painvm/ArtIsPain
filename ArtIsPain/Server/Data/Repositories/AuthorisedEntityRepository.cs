@@ -31,7 +31,9 @@ namespace ArtIsPain.Server.Data.Repositories
                 query = orderBy(query);
             }
 
-            return query.Where(x => x.AuthorId == authorId);
+            IQueryable<Guid> authorizedPoetryVolumeIdList = query.Where(x => x.AuthorId == authorId).Select(x => x.Id);
+
+            return query.Where(x => authorizedPoetryVolumeIdList.Contains(x.Id));
         }
     }
 }

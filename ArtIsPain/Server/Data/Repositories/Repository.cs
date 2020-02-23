@@ -57,9 +57,9 @@ namespace ArtIsPain.Server.Data.Repositories
             return await _dataContext.Set<TEntity>().FindAsync(id);
         }
 
-        public async Task<List<TEntity>> GetAll()
+        public IQueryable<TEntity> GetAll()
         {
-            return await _dataContext.Set<TEntity>().ToListAsync();
+            return _dataContext.Set<TEntity>().AsQueryable();
         }
     }
 }
