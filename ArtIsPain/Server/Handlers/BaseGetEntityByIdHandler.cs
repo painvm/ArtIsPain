@@ -33,9 +33,9 @@ namespace ArtIsPain.Server.Handlers
                 return default(TResponse);
             }
 
-            TResponse bandToReturn = _autoMapper.Map<TResponse>(entity);
+            TResponse entityToReturn = _autoMapper.Map<TResponse>(entity);
 
-            return bandToReturn;
+            return entityToReturn;
         }
     }
 }

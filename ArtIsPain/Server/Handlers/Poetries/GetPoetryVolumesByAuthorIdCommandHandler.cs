@@ -29,11 +29,7 @@ namespace ArtIsPain.Server.Handlers.Poetries
 
         public async Task<IEnumerable<PoetryVolumeViewModel>> Handle(GetPoetryVolumesByAuthorIdCommand request, CancellationToken cancellationToken)
         {
-            IQueryable<PoetryVolumeAuthorship> authorizedVolumes = _authorizedRepository
-                .GetEntitiesByAuthorId(
-                    request.AuthorId,
-                    inc => inc.Include(x => x.Author)
-                              .Include(x => x.PoetryVolume));
+            IQueryable<PoetryVolumeAuthorship> authorizedVolumes = _authorizedRepository.GetEntitiesByAuthorId(request.AuthorId);
 
             IQueryable<PoetryVolumeViewModel> volumesToReturn = _autoMapper.ProjectTo<PoetryVolumeViewModel>(authorizedVolumes);
 

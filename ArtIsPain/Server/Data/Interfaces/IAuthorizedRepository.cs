@@ -12,5 +12,7 @@ namespace ArtIsPain.Server.Data.Interfaces
             Guid authorId,
             Func<IQueryable<TEntity>, IQueryable<TEntity>> include = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null);
+
+        public IQueryable<TEntity> SetAuthorship(Guid entityId, IEnumerable<Guid> authorIds);
     }
 }
