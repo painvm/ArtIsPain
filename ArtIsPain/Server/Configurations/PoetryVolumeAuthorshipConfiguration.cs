@@ -8,11 +8,11 @@ namespace ArtIsPain.Server.Configurations
     {
         public void Configure(EntityTypeBuilder<PoetryVolumeAuthorship> builder)
         {
-            builder.HasKey(x => new { x.PoetryVolumeId, x.AuthorId });
+            builder.HasKey(x => new { x.EntityId, x.AuthorId });
 
             builder.HasOne(x => x.PoetryVolume)
                     .WithMany(x => x.PoetryVolumeAuthorships)
-                    .HasForeignKey(x => x.PoetryVolumeId)
+                    .HasForeignKey(x => x.EntityId)
                     .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(x => x.Author)

@@ -9,17 +9,17 @@ using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Data.Repositories
 {
-    public abstract class Repository<TEntity, TContext> : IRepository<TEntity> where TEntity : class, IEntity
-                                                                               where TContext : DbContext
+    public abstract class EntityRepository<TEntity, TContext> : BaseRepository<TEntity, TContext> where TEntity : class, IEntity
+                                                                                                  where TContext : DbContext
     {
         private readonly TContext _dataContext;
 
-        public Repository(TContext dataContext)
+        public EntityRepository(TContext dataContext) : base(dataContext)
         {
             _dataContext = dataContext;
         }
 
-        public async Task<TEntity> Upsert(TEntity entityToUpsert)
+        public override async Task<TEntity> Upsert(TEntity entityToUpsert)
         {
             var entityFromDatabase = await _dataContext.Set<TEntity>().FindAsync(entityToUpsert.Id);
 
@@ -37,7 +37,7 @@ namespace ArtIsPain.Server.Data.Repositories
             return entityToUpsert;
         }
 
-        public virtual async Task<TEntity> Delete(Guid id)
+        public override async Task<TEntity> Delete(Guid id)
         {
             var entity = await _dataContext.Set<TEntity>().FindAsync(id);
 
@@ -52,14 +52,9 @@ namespace ArtIsPain.Server.Data.Repositories
             return entity;
         }
 
-        public async Task<TEntity> GetById(Guid id)
+        public override async Task<TEntity> GetById(Guid id)
         {
             return await _dataContext.Set<TEntity>().FindAsync(id);
-        }
-
-        public IQueryable<TEntity> GetAll()
-        {
-            return _dataContext.Set<TEntity>().AsQueryable();
         }
     }
 }

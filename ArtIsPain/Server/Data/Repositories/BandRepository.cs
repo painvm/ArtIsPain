@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ArtIsPain.Server.Data.Repositories
 {
-    public class BandRepository : Repository<Band, DataContext>
+    public class BandRepository : EntityRepository<Band, DataContext>
     {
         public BandRepository(DataContext dataContext) : base(dataContext)
         {

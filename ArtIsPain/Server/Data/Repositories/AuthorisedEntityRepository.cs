@@ -1,5 +1,6 @@
 ﻿using ArtIsPain.Server.Data.Interfaces;
 using ArtIsPain.Shared;
+using ArtIsPain.Shared.Interfaces;
 using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Data.Repositories
 {
-    public abstract class AuthorisedEntityRepository<TEntity, TContext> : Repository<TEntity, TContext>, IAuthorizedRepository<TEntity>
+    public abstract class AuthorisedEntityRepository<TEntity, TContext> : EntityRepository<TEntity, TContext>, IAuthorizedRepository<TEntity>
                                                                                                               where TEntity : class, IEntity, IAuthorized, new()
                                                                                                               where TContext : DbContext
     {
@@ -35,25 +36,6 @@ namespace ArtIsPain.Server.Data.Repositories
             IQueryable<Guid> authorizedPoetryVolumeIdList = query.Where(x => x.AuthorId == authorId).Select(x => x.Id);
 
             return query.Where(x => authorizedPoetryVolumeIdList.Contains(x.Id));
-        }
-
-        public IQueryable<TEntity> SetAuthorship(Guid entityId, IEnumerable<Guid> authorIds)
-        {
-            IList<TEntity> authorship = new List<TEntity>();
-
-            foreach (var authorId in authorIds)
-            {
-                TEntity entityAuthorPair = new TEntity();
-
-                entityAuthorPair.Id = entityId;
-                entityAuthorPair.AuthorId = authorId;
-
-                authorship.Add(entityAuthorPair);
-            }
-
-            _dataContext.BulkInsert<TEntity>(authorship);
-
-            return base.GetAll()
         }
     }
 }

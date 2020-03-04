@@ -35,8 +35,11 @@ namespace ArtIsPain.Server
             services.AddScoped<ISeedDataBuilder, SongBuilder>();
 
             services.AddScoped<IRepository<Band>, BandRepository>();
+            services.AddScoped<IRepository<PoetryVolume>, PoetryVolumeRepository>();
+            services.AddScoped<IMultiAuthorizedRepository<PoetryVolumeAuthorship>, PoetryVolumeAuthorshipRepository>();
 
             services.AddAutoMapper(typeof(BandRepository));
+            services.AddAutoMapper(typeof(PoetryVolumeRepository));
 
             services.AddMediatR(Assembly.GetExecutingAssembly());
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Data.Interfaces
 {
-    public interface IRepository<T> where T : class, IEntity
+    public interface IRepository<T> where T : class
     {
         IQueryable<T> GetAll();
 

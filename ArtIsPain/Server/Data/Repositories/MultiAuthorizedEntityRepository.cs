@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using ArtIsPain.Server.Data.Interfaces;
+using ArtIsPain.Shared.Interfaces;
+using EFCore.BulkExtensions;
+using Microsoft.EntityFrameworkCore;
+
+namespace ArtIsPain.Server.Data.Repositories
+{
+    public abstract class MultiAuthorizedEntityRepository<TEntity, TContext> : BaseRepository<TEntity, TContext>, IMultiAuthorizedRepository<TEntity>
+                                                                                                                where TEntity : class, IMultiAuthorized, new()
+                                                                                                                where TContext : DbContext
+    {
+        private readonly TContext _dataContext;
+
+        public MultiAuthorizedEntityRepository(TContext dataContext) : base(dataContext)
+        {
+            _dataContext = dataContext;
+        }
+
+        public IQueryable<TEntity> SetAuthorship(Guid entityId, IEnumerable<Guid> authorIds)
+        {
+            IList<TEntity> authorship = new List<TEntity>();
+
+            foreach (var authorId in authorIds)
+            {
+                TEntity entityAuthorPair = new TEntity();
+
+                entityAuthorPair.EntityId = entityId;
+                entityAuthorPair.AuthorId = authorId;
+
+                authorship.Add(entityAuthorPair);
+            }
+
+            _dataContext.BulkInsert<TEntity>(authorship);
+
+            return base.GetAll().Where(x => x.EntityId == entityId);
+        }
+    }
+}

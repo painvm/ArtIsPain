@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ArtIsPain.Shared.Interfaces;
+using System;
 
 namespace ArtIsPain.Shared.Models
 {
-    public class StoryAuthorship : IAuthorized
+    public class StoryAuthorship : IMultiAuthorized
     {
-        public Guid StoryId { get; set; }
+        public Guid EntityId { get; set; }
 
         public Guid? AuthorId { get; set; }
 
