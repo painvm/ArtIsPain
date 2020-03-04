@@ -4,6 +4,7 @@ using ArtIsPain.Server.Data.Repositories;
 using ArtIsPain.Server.Data.Seed;
 using ArtIsPain.Shared.Models;
 using AutoMapper;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -46,7 +47,10 @@ namespace ArtIsPain.Server
             services.AddDbContext<DataContext>(
                 db => db.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddMvc().AddNewtonsoftJson();
+            services.AddMvc()
+                .AddFluentValidation(options => options.RegisterValidatorsFromAssemblyContaining<Startup>())
+                .AddNewtonsoftJson();
+
             services.AddResponseCompression(opts =>
             {
                 opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
