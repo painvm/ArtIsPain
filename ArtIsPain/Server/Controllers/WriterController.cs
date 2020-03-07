@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ArtIsPain.Server.Commands.Writers;
-using ArtIsPain.Server.Data.Interfaces;
+﻿using ArtIsPain.Server.Commands.Writers;
 using ArtIsPain.Server.ViewModels.Writer;
-using ArtIsPain.Shared.Models;
-using AutoMapper;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Controllers
 {

@@ -1,16 +1,13 @@
 ﻿using ArtIsPain.Server.Commands;
 using ArtIsPain.Server.Data.Interfaces;
-using ArtIsPain.Server.Dtos;
+using ArtIsPain.Server.ViewModels;
 using ArtIsPain.Shared;
 using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ArtIsPain.Server.Handlers.Band
+namespace ArtIsPain.Server.Handlers
 {
     public abstract class BaseUpsertEntityCommandHandler<TEntity, TRequest, TResponse> : IRequestHandler<TRequest, TResponse> where TResponse : IViewModel, new()
                                                                                                                      where TRequest : IUpsertEntityCommand<TResponse>

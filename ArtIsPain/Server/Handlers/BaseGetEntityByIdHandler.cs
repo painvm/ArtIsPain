@@ -1,6 +1,6 @@
 ﻿using ArtIsPain.Server.Commands;
 using ArtIsPain.Server.Data.Interfaces;
-using ArtIsPain.Server.Dtos;
+using ArtIsPain.Server.ViewModels;
 using ArtIsPain.Shared;
 using AutoMapper;
 using MediatR;

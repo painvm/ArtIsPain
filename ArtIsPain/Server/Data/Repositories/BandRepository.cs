@@ -1,6 +1,4 @@
-﻿using ArtIsPain.Server.Data.Interfaces;
-using ArtIsPain.Shared.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using ArtIsPain.Shared.Models;
 
 namespace ArtIsPain.Server.Data.Repositories
 {

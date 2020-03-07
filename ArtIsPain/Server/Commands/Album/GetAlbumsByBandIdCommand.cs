@@ -1,4 +1,4 @@
-﻿using ArtIsPain.Server.Dtos.Album;
+﻿using ArtIsPain.Server.ViewModels.Album;
 using MediatR;
 using System;
 

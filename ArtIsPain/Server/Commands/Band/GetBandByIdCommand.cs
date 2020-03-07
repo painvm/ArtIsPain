@@ -1,9 +1,7 @@
-﻿using ArtIsPain.Server.Dtos;
-using ArtIsPain.Server.Dtos.Band;
-using MediatR;
+﻿using ArtIsPain.Server.ViewModels.Band;
 using System;
 
-namespace ArtIsPain.Server.Commands
+namespace ArtIsPain.Server.Commands.Band
 {
     public class GetBandByIdCommand : IGetEntityByIdCommand<BandViewModel>
     {

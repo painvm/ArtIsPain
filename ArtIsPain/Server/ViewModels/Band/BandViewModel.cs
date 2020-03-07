@@ -1,8 +1,8 @@
-﻿using ArtIsPain.Server.Dtos.Album;
+﻿using ArtIsPain.Server.ViewModels.Album;
 using System;
 using System.Collections.Generic;
 
-namespace ArtIsPain.Server.Dtos.Band
+namespace ArtIsPain.Server.ViewModels.Band
 {
     public class BandViewModel : IViewModel
     {

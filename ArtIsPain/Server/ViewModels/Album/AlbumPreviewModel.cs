@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace ArtIsPain.Server.Dtos.Album
+namespace ArtIsPain.Server.ViewModels.Album
 {
     public class AlbumPreviewModel : IViewModel
     {

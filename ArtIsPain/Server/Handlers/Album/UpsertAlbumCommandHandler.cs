@@ -1,13 +1,8 @@
 ﻿using ArtIsPain.Server.Commands.Album;
 using ArtIsPain.Server.Data.Repositories;
-using ArtIsPain.Server.Dtos.Album;
-using ArtIsPain.Server.Handlers.Band;
+using ArtIsPain.Server.ViewModels.Album;
 using ArtIsPain.Shared.Models;
 using AutoMapper;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 

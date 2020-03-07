@@ -1,8 +1,6 @@
-﻿using ArtIsPain.Server.Dtos;
+﻿using ArtIsPain.Server.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Commands
 {

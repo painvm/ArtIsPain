@@ -1,7 +1,6 @@
-﻿using ArtIsPain.Server.Dtos;
-using ArtIsPain.Server.Dtos.Band;
+﻿using ArtIsPain.Server.Commands.Band;
+using ArtIsPain.Server.ViewModels.Band;
 using ArtIsPain.Shared.Models;
-using ArtIsPain.Server.Commands.Band;
 using AutoMapper;
 using System;
 

@@ -1,13 +1,10 @@
-﻿using ArtIsPain.Server.Dtos;
+﻿using ArtIsPain.Server.ViewModels;
 using MediatR;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Commands
 {
-    public interface IUpsertEntityCommand<TResponse> : IRequest<TResponse> where TResponse : IViewModel
+    public interface IUpsertEntityCommand<out TResponse> : IRequest<TResponse> where TResponse : IViewModel
     {
         public Guid? EntityId { get; set; }
     }

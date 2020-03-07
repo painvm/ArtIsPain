@@ -1,15 +1,10 @@
-﻿using ArtIsPain.Server.Commands;
+﻿using ArtIsPain.Server.Commands.Band;
 using ArtIsPain.Server.Data.Interfaces;
-using ArtIsPain.Server.Dtos;
-using ArtIsPain.Server.Data.Repositories;
-using ArtIsPain.Server.Dtos.Band;
-using ArtIsPain.Shared.Models;
+using ArtIsPain.Server.ViewModels.Band;
 using AutoMapper;
-using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 using BandModel = ArtIsPain.Shared.Models.Band;
-using System.Linq;
 
 namespace ArtIsPain.Server.Handlers.Band
 {

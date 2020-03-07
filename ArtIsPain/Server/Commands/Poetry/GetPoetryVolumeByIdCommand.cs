@@ -1,5 +1,5 @@
-﻿using System;
-using ArtIsPain.Server.ViewModels.Poetry;
+﻿using ArtIsPain.Server.ViewModels.Poetry;
+using System;
 
 namespace ArtIsPain.Server.Commands.Poetry
 {

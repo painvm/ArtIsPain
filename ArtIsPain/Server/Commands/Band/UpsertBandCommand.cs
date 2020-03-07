@@ -1,9 +1,5 @@
-﻿using ArtIsPain.Server.Dtos.Band;
-using MediatR;
+﻿using ArtIsPain.Server.ViewModels.Band;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Commands.Band
 {

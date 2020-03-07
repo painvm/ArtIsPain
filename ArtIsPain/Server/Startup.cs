@@ -2,6 +2,7 @@ using ArtIsPain.Server.Data;
 using ArtIsPain.Server.Data.Interfaces;
 using ArtIsPain.Server.Data.Repositories;
 using ArtIsPain.Server.Data.Seed;
+using ArtIsPain.Server.Filters;
 using ArtIsPain.Shared.Models;
 using AutoMapper;
 using FluentValidation.AspNetCore;
@@ -47,7 +48,11 @@ namespace ArtIsPain.Server
             services.AddDbContext<DataContext>(
                 db => db.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddMvc()
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(typeof(RequestValidationFilter));
+                options.Filters.Add(typeof(UpsertBandCommandFilter));
+            })
                 .AddFluentValidation(options => options.RegisterValidatorsFromAssemblyContaining<Startup>())
                 .AddNewtonsoftJson();
 
