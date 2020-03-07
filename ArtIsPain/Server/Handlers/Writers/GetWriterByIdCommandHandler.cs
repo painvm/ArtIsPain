@@ -1,12 +1,9 @@
 ﻿using ArtIsPain.Server.Commands.Writers;
 using ArtIsPain.Server.Data.Interfaces;
-using ArtIsPain.Server.Models;
 using ArtIsPain.Server.ViewModels.Poetry;
 using ArtIsPain.Server.ViewModels.Writer;
 using ArtIsPain.Shared.Models;
 using AutoMapper;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;

@@ -2,6 +2,7 @@
 using ArtIsPain.Server.ViewModels.Poetry;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Controllers
@@ -15,6 +16,14 @@ namespace ArtIsPain.Server.Controllers
         public PoetryVolumeController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [HttpGet("{poetryVolumeId}")]
+        public async Task<PoetryVolumeViewModel> GetPoetryVolumeById(Guid poetryVolumeId)
+        {
+            GetPoetryVolumeByIdCommand request = new GetPoetryVolumeByIdCommand() { EntityId = poetryVolumeId };
+
+            return await _mediator.Send(request);
         }
 
         [HttpPost]
