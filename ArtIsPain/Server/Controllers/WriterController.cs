@@ -2,6 +2,7 @@
 using ArtIsPain.Server.ViewModels.Writer;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Controllers
@@ -15,6 +16,14 @@ namespace ArtIsPain.Server.Controllers
         public WriterController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [HttpGet("{writerId}")]
+        public async Task<WriterViewModel> GetBandById(Guid writerId)
+        {
+            GetWriterByIdCommand request = new GetWriterByIdCommand() { EntityId = writerId };
+
+            return await _mediator.Send(request);
         }
 
         [HttpPost]

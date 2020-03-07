@@ -31,17 +31,31 @@ namespace ArtIsPain.Server
 
         public void ConfigureServices(IServiceCollection services)
         {
+            #region Data Builders
+
             services.AddScoped<ISeedDataBuilder, BandBuilder>();
             services.AddScoped<ISeedDataBuilder, BandLogoBuilder>();
             services.AddScoped<ISeedDataBuilder, WriterBuilder>();
             services.AddScoped<ISeedDataBuilder, SongBuilder>();
 
+            #endregion Data Builders
+
+            #region Repositories
+
             services.AddScoped<IRepository<Band>, BandRepository>();
+            services.AddScoped<IRepository<Writer>, WriterRepository>();
             services.AddScoped<IRepository<PoetryVolume>, PoetryVolumeRepository>();
             services.AddScoped<IMultiAuthorizedRepository<PoetryVolumeAuthorship>, PoetryVolumeAuthorshipRepository>();
 
+            #endregion Repositories
+
+            #region AutoMapper
+
             services.AddAutoMapper(typeof(BandRepository));
             services.AddAutoMapper(typeof(PoetryVolumeRepository));
+            services.AddAutoMapper(typeof(WriterRepository));
+
+            #endregion AutoMapper
 
             services.AddMediatR(Assembly.GetExecutingAssembly());
 

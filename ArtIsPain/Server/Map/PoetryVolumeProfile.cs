@@ -3,6 +3,7 @@ using ArtIsPain.Server.ViewModels.Poetry;
 using ArtIsPain.Server.ViewModels.Writer;
 using ArtIsPain.Shared.Models;
 using AutoMapper;
+using System.Linq;
 
 namespace ArtIsPain.Server.Map
 {
@@ -25,6 +26,13 @@ namespace ArtIsPain.Server.Map
 
             CreateMap<PoetryVolume, PoetryVolumeViewModel>()
                 .ForMember(dst => dst.PublicationDate, opt => opt.MapFrom(src => src.CompletedDate));
+
+            CreateMap<PoetryVolume, PoetryVolumePreviewModel>()
+                .ForMember(dst => dst.Authors, opt => opt.MapFrom(src => src.PoetryVolumeAuthorships));
+
+            CreateMap<PoetryVolumeAuthorship, WriterPreview>()
+                .ForMember(dst => dst.Id, opt => opt.MapFrom(src => src.AuthorId))
+                .ForMember(dst => dst.Title, opt => opt.MapFrom(src => src.Author.Title));
         }
     }
 }

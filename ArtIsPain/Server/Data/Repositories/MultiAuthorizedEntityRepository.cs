@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Data.Repositories
 {
@@ -17,6 +18,14 @@ namespace ArtIsPain.Server.Data.Repositories
         public MultiAuthorizedEntityRepository(TContext dataContext) : base(dataContext)
         {
             _dataContext = dataContext;
+        }
+
+        public IQueryable<TEntity> GetByAuthorId(Guid authorId)
+        {
+            IQueryable<TEntity> authoredEntities =
+                _dataContext.Set<TEntity>().Where(x => x.AuthorId == authorId);
+
+            return authoredEntities;
         }
 
         public IQueryable<TEntity> SetAuthorship(Guid entityId, IEnumerable<Guid> authorIds)
@@ -33,7 +42,7 @@ namespace ArtIsPain.Server.Data.Repositories
                 authorship.Add(entityAuthorPair);
             }
 
-            _dataContext.BulkInsert<TEntity>(authorship);
+            _dataContext.BulkInsertAsync<TEntity>(authorship);
 
             return base.GetAll().Where(x => x.EntityId == entityId);
         }

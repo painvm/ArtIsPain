@@ -20,7 +20,7 @@ namespace ArtIsPain.Server.Filters.BaseFilters
             _entityRepository = entityRepository;
         }
 
-        public override async Task CheckEntityExists(ActionExecutingContext context)
+        public override async Task CheckEntityExists(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             var param = context.ActionArguments.SingleOrDefault(p => p.Value is TRequest);
             if (param.Value != null)
@@ -32,6 +32,10 @@ namespace ArtIsPain.Server.Filters.BaseFilters
                         context.Result = new NotFoundObjectResult("Object is not found !!!");
                     }
                 }
+            }
+            else
+            {
+                await next();
             }
         }
     }

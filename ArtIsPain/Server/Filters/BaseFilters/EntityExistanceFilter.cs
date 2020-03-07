@@ -10,9 +10,9 @@ namespace ArtIsPain.Server.Filters.BaseFilters
     {
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-            await CheckEntityExists(context);
+            await CheckEntityExists(context, next);
         }
 
-        public abstract Task CheckEntityExists(ActionExecutingContext context);
+        public abstract Task CheckEntityExists(ActionExecutingContext context, ActionExecutionDelegate next);
     }
 }
