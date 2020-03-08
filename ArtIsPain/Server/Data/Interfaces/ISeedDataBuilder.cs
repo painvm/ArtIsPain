@@ -1,4 +1,5 @@
 ﻿using ArtIsPain.Shared;
+using ArtIsPain.Shared.Interfaces;
 using System.Linq;
 
 namespace ArtIsPain.Server.Data.Interfaces

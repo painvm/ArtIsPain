@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArtIsPain.Shared.Interfaces;
+using System;
 
 namespace ArtIsPain.Shared.Models
 {

@@ -1,5 +1,6 @@
 ﻿using ArtIsPain.Server.Data.Interfaces;
 using ArtIsPain.Shared;
+using ArtIsPain.Shared.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;

@@ -1,4 +1,4 @@
-﻿namespace ArtIsPain.Shared
+﻿namespace ArtIsPain.Shared.Interfaces
 {
     public interface ITitled
     {

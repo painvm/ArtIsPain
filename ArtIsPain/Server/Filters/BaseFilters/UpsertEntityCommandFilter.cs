@@ -2,6 +2,7 @@
 using ArtIsPain.Server.Data.Interfaces;
 using ArtIsPain.Server.ViewModels;
 using ArtIsPain.Shared;
+using ArtIsPain.Shared.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Linq;

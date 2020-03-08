@@ -2,6 +2,7 @@
 using ArtIsPain.Server.Data.Interfaces;
 using ArtIsPain.Server.ViewModels;
 using ArtIsPain.Shared;
+using ArtIsPain.Shared.Interfaces;
 using AutoMapper;
 using MediatR;
 using System.Threading;
