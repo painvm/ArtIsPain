@@ -20,6 +20,14 @@ namespace ArtIsPain.Server.Controllers
             _mediator = mediator;
         }
 
+        [HttpGet("{albumId}")]
+        public async Task<AlbumViewModel> GetAlbumById(Guid albumId)
+        {
+            GetAlbumByIdCommand request = new GetAlbumByIdCommand() { EntityId = albumId };
+
+            return await _mediator.Send(request);
+        }
+
         [HttpGet("byBandId/{bandId}")]
         public async Task<ICollection<AlbumPreviewModel>> GetAlbumsByBandById(Guid bandId)
         {
