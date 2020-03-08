@@ -22,7 +22,12 @@ namespace ArtIsPain.Server.Data.Repositories
             Func<IQueryable<TEntity>, IQueryable<TEntity>> include,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
         {
-            IQueryable<TEntity> query = include(_dataContext.Set<TEntity>());
+            IQueryable<TEntity> query = _dataContext.Set<TEntity>();
+
+            if (include != null)
+            {
+                query = include(query);
+            }
 
             if (orderBy != null)
             {

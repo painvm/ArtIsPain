@@ -13,7 +13,7 @@ namespace ArtIsPain.Server.Handlers
                                                                                                                      where TRequest : IUpsertEntityCommand<TResponse>
                                                                                                                      where TEntity : class, IEntity, new()
     {
-        private readonly IMapper _autoMapper;
+        protected readonly IMapper _autoMapper;
         private readonly IRepository<TEntity> _repository;
 
         public BaseUpsertEntityCommandHandler(IMapper autoMapper, IRepository<TEntity> repository)

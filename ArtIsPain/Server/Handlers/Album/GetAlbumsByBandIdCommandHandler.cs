@@ -6,12 +6,13 @@ using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Handlers.Album
 {
-    public class GetAlbumsByBandIdCommandHandler : IRequestHandler<GetAlbumsByBandIdCommand, AlbumViewModel>
+    public class GetAlbumsByBandIdCommandHandler : IRequestHandler<GetAlbumsByBandIdCommand, ICollection<AlbumPreviewModel>>
     {
         private readonly IMapper _autoMapper;
         private readonly IAuthorizedRepository<MusicalAlbum> _albumRepository;
@@ -22,14 +23,14 @@ namespace ArtIsPain.Server.Handlers.Album
             _albumRepository = albumRepository;
         }
 
-        public async Task<AlbumViewModel> Handle(GetAlbumsByBandIdCommand request, CancellationToken cancellationToken)
+        public async Task<ICollection<AlbumPreviewModel>> Handle(GetAlbumsByBandIdCommand request, CancellationToken cancellationToken)
         {
-            List<MusicalAlbum> albums = await _albumRepository.GetEntitiesByAuthorId(
-                request.BandId, x => x.Include(y => y.Id)
-                                      .Include(y => y.CompletedDate)
-                                      .Include(y => y.Title)).ToListAsync();
+            IQueryable<MusicalAlbum> albums = _albumRepository.GetEntitiesByAuthorId(
+                request.BandId, x => x.Include(a => a.Band));
 
-            return null;
+            List<AlbumPreviewModel> responseObjects = await _autoMapper.ProjectTo<AlbumPreviewModel>(albums).ToListAsync();
+
+            return responseObjects;
         }
     }
 }

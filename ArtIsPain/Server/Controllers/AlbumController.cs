@@ -1,4 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ArtIsPain.Server.Commands.Album;
+using ArtIsPain.Server.ViewModels.Album;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Controllers
 {
@@ -6,22 +13,25 @@ namespace ArtIsPain.Server.Controllers
     [ApiController]
     public class AlbumController : ControllerBase
     {
-        [HttpGet("{id}")]
-        public string Get(int id)
+        private readonly IMediator _mediator;
+
+        public AlbumController(IMediator mediator)
         {
-            return "value";
+            _mediator = mediator;
         }
 
-        // POST: api/Album
+        [HttpGet("byBandId/{bandId}")]
+        public async Task<ICollection<AlbumPreviewModel>> GetAlbumsByBandById(Guid bandId)
+        {
+            GetAlbumsByBandIdCommand request = new GetAlbumsByBandIdCommand() { BandId = bandId };
+
+            return await _mediator.Send(request);
+        }
+
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<AlbumViewModel> UpsertBand(UpsertAlbumCommand request)
         {
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            return await _mediator.Send(request);
         }
     }
 }
