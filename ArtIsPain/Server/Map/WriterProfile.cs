@@ -1,4 +1,5 @@
-﻿using ArtIsPain.Server.ViewModels.Poetry;
+﻿using ArtIsPain.Server.Commands.Writers;
+using ArtIsPain.Server.ViewModels.Poetry;
 using ArtIsPain.Server.ViewModels.Writer;
 using ArtIsPain.Shared.Models;
 using AutoMapper;
@@ -19,6 +20,8 @@ namespace ArtIsPain.Server.Map
             CreateMap<PoetryVolumeAuthorship, WriterPreview>()
                 .ForMember(dst => dst.Id, opt => opt.MapFrom(src => src.AuthorId))
                 .ForMember(dst => dst.Title, opt => opt.MapFrom(src => src.Author.Title));
+
+            CreateMap<UpsertWriterCommand, Writer>();
         }
     }
 }

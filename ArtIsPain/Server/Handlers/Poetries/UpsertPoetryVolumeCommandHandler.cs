@@ -4,6 +4,7 @@ using ArtIsPain.Server.ViewModels.Poetry;
 using ArtIsPain.Server.ViewModels.Writer;
 using ArtIsPain.Shared.Models;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading;
@@ -25,12 +26,9 @@ namespace ArtIsPain.Server.Handlers.Poetries
 
         protected override async Task<PoetryVolumeViewModel> Send(UpsertPoetryVolumeCommand request, CancellationToken cancellationToken)
         {
-            PoetryVolumeViewModel poetryVolumeViewModel = await base.Send(request, cancellationToken, null);
-
-            IQueryable<PoetryVolumeAuthorship> authorship = _poetryVolumeAuthorshipRepository.SetAuthorship(poetryVolumeViewModel.Id, request.AuthorIds);
-            IQueryable<Writer> authors = authorship.Select(x => x.Author);
-
-            poetryVolumeViewModel.Authors = _autoMapper.ProjectTo<WriterPreview>(authors).ToList();
+            Func<IQueryable<PoetryVolume>, IQueryable<PoetryVolume>> addJoinStatement =
+                x => x.Include(pv => pv.PoetryVolumeAuthorships);
+            PoetryVolumeViewModel poetryVolumeViewModel = await base.Send(request, cancellationToken, addJoinStatement);
 
             return poetryVolumeViewModel;
         }

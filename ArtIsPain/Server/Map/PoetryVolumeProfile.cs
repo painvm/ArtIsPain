@@ -3,6 +3,9 @@ using ArtIsPain.Server.ViewModels.Poetry;
 using ArtIsPain.Server.ViewModels.Writer;
 using ArtIsPain.Shared.Models;
 using AutoMapper;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ArtIsPain.Server.Map
@@ -26,8 +29,20 @@ namespace ArtIsPain.Server.Map
                 .ForMember(dst => dst.PublicationDate, opt => opt.MapFrom(src => src.PoetryVolume.CompletedDate));
 
             CreateMap<UpsertPoetryVolumeCommand, PoetryVolume>()
+
                 .ForMember(dst => dst.CompletedDate, opt => opt.MapFrom(src => src.PublicationDate))
-                .ForMember(dst => dst.Id, opt => opt.MapFrom(src => src.EntityId));
+                .ForMember(dst => dst.Id, opt => opt.MapFrom(src => src.EntityId))
+                .ForMember(dst => dst.Id, opt => opt.NullSubstitute(Guid.NewGuid()))
+                .ForMember(dst => dst.PoetryVolumeAuthorships, opt => opt.MapFrom(src => src.AuthorIds.Select(x => new PoetryVolumeAuthorship
+                {
+                    AuthorId = x,
+                })))
+                .AfterMap((src, dst) =>
+                {
+                    dst.PoetryVolumeAuthorships.ToList()
+                        .ForEach((x) => { x.EntityId = dst.Id; });
+                    dst.PoetryVolumeAuthorships = dst.PoetryVolumeAuthorships.Distinct() as ICollection<PoetryVolumeAuthorship>;
+                });
 
             CreateMap<PoetryVolume, PoetryVolumeViewModel>()
                 .ForMember(dst => dst.PublicationDate, opt => opt.MapFrom(src => src.CompletedDate));
