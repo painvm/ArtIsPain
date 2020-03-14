@@ -8,9 +8,9 @@ namespace ArtIsPain.Server.Data.Interfaces
     {
         IQueryable<T> GetAll();
 
-        IQueryable<T> GetById(Guid id, Func<IQueryable<T>, IQueryable<T>> include = null);
+        IQueryable<T> GetById(Guid id, Func<IQueryable<T>, IQueryable<T>> addJoinStatement = null);
 
-        Task<T> Upsert(T entity);
+        Task<T> Upsert(T entity, Func<IQueryable<T>, IQueryable<T>> addJoinStatement = null);
 
         Task<T> Delete(Guid id);
     }

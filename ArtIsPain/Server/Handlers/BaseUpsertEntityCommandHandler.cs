@@ -26,14 +26,15 @@ namespace ArtIsPain.Server.Handlers
             _repository = repository;
         }
 
-        protected override async Task<TResponse> Send(TRequest request, CancellationToken cancellationToken, Func<IQueryable<TEntity>, IQueryable<TEntity>> include = null)
+        protected override async Task<TResponse> Send(TRequest request, CancellationToken cancellationToken, Func<IQueryable<TEntity>, IQueryable<TEntity>> addJoinStatement = null)
         {
             TEntity entityToUpsert = request.EntityId.HasValue
                 ? await _repository.GetById(request.EntityId.Value).FirstOrDefaultAsync()
                 : new TEntity();
+
             _autoMapper.Map(request, entityToUpsert);
 
-            TEntity upsertedEntity = await _repository.Upsert(entityToUpsert);
+            TEntity upsertedEntity = await _repository.Upsert(entityToUpsert, addJoinStatement);
             TResponse result = new TResponse();
 
             _autoMapper.Map(upsertedEntity, result);

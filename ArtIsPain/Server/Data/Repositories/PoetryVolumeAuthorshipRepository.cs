@@ -21,7 +21,7 @@ namespace ArtIsPain.Server.Data.Repositories
             throw new NotImplementedException();
         }
 
-        public override Task<PoetryVolumeAuthorship> Upsert(PoetryVolumeAuthorship entity)
+        public override Task<PoetryVolumeAuthorship> Upsert(PoetryVolumeAuthorship entity, Func<IQueryable<PoetryVolumeAuthorship>, IQueryable<PoetryVolumeAuthorship>> addJoinStatement = null)
         {
             throw new NotImplementedException();
         }

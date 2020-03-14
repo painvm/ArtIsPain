@@ -2,6 +2,7 @@
 using ArtIsPain.Server.Data.Interfaces;
 using ArtIsPain.Server.ViewModels.Band;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading;

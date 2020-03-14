@@ -33,6 +33,14 @@ namespace ArtIsPain.Server.Filters.BaseFilters
                     {
                         context.Result = new NotFoundObjectResult("Object is not found !!!");
                     }
+                    else
+                    {
+                        await next();
+                    }
+                }
+                else
+                {
+                    await next();
                 }
             }
             else

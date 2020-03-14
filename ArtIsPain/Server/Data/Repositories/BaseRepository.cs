@@ -25,6 +25,6 @@ namespace ArtIsPain.Server.Data.Repositories
 
         public abstract IQueryable<TEntity> GetById(Guid id, Func<IQueryable<TEntity>, IQueryable<TEntity>> include = null);
 
-        public abstract Task<TEntity> Upsert(TEntity entity);
+        public abstract Task<TEntity> Upsert(TEntity entity, Func<IQueryable<TEntity>, IQueryable<TEntity>> addJoinStatement = null);
     }
 }

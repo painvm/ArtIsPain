@@ -1,7 +1,9 @@
 ﻿using ArtIsPain.Server.Commands.Band;
 using ArtIsPain.Server.Data.Interfaces;
 using ArtIsPain.Server.ViewModels.Band;
+using ArtIsPain.Shared.Models;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading;
@@ -19,7 +21,10 @@ namespace ArtIsPain.Server.Handlers.Band
 
         protected override async Task<BandViewModel> Send(UpsertBandCommand request, CancellationToken cancellationToken)
         {
-            BandViewModel result = await base.Send(request, cancellationToken, null);
+            Func<IQueryable<BandModel>, IQueryable<BandModel>> albumJoinQuery =
+                x => x.Include(b => b.Albums);
+
+            BandViewModel result = await base.Send(request, cancellationToken, albumJoinQuery);
 
             return result;
         }

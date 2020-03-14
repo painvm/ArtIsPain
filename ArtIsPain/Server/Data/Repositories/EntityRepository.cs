@@ -18,9 +18,16 @@ namespace ArtIsPain.Server.Data.Repositories
             _dataContext = dataContext;
         }
 
-        public override async Task<TEntity> Upsert(TEntity entityToUpsert)
+        public override async Task<TEntity> Upsert(TEntity entityToUpsert, Func<IQueryable<TEntity>, IQueryable<TEntity>> addJoinStatement)
         {
-            var entityFromDatabase = await _dataContext.Set<TEntity>().FindAsync(entityToUpsert.Id);
+            IQueryable<TEntity> a = _dataContext.Set<TEntity>();
+
+            if (addJoinStatement != null)
+            {
+                a = addJoinStatement(a);
+            }
+
+            var entityFromDatabase = await a.FirstOrDefaultAsync(e => e.Id == entityToUpsert.Id);
 
             if (entityFromDatabase == null)
             {

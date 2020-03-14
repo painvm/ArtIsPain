@@ -14,7 +14,7 @@ namespace ArtIsPain.Server.Configurations
                     .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(x => x.Band)
-                    .WithMany()
+                    .WithMany(x => x.Albums)
                     .HasForeignKey(x => x.AuthorId)
                     .OnDelete(DeleteBehavior.NoAction);
 
