@@ -8,7 +8,7 @@ namespace ArtIsPain.Server.Data.Interfaces
     {
         IQueryable<T> GetAll();
 
-        Task<T> GetById(Guid id);
+        IQueryable<T> GetById(Guid id, Func<IQueryable<T>, IQueryable<T>> include = null);
 
         Task<T> Upsert(T entity);
 

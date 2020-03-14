@@ -4,7 +4,6 @@ using ArtIsPain.Server.ViewModels.Album;
 using ArtIsPain.Shared.Models;
 using AutoMapper;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,10 +16,9 @@ namespace ArtIsPain.Server.Handlers.Album
         {
         }
 
-        public override async Task<AlbumViewModel> Handle(GetAlbumByIdCommand request, CancellationToken cancellationToken)
-
+        protected override async Task<AlbumViewModel> Send(GetAlbumByIdCommand request, CancellationToken cancellationToken)
         {
-            return await base.Handle(request, cancellationToken);
+            return await base.Send(request, cancellationToken, null);
         }
     }
 }

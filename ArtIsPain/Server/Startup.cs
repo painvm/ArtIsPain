@@ -3,6 +3,7 @@ using ArtIsPain.Server.Data.Interfaces;
 using ArtIsPain.Server.Data.Repositories;
 using ArtIsPain.Server.Data.Seed;
 using ArtIsPain.Server.Filters;
+using ArtIsPain.Server.Handlers.Album;
 using ArtIsPain.Shared.Models;
 using AutoMapper;
 using FluentValidation.AspNetCore;
@@ -15,8 +16,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 
 namespace ArtIsPain.Server
 {

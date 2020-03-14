@@ -1,18 +1,24 @@
 ﻿using ArtIsPain.Server.Commands;
+using ArtIsPain.Server.Commands.Poetry;
 using ArtIsPain.Server.Data.Interfaces;
 using ArtIsPain.Server.ViewModels;
+using ArtIsPain.Server.ViewModels.Poetry;
 using ArtIsPain.Shared;
 using ArtIsPain.Shared.Interfaces;
+using ArtIsPain.Shared.Models;
 using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Handlers
 {
-    public abstract class BaseGetEntityByIdHandler<TEntity, TRequest, TResponse> : IRequestHandler<TRequest, TResponse> where TResponse : IViewModel
-                                                                                                                        where TRequest : IGetEntityByIdCommand<TResponse>
-                                                                                                                        where TEntity : class, IEntity
+    public abstract class BaseGetEntityByIdHandler<TEntity, TRequest, TResponse> : BaseHandler<TEntity, TRequest, TResponse> where TResponse : IViewModel
+                                                                                                                             where TRequest : IGetEntityByIdCommand<TResponse>
+                                                                                                                             where TEntity : class, IEntity
     {
         private readonly IMapper _autoMapper;
         private readonly IRepository<TEntity> _entityRepository;
@@ -25,10 +31,10 @@ namespace ArtIsPain.Server.Handlers
             _entityRepository = entityRepository;
         }
 
-        public virtual async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken)
+        protected override async Task<TResponse> Send(TRequest request, CancellationToken cancellationToken, Func<IQueryable<TEntity>, IQueryable<TEntity>> include = null)
         {
-            TEntity entity = await _entityRepository.GetById(request.EntityId);
-            TResponse entityToReturn = _autoMapper.Map<TResponse>(entity);
+            IQueryable<TEntity> entity = _entityRepository.GetById(request.EntityId, include);
+            TResponse entityToReturn = await _autoMapper.ProjectTo<TResponse>(entity).FirstOrDefaultAsync();
 
             return entityToReturn;
         }

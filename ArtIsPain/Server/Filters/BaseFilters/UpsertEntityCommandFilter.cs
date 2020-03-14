@@ -5,6 +5,7 @@ using ArtIsPain.Shared;
 using ArtIsPain.Shared.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -28,7 +29,7 @@ namespace ArtIsPain.Server.Filters.BaseFilters
             {
                 if (param.Value is TRequest upsertBandCommand && upsertBandCommand.EntityId.HasValue)
                 {
-                    if (await _entityRepository.GetById(upsertBandCommand.EntityId.Value) == null)
+                    if (await _entityRepository.GetById(upsertBandCommand.EntityId.Value).FirstOrDefaultAsync() == null)
                     {
                         context.Result = new NotFoundObjectResult("Object is not found !!!");
                     }

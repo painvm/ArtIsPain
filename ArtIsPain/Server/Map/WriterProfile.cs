@@ -1,4 +1,5 @@
-﻿using ArtIsPain.Server.ViewModels.Writer;
+﻿using ArtIsPain.Server.ViewModels.Poetry;
+using ArtIsPain.Server.ViewModels.Writer;
 using ArtIsPain.Shared.Models;
 using AutoMapper;
 using System;
@@ -12,7 +13,12 @@ namespace ArtIsPain.Server.Map
     {
         public WriterProfile()
         {
-            CreateMap<Writer, WriterViewModel>();
+            CreateMap<Writer, WriterViewModel>()
+                .ForMember(dst => dst.PoetryVolumes, opt => opt.MapFrom(src => src.PoetryVolumeAuthorships));
+
+            CreateMap<PoetryVolumeAuthorship, WriterPreview>()
+                .ForMember(dst => dst.Id, opt => opt.MapFrom(src => src.AuthorId))
+                .ForMember(dst => dst.Title, opt => opt.MapFrom(src => src.Author.Title));
         }
     }
 }

@@ -20,6 +20,11 @@ namespace ArtIsPain.Server.Map
                 .ForMember(dst => dst.PublicationDate, opt => opt.MapFrom(src => src.PoetryVolume.CompletedDate))
                 .ForMember(dst => dst.Title, opt => opt.MapFrom(src => src.PoetryVolume.Title));
 
+            CreateMap<PoetryVolumeAuthorship, PoetryVolumePreviewModel>()
+                .ForMember(dst => dst.Id, opt => opt.MapFrom(src => src.PoetryVolume.Id))
+                .ForMember(dst => dst.Title, opt => opt.MapFrom(src => src.PoetryVolume.Title))
+                .ForMember(dst => dst.PublicationDate, opt => opt.MapFrom(src => src.PoetryVolume.CompletedDate));
+
             CreateMap<UpsertPoetryVolumeCommand, PoetryVolume>()
                 .ForMember(dst => dst.CompletedDate, opt => opt.MapFrom(src => src.PublicationDate))
                 .ForMember(dst => dst.Id, opt => opt.MapFrom(src => src.EntityId));

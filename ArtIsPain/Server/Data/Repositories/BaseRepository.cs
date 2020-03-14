@@ -23,7 +23,7 @@ namespace ArtIsPain.Server.Data.Repositories
             return _dataContext.Set<TEntity>().AsQueryable();
         }
 
-        public abstract Task<TEntity> GetById(Guid id);
+        public abstract IQueryable<TEntity> GetById(Guid id, Func<IQueryable<TEntity>, IQueryable<TEntity>> include = null);
 
         public abstract Task<TEntity> Upsert(TEntity entity);
     }

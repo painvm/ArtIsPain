@@ -5,6 +5,8 @@ using ArtIsPain.Server.ViewModels.Album;
 using ArtIsPain.Server.ViewModels.Band;
 using ArtIsPain.Shared.Models;
 using AutoMapper;
+using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BandEntity = ArtIsPain.Shared.Models.Band;
@@ -24,12 +26,9 @@ namespace ArtIsPain.Server.Handlers.Album
             _bandRepository = bandRepository;
         }
 
-        public override async Task<AlbumViewModel> Handle(UpsertAlbumCommand request, CancellationToken cancellationToken)
+        protected override async Task<AlbumViewModel> Send(UpsertAlbumCommand request, CancellationToken cancellationToken)
         {
-            AlbumViewModel result = await base.Handle(request, cancellationToken);
-            BandEntity band = await _bandRepository.GetById(request.BandId);
-
-            result.Band = _autoMapper.Map<BandPreviewModel>(band);
+            AlbumViewModel result = await base.Send(request, cancellationToken, null);
 
             return result;
         }

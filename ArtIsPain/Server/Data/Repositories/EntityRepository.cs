@@ -1,7 +1,9 @@
 ﻿using ArtIsPain.Shared;
 using ArtIsPain.Shared.Interfaces;
+using ArtIsPain.Shared.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Data.Repositories
@@ -49,9 +51,16 @@ namespace ArtIsPain.Server.Data.Repositories
             return entity;
         }
 
-        public override async Task<TEntity> GetById(Guid id)
+        public override IQueryable<TEntity> GetById(Guid id, Func<IQueryable<TEntity>, IQueryable<TEntity>> include = null)
         {
-            return await _dataContext.Set<TEntity>().FindAsync(id);
+            IQueryable<TEntity> getByIdQuery = _dataContext.Set<TEntity>();
+
+            if (include != null)
+            {
+                getByIdQuery = include(getByIdQuery);
+            }
+
+            return getByIdQuery.Where(x => x.Id == id);
         }
     }
 }

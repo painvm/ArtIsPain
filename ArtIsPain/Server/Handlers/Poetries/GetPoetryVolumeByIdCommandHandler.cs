@@ -1,8 +1,11 @@
 ﻿using ArtIsPain.Server.Commands.Poetry;
 using ArtIsPain.Server.Data.Interfaces;
+using ArtIsPain.Server.Handlers.Album;
 using ArtIsPain.Server.ViewModels.Poetry;
 using ArtIsPain.Shared.Models;
 using AutoMapper;
+using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -16,9 +19,9 @@ namespace ArtIsPain.Server.Handlers.Poetries
         {
         }
 
-        public override async Task<PoetryVolumeViewModel> Handle(GetPoetryVolumeByIdCommand request, CancellationToken cancellationToken)
+        protected override async Task<PoetryVolumeViewModel> Send(GetPoetryVolumeByIdCommand request, CancellationToken cancellationToken)
         {
-            PoetryVolumeViewModel result = await base.Handle(request, cancellationToken);
+            PoetryVolumeViewModel result = await base.Send(request, cancellationToken, null);
 
             return result;
         }

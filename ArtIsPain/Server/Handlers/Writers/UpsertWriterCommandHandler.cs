@@ -3,6 +3,8 @@ using ArtIsPain.Server.Data.Interfaces;
 using ArtIsPain.Server.ViewModels.Writer;
 using ArtIsPain.Shared.Models;
 using AutoMapper;
+using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -14,9 +16,9 @@ namespace ArtIsPain.Server.Handlers.Writers
         {
         }
 
-        public override async Task<WriterViewModel> Handle(UpsertWriterCommand request, CancellationToken cancellationToken)
+        protected override async Task<WriterViewModel> Send(UpsertWriterCommand request, CancellationToken cancellationToken)
         {
-            WriterViewModel writerResponse = await base.Handle(request, cancellationToken);
+            WriterViewModel writerResponse = await base.Send(request, cancellationToken, null);
 
             return writerResponse;
         }

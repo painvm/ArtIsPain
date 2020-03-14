@@ -5,14 +5,17 @@ using ArtIsPain.Shared;
 using ArtIsPain.Shared.Interfaces;
 using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Handlers
 {
-    public abstract class BaseUpsertEntityCommandHandler<TEntity, TRequest, TResponse> : IRequestHandler<TRequest, TResponse> where TResponse : IViewModel, new()
-                                                                                                                     where TRequest : IUpsertEntityCommand<TResponse>
-                                                                                                                     where TEntity : class, IEntity, new()
+    public abstract class BaseUpsertEntityCommandHandler<TEntity, TRequest, TResponse> : BaseHandler<TEntity, TRequest, TResponse> where TResponse : IViewModel, new()
+                                                                                                                                   where TRequest : IUpsertEntityCommand<TResponse>
+                                                                                                                                   where TEntity : class, IEntity, new()
     {
         protected readonly IMapper _autoMapper;
         private readonly IRepository<TEntity> _repository;
@@ -23,10 +26,10 @@ namespace ArtIsPain.Server.Handlers
             _repository = repository;
         }
 
-        public virtual async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken)
+        protected override async Task<TResponse> Send(TRequest request, CancellationToken cancellationToken, Func<IQueryable<TEntity>, IQueryable<TEntity>> include = null)
         {
             TEntity entityToUpsert = request.EntityId.HasValue
-                ? await _repository.GetById(request.EntityId.Value)
+                ? await _repository.GetById(request.EntityId.Value).FirstOrDefaultAsync()
                 : new TEntity();
             _autoMapper.Map(request, entityToUpsert);
 
