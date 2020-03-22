@@ -1,4 +1,4 @@
-export class MusicalAlbumPreviewModel {
+export class AlbumPreviewModel {
     id: string;
     title: string;
     releaseDate: string;

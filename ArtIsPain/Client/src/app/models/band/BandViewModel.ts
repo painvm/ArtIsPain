@@ -1,4 +1,4 @@
-import { MusicalAlbumPreviewModel } from '../album/MusicalAlbumPreviewModel';
+import { AlbumPreviewModel } from '../album/AlbumPreviewModel';
 
 export class BandViewModel {
     id: string;
@@ -6,5 +6,5 @@ export class BandViewModel {
     description: string;
     formationDate: Date;
     disbandDate: Date;
-    albums: MusicalAlbumPreviewModel[];
+    albums: AlbumPreviewModel[];
 }

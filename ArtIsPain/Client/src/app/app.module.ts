@@ -12,6 +12,7 @@ import { BandsComponent } from './bands/band-list/BandsComponent';
 import { BandEditComponent } from './bands/band-edit/band-edit.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BandEditResolver } from './_resolvers/band-edit-resolver';
+import { AlbumViewResolver } from './_resolvers/album-view-resolver';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
@@ -20,10 +21,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AlbumViewComponent } from './albums/album-view/album-view.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AlbumViewComponent,
     BandViewComponent,
     BandsComponent,
     BandEditComponent
@@ -36,6 +40,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RouterModule.forRoot(appRoutes),
     MatDatepickerModule,
     MatNativeDateModule,
+    MatButtonModule,
     BrowserAnimationsModule,
     MatInputModule,
     MatMenuModule,
@@ -48,6 +53,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BandService,
     BandResolver,
     BandEditResolver,
+    AlbumViewResolver,
     MatDatepickerModule,
     MatFormFieldModule
   ],

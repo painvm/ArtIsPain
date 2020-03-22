@@ -26,7 +26,7 @@
     </div>
     <div class="row">
       <div class="col-md-3 col-sm-6 mb-4" *ngFor="let album of band.albums">
-        <a href="#">
+        <a [routerLink]="['/albums', album.id]">
           <img class="img-fluid" src="http://placehold.it/500x300" alt="" />
         </a>
         <p>{{ album.title }}</p>
