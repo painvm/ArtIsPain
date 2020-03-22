@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.ViewModels.Band
 {
-    public class BandPreviewModel
+    public class BandPreviewModel : IViewModel
     {
         public Guid Id { get; set; }
 

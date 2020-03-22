@@ -9,7 +9,7 @@ namespace ArtIsPain.Server.ViewModels.Album
 
         public string Title { get; set; }
 
-        public DateTime ReleaseDate { get; set; }
+        public string ReleaseDate { get; set; }
 
         public BandPreviewModel Band { get; set; }
     }

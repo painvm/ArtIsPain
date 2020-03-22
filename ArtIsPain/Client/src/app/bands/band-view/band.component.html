@@ -1,0 +1,62 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="d-flex justify-content-center bd-highlight">
+    <div class="p-2 bd-highlight">
+      <img
+        class="rounded-circle"
+        src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+        alt="Generic placeholder image"
+        width="140"
+        height="140"
+      />
+    </div>
+  </div>
+  <div class="d-flex justify-content-around bd-highlight">
+    <h2 class="m-2">{{ band.name }}</h2>
+  </div>
+
+  <div class="d-flex justify-content-end bd-highlight">
+    <a class="fa fa-edit" [routerLink]="['/band/edit']" [queryParams]="{bandId: band.id}"></a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 mb-4">
+      <h4><strong>Discography</strong></h4>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-sm-6 mb-4" *ngFor="let album of band.albums">
+        <a href="#">
+          <img class="img-fluid" src="http://placehold.it/500x300" alt="" />
+        </a>
+        <p>{{ album.title }}</p>
+        <small>{{ album.releaseDate }}</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h3>
+          <strong>About {{ band.name }}</strong>
+        </h3>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-6">
+        {{ band.description }}
+      </div>
+      <div class="col-6">
+        <strong class="text-muted">Formed</strong>
+        <p>{{ band.formationDate }}</p>
+        <div *ngIf="band.disbandDate">
+          <strong class="text-muted">Disbanded</strong>
+          <p>{{ band.disbandDate }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
