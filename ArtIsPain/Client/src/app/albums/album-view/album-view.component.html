@@ -15,14 +15,24 @@
       </div>
     </div>
     <div class="col-4">
-      <h4 class="m-1">
+      <h4 class="m-1 d-inline">
         <strong>{{ album.title }}</strong>
       </h4>
-      <h4 class="m-1 text-muted"><small>{{album.band.title}}</small></h4> 
-      <h6 class="m-1 text-muted"><small>{{formattedReleaseDate}}</small></h6> 
+      <a
+        class="d-inline text-secondary fa fa-book"
+        [routerLink]="['/albums/', album.id, 'edit']"
+      ></a>
+      <h4 class="m-1">
+        <a class=" text-muted" [routerLink]="['/bands/', album.band.id]"
+          ><small>{{ album.band.title }}</small></a
+        >
+      </h4>
+      <h6 class="m-1 text-muted">
+        <small>{{ formattedReleaseDate }}</small>
+      </h6>
       <a
         mat-stroked-button=""
-        href="{{album.url}}"
+        href="{{ album.url }}"
         class="mat-focus-indicator mat-flat-button mat-button-base mat-primary mt-4"
         tabindex="0"
         aria-disabled="false"

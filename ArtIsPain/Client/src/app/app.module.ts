@@ -23,6 +23,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlbumViewComponent } from './albums/album-view/album-view.component';
 import { MatButtonModule } from '@angular/material/button';
+import { AlbumEditComponent } from './albums/album-edit/album-edit/album-edit.component';
+import { AlbumEditResolver } from './_resolvers/album-edit-resolver';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { MatButtonModule } from '@angular/material/button';
     AlbumViewComponent,
     BandViewComponent,
     BandsComponent,
-    BandEditComponent
+    BandEditComponent,
+    AlbumEditComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,7 @@ import { MatButtonModule } from '@angular/material/button';
     BandResolver,
     BandEditResolver,
     AlbumViewResolver,
+    AlbumEditResolver,
     MatDatepickerModule,
     MatFormFieldModule
   ],

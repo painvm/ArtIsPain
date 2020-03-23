@@ -10,10 +10,10 @@ export class BandEditResolver implements Resolve<BandViewModel> {
     constructor(private bandService: BandService, private router: Router) {}
 
     resolve(route: ActivatedRouteSnapshot): Observable<BandViewModel> {
-        if (!route.queryParams.bandId) {
+        if (!route.params.id) {
             return new Observable<BandViewModel>();
         }
-        return this.bandService.getBandById(route.queryParams.bandId).pipe(
+        return this.bandService.getBandById(route.params.id).pipe(
             catchError( error => {
                 console.log(error);
                 this.router.navigate(['/bands']);
