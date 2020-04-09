@@ -17,6 +17,7 @@ export class AlbumViewComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.album = data.album;
+      this.album.songs.sort((a, b) => a.order - b.order);
 
       this.formattedReleaseDate = new Date(this.album.releaseDate).getFullYear();
   })}

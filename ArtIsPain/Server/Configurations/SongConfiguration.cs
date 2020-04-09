@@ -9,7 +9,7 @@ namespace ArtIsPain.Server.Configurations
         public void Configure(EntityTypeBuilder<Song> builder)
         {
             builder.HasOne(x => x.Album)
-                    .WithMany()
+                    .WithMany(x => x.Songs)
                     .HasForeignKey(x => x.VolumeId)
                     .OnDelete(DeleteBehavior.NoAction);
 

@@ -1,5 +1,7 @@
 ﻿using ArtIsPain.Server.ViewModels.Album;
+using Server.Commands.Album;
 using System;
+using System.Collections.Generic;
 
 namespace ArtIsPain.Server.Commands.Album
 {
@@ -18,5 +20,7 @@ namespace ArtIsPain.Server.Commands.Album
         public DateTime? StartRecordDate { get; set; }
 
         public DateTime ReleaseDate { get; set; }
+
+        public ICollection<UpsertSongCommand> Songs { get; set; }
     }
 }

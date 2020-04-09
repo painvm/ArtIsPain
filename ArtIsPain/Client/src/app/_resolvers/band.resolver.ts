@@ -6,10 +6,10 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable()
-export class BandResolver implements Resolve<BandPreviewModel>{
-    constructor(private bandService: BandService, private router: Router){}
+export class BandResolver implements Resolve<BandPreviewModel> {
+    constructor(private bandService: BandService, private router: Router) {}
 
-    resolve(route: ActivatedRouteSnapshot): Observable<BandPreviewModel>{
+    resolve(route: ActivatedRouteSnapshot): Observable<BandPreviewModel> {
         return this.bandService.getBandById(route.params.id).pipe(
             catchError( error => {
                 console.log(error);

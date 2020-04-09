@@ -1,3 +1,5 @@
+import { UpsertSongCommand } from './upsert-song-command';
+
 export class UpsertAlbumCommand
 {
     entityId: string;
@@ -7,5 +9,6 @@ export class UpsertAlbumCommand
     url: string;
     startRecordDate?: Date;
     releaseDate: Date;
+    songs: UpsertSongCommand[]
 }
 

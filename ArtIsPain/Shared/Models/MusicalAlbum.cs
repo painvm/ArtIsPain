@@ -1,5 +1,6 @@
 ﻿using ArtIsPain.Shared.Interfaces;
 using System;
+using System.Collections.Generic;
 
 namespace ArtIsPain.Shared.Models
 {
@@ -12,5 +13,7 @@ namespace ArtIsPain.Shared.Models
         public AlbumCover Image { get; set; }
 
         public Band Band { get; set; }
+
+        public ICollection<Song> Songs { get; set; }
     }
 }

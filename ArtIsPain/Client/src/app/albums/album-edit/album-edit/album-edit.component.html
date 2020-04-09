@@ -1,17 +1,28 @@
 <div class="container">
   <form class="align-center" name="editForm" (ngSubmit)="upsertAlbum()">
     <div class="row">
-      <mat-form-field class="example-full-width">
-        <mat-label>Title</mat-label>
-        <input
-          matInput
-          placeholder="Ex. Pizza"
-          id="title"
-          name="title"
-          required
-          [(ngModel)]="album.title"
-        />
-      </mat-form-field>
+      <div class="col-6">
+        <mat-form-field class="example-full-width">
+          <mat-label>Title</mat-label>
+          <input
+            matInput
+            placeholder="Ex. Pizza"
+            id="title"
+            name="title"
+            required
+            [(ngModel)]="album.title"
+          />
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <div
+          cdkDropList
+          class="example-list"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <p cdkDrag *ngFor="let song of album.songs">{{ song.order + song.title }}</p>
+        </div>
+      </div>
     </div>
 
     <div class="row">
@@ -53,7 +64,10 @@
           required
           name="formationDate"
         />
-        <mat-datepicker-toggle matSuffix [for]="formationDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="formationDatePicker"
+        ></mat-datepicker-toggle>
         <mat-datepicker #formationDatePicker startView="year"></mat-datepicker>
       </mat-form-field>
     </div>

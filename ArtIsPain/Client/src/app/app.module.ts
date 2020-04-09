@@ -25,6 +25,9 @@ import { AlbumViewComponent } from './albums/album-view/album-view.component';
 import { MatButtonModule } from '@angular/material/button';
 import { AlbumEditComponent } from './albums/album-edit/album-edit/album-edit.component';
 import { AlbumEditResolver } from './_resolvers/album-edit-resolver';
+import { SongPreviewCardComponent } from './songs/song-preview-card/song-preview-card.component';
+import {MatCardModule} from '@angular/material/card';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -33,10 +36,12 @@ import { AlbumEditResolver } from './_resolvers/album-edit-resolver';
     BandViewComponent,
     BandsComponent,
     BandEditComponent,
-    AlbumEditComponent
+    AlbumEditComponent,
+    SongPreviewCardComponent
   ],
   imports: [
     BrowserModule,
+    DragDropModule,
     BsDatepickerModule,
     HttpClientModule,
     FormsModule,
@@ -48,6 +53,7 @@ import { AlbumEditResolver } from './_resolvers/album-edit-resolver';
     MatInputModule,
     MatMenuModule,
     MatIconModule,
+    MatCardModule,
     MatFormFieldModule,
     ReactiveFormsModule,
     BsDatepickerModule.forRoot()

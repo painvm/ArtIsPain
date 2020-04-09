@@ -1,5 +1,7 @@
 ﻿using ArtIsPain.Server.ViewModels.Band;
+using Server.ViewModels.Album.Song;
 using System;
+using System.Collections.Generic;
 
 namespace ArtIsPain.Server.ViewModels.Album
 {
@@ -18,5 +20,7 @@ namespace ArtIsPain.Server.ViewModels.Album
         public DateTime ReleaseDate { get; set; }
 
         public BandPreviewModel Band { get; set; }
+
+        public ICollection<SongPreviewModel> Songs { get; set; }
     }
 }

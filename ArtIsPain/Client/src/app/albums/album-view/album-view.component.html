@@ -40,6 +40,9 @@
         <div matripple="" class="mat-ripple mat-button-ripple"></div>
         <div class="mat-button-focus-overlay"></div
       ></a>
+      <div class="mt-4">
+        <app-song-preview-card *ngFor="let song of album.songs" [song]="song"></app-song-preview-card>
+      </div>
     </div>
   </div>
 </div>

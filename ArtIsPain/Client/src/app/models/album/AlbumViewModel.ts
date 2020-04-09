@@ -1,4 +1,5 @@
 import { BandPreviewModel } from '../band/BandPreviewModel';
+import { SongPreviewModel } from '../song/song-preview-model';
 
 export class AlbumViewModel
 {
@@ -9,4 +10,5 @@ export class AlbumViewModel
     startRecordDate?: Date;
     releaseDate: Date;
     band: BandPreviewModel;
+    songs: SongPreviewModel[];
 }
