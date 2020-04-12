@@ -1,8 +1,10 @@
-export class UpsertBandCommand {
-    entityId: string;
-    name: string;
-    description?: string;
-    formationDate: Date;
-    disbandDate?: Date;
+import { IUpsertEntityCommand } from 'src/app/_interfaces/i-upsert-entity-command';
+
+export class UpsertBandCommand implements IUpsertEntityCommand {
+    EntityId: string;
+    Name: string;
+    Description?: string;
+    FormationDate: Date;
+    DisbandDate?: Date;
 }
 

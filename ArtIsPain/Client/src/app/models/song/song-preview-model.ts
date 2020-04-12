@@ -1,7 +1,7 @@
 export class SongPreviewModel
 {
-    id: string;
-    albumId: string;
-    title: string;
-    order: number;
+    Id: string;
+    AlbumId: string;
+    Title: string;
+    Order: number;
 }

@@ -17,8 +17,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System.Linq;
 using System.Reflection;
+using System.Text.Json;
 using System.Threading;
 
 namespace ArtIsPain.Server
@@ -76,7 +78,7 @@ namespace ArtIsPain.Server
                 options.Filters.Add(typeof(UpsertBandCommandFilter));
             })
                 .AddFluentValidation(options => options.RegisterValidatorsFromAssemblyContaining<Startup>())
-                .AddNewtonsoftJson();
+                .AddNewtonsoftJson(opt => opt.SerializerSettings.ContractResolver = new DefaultContractResolver());
 
             services.AddResponseCompression(opts =>
             {

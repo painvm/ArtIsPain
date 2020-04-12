@@ -1,14 +1,15 @@
 import { UpsertSongCommand } from './upsert-song-command';
+import { IUpsertEntityCommand } from 'src/app/_interfaces/i-upsert-entity-command';
 
-export class UpsertAlbumCommand
+export class UpsertAlbumCommand implements IUpsertEntityCommand
 {
-    entityId: string;
-    bandId: string;
-    title: string;
-    description: string;
-    url: string;
-    startRecordDate?: Date;
-    releaseDate: Date;
-    songs: UpsertSongCommand[]
+    EntityId: string;
+    BandId: string;
+    Title: string;
+    Description: string;
+    Url: string;
+    StartRecordDate?: Date;
+    ReleaseDate: Date;
+    Songs: UpsertSongCommand[];
 }
 

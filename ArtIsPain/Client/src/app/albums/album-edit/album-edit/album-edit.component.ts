@@ -26,47 +26,47 @@ export class AlbumEditComponent implements OnInit {
   {
     const upsertAlbumCommand = new UpsertAlbumCommand();
 
-    upsertAlbumCommand.entityId = albumModel.id;
-    upsertAlbumCommand.bandId = albumModel.band.id;
-    upsertAlbumCommand.url = albumModel.url;
-    upsertAlbumCommand.description = albumModel.description;
-    upsertAlbumCommand.startRecordDate = albumModel.startRecordDate ? new Date(albumModel.startRecordDate) : null;
-    upsertAlbumCommand.releaseDate = albumModel.releaseDate;
-    upsertAlbumCommand.title = albumModel.title;
+    upsertAlbumCommand.EntityId = albumModel.Id;
+    upsertAlbumCommand.BandId = albumModel.Band.Id;
+    upsertAlbumCommand.Url = albumModel.Url;
+    upsertAlbumCommand.Description = albumModel.Description;
+    upsertAlbumCommand.StartRecordDate = albumModel.StartRecordDate ? new Date(albumModel.StartRecordDate) : null;
+    upsertAlbumCommand.ReleaseDate = albumModel.ReleaseDate;
+    upsertAlbumCommand.Title = albumModel.Title;
 
     const albumSongs = new Array<UpsertSongCommand>();
 
-    albumModel.songs.forEach(song => {
+    albumModel.Songs.forEach(song => {
       const songToUpsert = new UpsertSongCommand();
 
-      songToUpsert.entityId = song.id;
-      songToUpsert.albumId = song.albumId;
-      songToUpsert.order = song.order;
-      songToUpsert.title = song.title;
+      songToUpsert.EntityId = song.Id;
+      songToUpsert.AlbumId = song.AlbumId;
+      songToUpsert.Order = song.Order;
+      songToUpsert.Title = song.Title;
 
       albumSongs.push(songToUpsert);
     });
 
-    upsertAlbumCommand.songs = albumSongs;
+    upsertAlbumCommand.Songs = albumSongs;
 
     return upsertAlbumCommand;
   }
 
    upsertAlbum() {
-    this.albumService.upsertAlbum(this.album).subscribe(data => {
-      this.router.navigate(['/albums/' + data.id]);
+    this.albumService.upsert(this.album).subscribe(data => {
+      this.router.navigate(['/albums/' + data.Id]);
     })
   }
 
   reorderSongs(){
-    this.album.songs.forEach(song => {
-      song.order = this.album.songs.indexOf(song) + 1;
+    this.album.Songs.forEach(song => {
+      song.Order = this.album.Songs.indexOf(song) + 1;
     });
   }
 
   drop(event: CdkDragDrop<string[]>) 
   {
-    moveItemInArray(this.album.songs, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.album.Songs, event.previousIndex, event.currentIndex);
     this.reorderSongs();
   }
 }

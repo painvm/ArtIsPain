@@ -20,7 +20,7 @@ export class BandEditComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.band = this.buildUpsertBandCommand(data.band);
-      console.log(this.band.formationDate)
+      console.log(this.band.FormationDate);
   }
   )}
 
@@ -28,18 +28,18 @@ export class BandEditComponent implements OnInit {
   {
     const upsertBandCommand = new UpsertBandCommand();
 
-    upsertBandCommand.entityId = bandModel.id;
-    upsertBandCommand.description = bandModel.description;
-    upsertBandCommand.formationDate = new Date(bandModel.formationDate);
-    upsertBandCommand.disbandDate = new Date(bandModel.disbandDate);
-    upsertBandCommand.name = bandModel.name;
+    upsertBandCommand.EntityId = bandModel.Id;
+    upsertBandCommand.Description = bandModel.Description;
+    upsertBandCommand.FormationDate = new Date(bandModel.FormationDate);
+    upsertBandCommand.DisbandDate = new Date(bandModel.DisbandDate);
+    upsertBandCommand.Name = bandModel.Name;
 
     return upsertBandCommand;
   }
 
    upsertBand() {
-    this.bandService.upsertBand(this.band).subscribe(data =>{
-      this.router.navigate(['/bands/' + data.id]);
+    this.bandService.upsert(this.band).subscribe(data =>{
+      this.router.navigate(['/bands/' + data.Id]);
     })
   }
 

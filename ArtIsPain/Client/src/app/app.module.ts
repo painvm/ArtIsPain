@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { appRoutes } from './routes';
 import { BandService } from './_services/band.service';
-import { BandResolver } from './_resolvers/band.resolver';
+import { BandViewResolver } from './_resolvers/band-view-resolver';
 import { BandViewComponent } from './bands/band-view/band.component';
 import { BandsComponent } from './bands/band-list/BandsComponent';
 import { BandEditComponent } from './bands/band-edit/band-edit.component';
@@ -28,6 +28,9 @@ import { AlbumEditResolver } from './_resolvers/album-edit-resolver';
 import { SongPreviewCardComponent } from './songs/song-preview-card/song-preview-card.component';
 import {MatCardModule} from '@angular/material/card';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { BaseResolver } from './_resolvers/base-resolver';
+import { BaseGetByIdResolver } from './_resolvers/base-get-by-id-resolver';
+import { BaseEditResolver } from './_resolvers/base-edit-resolver';
 
 @NgModule({
   declarations: [
@@ -60,7 +63,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
   ],
   providers: [
     BandService,
-    BandResolver,
+    BandViewResolver,
     BandEditResolver,
     AlbumViewResolver,
     AlbumEditResolver,

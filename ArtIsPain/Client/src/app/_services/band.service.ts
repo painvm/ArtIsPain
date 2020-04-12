@@ -6,25 +6,18 @@ import { BandCollectionPreviewModel } from '../models/band/BandCollectionPreview
 import { BandPreviewModel } from '../models/band/BandPreviewModel';
 import { BandViewModel } from '../models/band/BandViewModel';
 import { UpsertBandCommand } from '../commands/bands/upsert.band.command';
+import { BaseService } from './base.service';
+import { ApiPath } from '../enums/api-path.enum';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class BandService {
-  baseUrl = environment.apiUrl;
+export class BandService extends BaseService<BandViewModel> {
 
-  constructor(private http: HttpClient) {}
+  Path = ApiPath.Band;
 
-  getBandById(id): Observable<BandViewModel> {
-    return this.http.get<BandViewModel>(this.baseUrl + 'band/' + id);
-  }
-
-  getBands(): Observable<BandCollectionPreviewModel> {
-    return this.http.get<BandCollectionPreviewModel>(this.baseUrl + 'band/getAll');
-  }
-
-  upsertBand(request: UpsertBandCommand): Observable<BandViewModel>{
-    return this.http.post<BandViewModel>(this.baseUrl + 'band', request);
+  constructor(private http: HttpClient) {
+    super(http);
   }
 }

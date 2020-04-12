@@ -1,10 +1,11 @@
 import { Time } from '@angular/common';
+import { IUpsertEntityCommand } from 'src/app/_interfaces/i-upsert-entity-command';
 
-export class UpsertSongCommand 
+export class UpsertSongCommand implements IUpsertEntityCommand
 {
-    entityId?: string;
-    albumId?: string;
-    title: string;
-    order: number;
-    length: Time;
+    EntityId?: string;
+    AlbumId?: string;
+    Title: string;
+    Order: number;
+    Length: Time;
 }

@@ -1,5 +1,5 @@
 export class AlbumPreviewModel {
-    id: string;
-    title: string;
-    releaseDate: string;
+    Id: string;
+    Title: string;
+    ReleaseDate: string;
 }

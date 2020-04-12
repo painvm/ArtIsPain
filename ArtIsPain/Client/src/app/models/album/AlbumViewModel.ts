@@ -3,12 +3,12 @@ import { SongPreviewModel } from '../song/song-preview-model';
 
 export class AlbumViewModel
 {
-    id: string;
-    title: string;
-    description: string;
-    url: string;
-    startRecordDate?: Date;
-    releaseDate: Date;
-    band: BandPreviewModel;
-    songs: SongPreviewModel[];
+    Id: string;
+    Title: string;
+    Description: string;
+    Url: string;
+    StartRecordDate?: Date;
+    ReleaseDate: Date;
+    Band: BandPreviewModel;
+    Songs: SongPreviewModel[];
 }

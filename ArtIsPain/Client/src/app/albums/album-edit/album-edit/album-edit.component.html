@@ -10,7 +10,7 @@
             id="title"
             name="title"
             required
-            [(ngModel)]="album.title"
+            [(ngModel)]="album.Title"
           />
         </mat-form-field>
       </div>
@@ -20,7 +20,7 @@
           class="example-list"
           (cdkDropListDropped)="drop($event)"
         >
-          <p cdkDrag *ngFor="let song of album.songs">{{ song.order + song.title }}</p>
+          <p cdkDrag *ngFor="let song of album.Songs">{{ song.order + song.title }}</p>
         </div>
       </div>
     </div>
@@ -34,7 +34,7 @@
           rows="10"
           cols="50"
           name="description"
-          [(ngModel)]="album.description"
+          [(ngModel)]="album.Description"
         >
         </textarea>
       </mat-form-field>
@@ -49,7 +49,7 @@
           id="url"
           name="url"
           required
-          [(ngModel)]="album.url"
+          [(ngModel)]="album.Url"
         />
       </mat-form-field>
     </div>
@@ -60,7 +60,7 @@
         <input
           matInput
           [matDatepicker]="formationDatePicker"
-          [(ngModel)]="album.startRecordDate"
+          [(ngModel)]="album.StartRecordDate"
           required
           name="formationDate"
         />
@@ -78,7 +78,7 @@
         <input
           matInput
           [matDatepicker]="picker"
-          [(ngModel)]="album.releaseDate"
+          [(ngModel)]="album.ReleaseDate"
           name="disbandDate"
         />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>

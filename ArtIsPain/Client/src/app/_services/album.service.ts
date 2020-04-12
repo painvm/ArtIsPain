@@ -4,22 +4,19 @@ import { HttpClient } from '@angular/common/http';
 import { AlbumViewModel } from '../models/album/AlbumViewModel';
 import { Observable } from 'rxjs';
 import { UpsertAlbumCommand } from '../commands/albums/upsert-album-command';
+import { BaseService } from './base.service';
+import { ApiPath } from '../enums/api-path.enum';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AlbumService {
 
-  baseUrl = environment.apiUrl;
+export class AlbumService extends BaseService<AlbumViewModel> {
 
-  constructor(private http: HttpClient) {}
+  Path = ApiPath.Album;
 
-  getAlbumById(id: string): Observable<AlbumViewModel> {
-    return this.http.get<AlbumViewModel>(this.baseUrl + 'album/' + id);
-  }
+  constructor(private http: HttpClient) {
+    super(http);
 
-  upsertAlbum(request: UpsertAlbumCommand): Observable<AlbumViewModel>{
-    return this.http.post<AlbumViewModel>(this.baseUrl + 'album', request);
-  }
-
+}
 }

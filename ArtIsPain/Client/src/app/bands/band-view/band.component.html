@@ -14,8 +14,8 @@
     <div class="row">
       <div class="col-4"></div>
       <div class="col-4 text-center">
-        <h2 class="d-inline m-2">{{ band.name }}</h2>
-        <a class="d-inline text-secondary fa fa-book" [routerLink]="['/bands/', band.id, 'edit']"></a>
+        <h2 class="d-inline m-2">{{ band.Name }}</h2>
+        <a class="d-inline text-secondary fa fa-book" [routerLink]="['/bands/', band.Id, 'edit']"></a>
       </div>
       <div class="col-4">
       </div>
@@ -29,12 +29,12 @@
       <h4><strong>Discography</strong></h4>
     </div>
     <div class="row">
-      <div class="col-md-3 col-sm-6 mb-4" *ngFor="let album of band.albums">
-        <a [routerLink]="['/albums', album.id]">
+      <div class="col-md-3 col-sm-6 mb-4" *ngFor="let album of band.Albums">
+        <a [routerLink]="['/albums', album.Id]">
           <img class="img-fluid" src="http://placehold.it/500x300" alt="" />
         </a>
-        <p>{{ album.title }}</p>
-        <small>{{ album.releaseDate | date: "yyyy" }}</small>
+        <p>{{ album.Title }}</p>
+        <small>{{ album.ReleaseDate | date: "yyyy" }}</small>
       </div>
     </div>
   </div>
@@ -45,20 +45,20 @@
     <div class="row">
       <div class="col-12">
         <h3>
-          <strong>About {{ band.name }}</strong>
+          <strong>About {{ band.Name }}</strong>
         </h3>
       </div>
     </div>
     <div class="row mt-5">
       <div class="col-6">
-        {{ band.description }}
+        {{ band.Description }}
       </div>
       <div class="col-6">
         <strong class="text-muted">Formed</strong>
-        <p>{{ band.formationDate | date: "yyyy" }}</p>
-        <div *ngIf="band.disbandDate">
+        <p>{{ band.FormationDate | date: "yyyy" }}</p>
+        <div *ngIf="band.DisbandDate">
           <strong class="text-muted">Disbanded</strong>
-          <p>{{ band.disbandDate | date: "yyyy" }}</p>
+          <p>{{ band.DisbandDate | date: "yyyy" }}</p>
         </div>
       </div>
     </div>

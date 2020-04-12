@@ -9,7 +9,7 @@
           id="name"
           name="name"
           required
-          [(ngModel)]="band.name"
+          [(ngModel)]="band.Name"
         />
       </mat-form-field>
     </div>
@@ -23,7 +23,7 @@
           rows="10"
           cols="50"
           name="description"
-          [(ngModel)]="band.description"
+          [(ngModel)]="band.Description"
         >
         </textarea>
       </mat-form-field>
@@ -35,7 +35,7 @@
         <input
           matInput
           [matDatepicker]="formationDatePicker"
-          [(ngModel)]="band.formationDate"
+          [(ngModel)]="band.FormationDate"
           required
           name="formationDate"
         />
@@ -44,13 +44,13 @@
       </mat-form-field>
     </div>
 
-    <div class="row" *ngIf="band.disbandDate">
+    <div class="row" *ngIf="band.DisbandDate">
       <mat-form-field>
         <mat-label>Disband date</mat-label>
         <input
           matInput
           [matDatepicker]="picker"
-          [(ngModel)]="band.disbandDate"
+          [(ngModel)]="band.DisbandDate"
           name="disbandDate"
         />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
