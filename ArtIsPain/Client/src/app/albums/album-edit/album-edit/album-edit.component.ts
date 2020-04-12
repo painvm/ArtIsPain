@@ -19,6 +19,7 @@ export class AlbumEditComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.album = this.buildUpsertAlbumCommand(data.album);
+      this.album.Songs.sort((a, b) => a.Order - b.Order);
   }
   )}
 
