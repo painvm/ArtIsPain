@@ -12,9 +12,9 @@ namespace ArtIsPain.Server.ViewModels.Band
 
         public string Description { get; set; }
 
-        public DateTime FormationDate { get; set; }
+        public string FormationDate { get; set; }
 
-        public DateTime? DisbandDate { get; set; }
+        public string DisbandDate { get; set; }
 
         public ICollection<AlbumPreviewModel> Albums { get; set; }
     }
