@@ -6,6 +6,7 @@ import { UpsertAlbumCommand } from "src/app/commands/albums/upsert-album-command
 import { UpsertSongCommand } from "src/app/commands/albums/upsert-song-command";
 import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
 import { SongPreviewModel } from "src/app/models/song/song-preview-model";
+import { BandPreviewModel } from "src/app/models/band/BandPreviewModel";
 
 @Component({
   selector: "app-album-edit",
@@ -38,6 +39,12 @@ export class AlbumEditComponent implements OnInit {
   buildUpsertAlbumCommand(albumModel: AlbumViewModel): UpsertAlbumCommand {
     const upsertAlbumCommand = new UpsertAlbumCommand();
 
+    if (!albumModel) {
+      albumModel = new AlbumViewModel();
+      albumModel.Band = new BandPreviewModel();
+      albumModel.Band.Id = window.history.state.bandId;
+    }
+
     upsertAlbumCommand.EntityId = albumModel.Id;
     upsertAlbumCommand.BandId = albumModel.Band.Id;
     upsertAlbumCommand.Url = albumModel.Url;
@@ -50,16 +57,18 @@ export class AlbumEditComponent implements OnInit {
 
     const albumSongs = new Array<UpsertSongCommand>();
 
-    albumModel.Songs.forEach((song) => {
-      const songToUpsert = new UpsertSongCommand();
+    if (albumModel.Songs && albumModel.Songs.length > 0) {
+      albumModel.Songs.forEach((song) => {
+        const songToUpsert = new UpsertSongCommand();
 
-      songToUpsert.EntityId = song.Id;
-      songToUpsert.AlbumId = song.AlbumId;
-      songToUpsert.Order = song.Order;
-      songToUpsert.Title = song.Title;
+        songToUpsert.EntityId = song.Id;
+        songToUpsert.AlbumId = song.AlbumId;
+        songToUpsert.Order = song.Order;
+        songToUpsert.Title = song.Title;
 
-      albumSongs.push(songToUpsert);
-    });
+        albumSongs.push(songToUpsert);
+      });
+    }
 
     upsertAlbumCommand.Songs = albumSongs;
 
@@ -70,7 +79,7 @@ export class AlbumEditComponent implements OnInit {
     this.album.Songs = [...this.draftSongs];
 
     this.albumService.upsert(this.album).subscribe((data) => {
-      this.router.navigate(["/albums/" + data.Id]);
+      this.router.navigate(["albums/view/" + data.Id]);
     });
   }
 
@@ -97,6 +106,9 @@ export class AlbumEditComponent implements OnInit {
     if (this.draftSongs && this.draftSongs.length > 0) {
       this.potentialSong.Order =
         this.draftSongs[this.draftSongs.length - 1].Order + 1;
+    }
+    else{
+      this.potentialSong.Order = 1;
     }
   }
 

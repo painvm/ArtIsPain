@@ -13,6 +13,7 @@ export const appRoutes: Routes = [
     {path: 'bands/:id', component: BandViewComponent, resolve: {band: BandViewResolver}, pathMatch: 'full'},
     {path: 'bands/:id/edit', component: BandEditComponent, resolve: {band: BandEditResolver}},
     {path: 'bands', component: BandsComponent},
-    {path: 'albums/:id', component: AlbumViewComponent, resolve: {album: AlbumViewResolver}, pathMatch: 'full'},
-    {path: 'albums/:id/edit', component: AlbumEditComponent, resolve: {album: AlbumEditResolver}},
+    {path: 'albums/view/:id', component: AlbumViewComponent, resolve: {album: AlbumViewResolver}, pathMatch: 'full'},
+    {path: 'albums/edit/:id', component: AlbumEditComponent, resolve: {album: AlbumEditResolver}, pathMatch: 'full'},
+    {path: 'albums/create', component: AlbumEditComponent, resolve: {album: AlbumEditResolver}}
 ];

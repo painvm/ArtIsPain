@@ -37,7 +37,7 @@ namespace ArtIsPain.Server.Controllers
         }
 
         [HttpPost]
-        public async Task<AlbumViewModel> UpsertBand(UpsertAlbumCommand request)
+        public async Task<AlbumViewModel> UpsertAlbum(UpsertAlbumCommand request)
         {
             return await _mediator.Send(request);
         }

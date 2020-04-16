@@ -15,15 +15,12 @@ namespace ArtIsPain.Server.Handlers.Album
 {
     public class UpsertAlbumCommandHandler : BaseUpsertEntityCommandHandler<MusicalAlbum, UpsertAlbumCommand, AlbumViewModel>
     {
-        private readonly IRepository<BandEntity> _bandRepository;
-
         public UpsertAlbumCommandHandler(
             IMapper autoMapper,
             IRepository<MusicalAlbum> albumRepository,
             IRepository<BandEntity> bandRepository)
             : base(autoMapper, albumRepository)
         {
-            _bandRepository = bandRepository;
         }
 
         protected override async Task<AlbumViewModel> Send(UpsertAlbumCommand request, CancellationToken cancellationToken)

@@ -14,7 +14,7 @@ export abstract class BaseEditResolver<T extends IViewModel> extends BaseResolve
 
     performRequest(route: ActivatedRouteSnapshot): Observable<T> {
         if (!route.params.id) {
-            return new Observable<T>();
+            return of<T>(null);
         }
         return this.service.getById(route.params.id);
     }}
