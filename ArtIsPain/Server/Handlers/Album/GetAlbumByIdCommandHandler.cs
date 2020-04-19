@@ -3,8 +3,6 @@ using ArtIsPain.Server.Data.Interfaces;
 using ArtIsPain.Server.ViewModels.Album;
 using ArtIsPain.Shared.Models;
 using AutoMapper;
-using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 

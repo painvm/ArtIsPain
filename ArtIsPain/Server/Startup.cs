@@ -3,25 +3,21 @@ using ArtIsPain.Server.Data.Interfaces;
 using ArtIsPain.Server.Data.Repositories;
 using ArtIsPain.Server.Data.Seed;
 using ArtIsPain.Server.Filters;
-using ArtIsPain.Server.Handlers.Album;
 using ArtIsPain.Shared.Models;
 using AutoMapper;
 using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Server.Filters;
 using System.Linq;
 using System.Reflection;
-using System.Text.Json;
-using System.Threading;
 
 namespace ArtIsPain.Server
 {
@@ -76,6 +72,7 @@ namespace ArtIsPain.Server
             {
                 options.Filters.Add(typeof(RequestValidationFilter));
                 options.Filters.Add(typeof(UpsertBandCommandFilter));
+                options.Filters.Add(typeof(UpsertAlbumCommandFilter));
             })
                 .AddFluentValidation(options => options.RegisterValidatorsFromAssemblyContaining<Startup>())
                 .AddNewtonsoftJson(opt => opt.SerializerSettings.ContractResolver = new DefaultContractResolver());

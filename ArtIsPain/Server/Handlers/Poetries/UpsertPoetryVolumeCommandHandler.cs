@@ -1,7 +1,6 @@
 ﻿using ArtIsPain.Server.Commands.Poetry;
 using ArtIsPain.Server.Data.Interfaces;
 using ArtIsPain.Server.ViewModels.Poetry;
-using ArtIsPain.Server.ViewModels.Writer;
 using ArtIsPain.Shared.Models;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;

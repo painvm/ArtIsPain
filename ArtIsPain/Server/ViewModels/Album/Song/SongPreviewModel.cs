@@ -1,5 +1,5 @@
-using System;
 using ArtIsPain.Server.ViewModels;
+using System;
 
 namespace Server.ViewModels.Album.Song
 {

@@ -20,10 +20,10 @@
       </h4>
       <a
         class="d-inline text-secondary fa fa-book"
-        [routerLink]="['/albums/', album.Id, 'edit']"
+        [routerLink]="['/albums/edit/', album.Id]"
       ></a>
       <h4 class="m-1">
-        <a class=" text-muted" [routerLink]="['/bands/', album.Band.Id]"
+        <a class=" text-muted" [routerLink]="['/bands/view/', album.Band.Id]"
           ><small>{{ album.Band.Title }}</small></a
         >
       </h4>

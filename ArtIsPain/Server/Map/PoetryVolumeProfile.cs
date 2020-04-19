@@ -4,7 +4,6 @@ using ArtIsPain.Server.ViewModels.Writer;
 using ArtIsPain.Shared.Models;
 using AutoMapper;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 

@@ -1,6 +1,4 @@
-﻿using ArtIsPain.Shared;
-using ArtIsPain.Shared.Interfaces;
-using ArtIsPain.Shared.Models;
+﻿using ArtIsPain.Shared.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;

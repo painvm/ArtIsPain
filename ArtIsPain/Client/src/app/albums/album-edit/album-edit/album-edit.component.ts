@@ -119,6 +119,7 @@ export class AlbumEditComponent implements OnInit {
   addSong() {
     this.draftSongs.push(this.potentialSong);
     this.resetSongTemplate();
+    this.isEditSongMode = false;
   }
 
   showInput(song: UpsertSongCommand) {

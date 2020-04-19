@@ -2,9 +2,6 @@
 using ArtIsPain.Server.Data.Interfaces;
 using ArtIsPain.Server.ViewModels.Band;
 using AutoMapper;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BandModel = ArtIsPain.Shared.Models.Band;

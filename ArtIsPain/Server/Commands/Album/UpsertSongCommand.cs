@@ -1,6 +1,6 @@
-using System;
 using ArtIsPain.Server.Commands;
 using Server.ViewModels.Album.Song;
+using System;
 
 namespace Server.Commands.Album
 {

@@ -1,10 +1,8 @@
 ﻿using ArtIsPain.Server.Commands;
 using ArtIsPain.Server.Data.Interfaces;
 using ArtIsPain.Server.ViewModels;
-using ArtIsPain.Shared;
 using ArtIsPain.Shared.Interfaces;
 using AutoMapper;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;

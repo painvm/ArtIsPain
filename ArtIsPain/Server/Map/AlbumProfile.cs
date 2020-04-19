@@ -1,8 +1,8 @@
-﻿using System;
-using ArtIsPain.Server.Commands.Album;
+﻿using ArtIsPain.Server.Commands.Album;
 using ArtIsPain.Server.ViewModels.Album;
 using ArtIsPain.Shared.Models;
 using AutoMapper;
+using System;
 
 namespace ArtIsPain.Server.Map
 {

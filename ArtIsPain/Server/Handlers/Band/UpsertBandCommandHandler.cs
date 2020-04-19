@@ -1,7 +1,6 @@
 ﻿using ArtIsPain.Server.Commands.Band;
 using ArtIsPain.Server.Data.Interfaces;
 using ArtIsPain.Server.ViewModels.Band;
-using ArtIsPain.Shared.Models;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System;

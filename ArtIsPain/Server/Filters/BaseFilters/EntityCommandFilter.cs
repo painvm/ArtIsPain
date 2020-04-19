@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Filters.BaseFilters
 {
-    public abstract class EntityCommandValidator<TRequest, TEntity> : IAsyncActionFilter where TRequest : IRequest<IViewModel>
+    public abstract class EntityCommandFilter<TRequest, TEntity> : IAsyncActionFilter where TRequest : IRequest<IViewModel>
                                                                                         where TEntity : class
     {
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
