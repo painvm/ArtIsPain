@@ -8,7 +8,7 @@ export function ValidateDateRange(formGroup: FormGroup, startDateControlName: st
     if (startDateControl && endDateControl && startDateControl.value && endDateControl.value) {
         if (startDateControl.errors 
             || endDateControl.errors
-            || isNaN(startDateControl.value.getUTCFullYear()) || isNaN(endDateControl.value.getUTCFullYear())
+            || isNaN(startDateControl.value.getUTCFullYear()) || isNaN(endDateControl.value.getUTCFullYear()))
         {
             return null;
         }
