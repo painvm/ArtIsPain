@@ -31,6 +31,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BaseResolver } from './_resolvers/base-resolver';
 import { BaseGetByIdResolver } from './_resolvers/base-get-by-id-resolver';
 import { BaseEditResolver } from './_resolvers/base-edit-resolver';
+import { DateRangeValidationDirective } from './_directives/date-range-validation.directive';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { BaseEditResolver } from './_resolvers/base-edit-resolver';
     BandsComponent,
     BandEditComponent,
     AlbumEditComponent,
-    SongPreviewCardComponent
+    SongPreviewCardComponent,
+    DateRangeValidationDirective
   ],
   imports: [
     BrowserModule,

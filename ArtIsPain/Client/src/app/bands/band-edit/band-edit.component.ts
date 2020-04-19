@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BandViewModel } from 'src/app/models/band/BandViewModel';
 import { UpsertBandCommand } from 'src/app/commands/bands/upsert.band.command';
 import { BandService } from 'src/app/_services/band.service';
 import {MatDatepicker} from '@angular/material/datepicker';
-import { NgForm } from '@angular/forms';
+import { NgForm, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-band-edit',
@@ -12,10 +12,14 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./band-edit.component.css']
 })
 
-export class BandEditComponent implements OnInit {
+export class BandEditComponent implements OnInit, AfterViewInit  {
   band: UpsertBandCommand;
 
-  constructor(private route: ActivatedRoute, private router: Router, private bandService: BandService) { }
+  constructor(private changeDetector: ChangeDetectorRef, private route: ActivatedRoute, private router: Router, private bandService: BandService) { }
+
+  ngAfterViewInit(): void {
+    this.changeDetector.detectChanges();
+  }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -39,11 +43,7 @@ export class BandEditComponent implements OnInit {
 
    upsertBand() {
     this.bandService.upsert(this.band).subscribe(data =>{
-      this.router.navigate(['/bands/' + data.Id]);
+      this.router.navigate(['/bands/view/' + data.Id]);
     })
   }
-
-
 }
-
-
