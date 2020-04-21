@@ -32,10 +32,14 @@ export class BandEditComponent implements OnInit, AfterViewInit  {
   {
     const upsertBandCommand = new UpsertBandCommand();
 
+    if(!bandModel){
+      return upsertBandCommand;
+    }
+
     upsertBandCommand.EntityId = bandModel.Id;
     upsertBandCommand.Description = bandModel.Description;
-    upsertBandCommand.FormationDate = new Date(bandModel.FormationDate);
-    upsertBandCommand.DisbandDate = new Date(bandModel.DisbandDate);
+    upsertBandCommand.FormationDate = bandModel.FormationDate ? new Date(bandModel.FormationDate) : null;
+    upsertBandCommand.DisbandDate = bandModel.DisbandDate ? new Date(bandModel.DisbandDate) : null;
     upsertBandCommand.Name = bandModel.Name;
 
     return upsertBandCommand;
