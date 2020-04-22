@@ -28,10 +28,10 @@ import { AlbumEditResolver } from './_resolvers/album-edit-resolver';
 import { SongPreviewCardComponent } from './songs/song-preview-card/song-preview-card.component';
 import {MatCardModule} from '@angular/material/card';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { BaseResolver } from './_resolvers/base-resolver';
-import { BaseGetByIdResolver } from './_resolvers/base-get-by-id-resolver';
-import { BaseEditResolver } from './_resolvers/base-edit-resolver';
 import { DateRangeValidationDirective } from './_directives/date-range-validation.directive';
+import { NgxsModule } from '@ngxs/store';
+import { environment } from 'src/environments/environment';
+import { BandViewState } from './_state/states/band-view-state';
 
 @NgModule({
   declarations: [
@@ -51,6 +51,9 @@ import { DateRangeValidationDirective } from './_directives/date-range-validatio
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
+    NgxsModule.forRoot([BandViewState], {
+      developmentMode: !environment.production
+    }),
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,

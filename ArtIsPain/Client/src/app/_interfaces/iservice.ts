@@ -8,6 +8,6 @@ export interface IService<T extends IViewModel>
     Path: string;
 
 
-    getById(id: number): Observable<T>;
+    getById(id: string): Observable<T>;
     upsert(upsertEntityCommand: IUpsertEntityCommand): Observable<T>;
 }

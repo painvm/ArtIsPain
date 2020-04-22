@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BandViewModel } from 'src/app/models/band/BandViewModel';
+import { Observable } from 'rxjs';
+import { BandViewState } from 'src/app/_state/states/band-view-state';
 
 
 @Component({
@@ -11,10 +13,11 @@ import { BandViewModel } from 'src/app/models/band/BandViewModel';
 
 export class BandViewComponent implements OnInit {
   band: BandViewModel;
-
+  state: Observable<BandViewState>;
   constructor(
     private route: ActivatedRoute
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.route.data.subscribe(data => {

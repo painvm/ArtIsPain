@@ -5,7 +5,7 @@ import { AlbumViewModel } from '../models/album/AlbumViewModel';
 import { Observable } from 'rxjs';
 import { UpsertAlbumCommand } from '../commands/albums/upsert-album-command';
 import { BaseService } from './base.service';
-import { ApiPath } from '../enums/api-path.enum';
+import { ApiPath } from '../_enums/api-path.enum';
 
 @Injectable({
   providedIn: 'root'
