@@ -6,10 +6,12 @@ import { catchError } from "rxjs/operators";
 import { AlbumViewModel } from "../models/album/AlbumViewModel";
 import { AlbumService } from "../_services/album.service";
 import { BaseGetByIdResolver } from "./base-get-by-id-resolver";
+import { Store } from '@ngxs/store';
+import { GetAlbumById } from '../_state/actions/get-album-by-id';
 
 @Injectable()
 export class AlbumViewResolver extends BaseGetByIdResolver<AlbumViewModel> {
-  constructor(private albumService: AlbumService) {
-    super(albumService);
+  constructor(store: Store) {
+    super(store, new GetAlbumById());
   }
 }

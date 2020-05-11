@@ -32,6 +32,8 @@ import { DateRangeValidationDirective } from './_directives/date-range-validatio
 import { NgxsModule } from '@ngxs/store';
 import { environment } from 'src/environments/environment';
 import { BandViewState } from './_state/states/band-view-state';
+import { BandEditState } from './_state/states/band-edit-state';
+import { NgxsFormPluginModule } from '@ngxs/form-plugin';
 
 @NgModule({
   declarations: [
@@ -51,9 +53,10 @@ import { BandViewState } from './_state/states/band-view-state';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
-    NgxsModule.forRoot([BandViewState], {
+    NgxsModule.forRoot([BandViewState, BandEditState], {
       developmentMode: !environment.production
     }),
+    NgxsFormPluginModule.forRoot(),
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
