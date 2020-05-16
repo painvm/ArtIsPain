@@ -14,12 +14,10 @@ import { OnInit, Component } from '@angular/core';
 
 export class BandViewComponent implements OnInit {
   band: BandViewModel;
-  
+
   @Select(BandViewState.getBand) band$: Observable<BandViewModel>;
 
   constructor(
-    private route: ActivatedRoute,
-    private store: Store
   ) {
   }
 

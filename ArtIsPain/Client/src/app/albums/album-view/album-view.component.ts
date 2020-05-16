@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AlbumViewModel } from 'src/app/models/album/AlbumViewModel';
+import { AlbumViewState } from 'src/app/_state/states/album-view-state';
+import { Observable } from 'rxjs';
+import { Select } from '@ngxs/store';
 
 @Component({
   selector: 'app-album-view',
@@ -12,14 +15,14 @@ export class AlbumViewComponent implements OnInit {
   album: AlbumViewModel;
   formattedReleaseDate: number;
 
+  @Select(AlbumViewState.getAlbum) album$: Observable<AlbumViewModel>;
+
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.data.subscribe(data => {
-      this.album = data.album;
-      this.album.Songs.sort((a, b) => a.Order - b.Order);
-
-      this.formattedReleaseDate = new Date(this.album.ReleaseDate).getFullYear();
-  })}
-
+    this.album$.subscribe(data => {
+      this.album = data;
+    })
+  }
 }
+

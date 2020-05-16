@@ -35,6 +35,7 @@ import { BandEditState } from './_state/states/band-edit-state';
 import { NgxsFormPluginModule } from '@ngxs/form-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
+import { AlbumViewState } from './_state/states/album-view-state';
 
 // Noop handler for factory function
 export function noop() {
@@ -58,7 +59,7 @@ export function noop() {
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
-    NgxsModule.forRoot([BandViewState, BandEditState], {
+    NgxsModule.forRoot([BandViewState, BandEditState, AlbumViewState], {
       developmentMode: !environment.production
     }),
     NgxsFormPluginModule.forRoot(),
