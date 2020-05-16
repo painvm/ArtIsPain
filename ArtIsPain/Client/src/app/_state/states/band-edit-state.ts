@@ -64,13 +64,7 @@ export class BandEditState implements NgxsOnInit {
                     upsertBandCommand.DisbandDate = data.DisbandDate ? new Date(data.DisbandDate) : null;
                     upsertBandCommand.Name = data.Name;
 
-                    const currentState = stateContext.getState();
-                    const form = currentState.BandEditForm;
-
-                    form.model.title = upsertBandCommand.Name;
-                    form.model.biography = upsertBandCommand.Description;
-
-                    stateContext.patchState({ UpsertCommand: upsertBandCommand, BandEditForm: form })
+                    stateContext.patchState({ UpsertCommand: upsertBandCommand })
                 });
         }
     }
