@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -15,11 +15,11 @@ export abstract class BaseEditResolver<T extends IViewModel> extends BaseResolve
         super(store, action);
     }
 
-  @Select(BandViewState.getBandId) bandId$: Observable<string>;
+    @Select(BandViewState.getBandId) bandId$: Observable<string>;
 
     performRequest(store: Store, route: ActivatedRouteSnapshot, action: GetById): Observable<T> {
         this.bandId$.subscribe(id => {
-            if(id != null){
+            if (id != null) {
                 action.Id = id;
             }
         });

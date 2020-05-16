@@ -1,8 +1,8 @@
 import { UpsertBandCommand } from 'src/app/commands/bands/upsert.band.command';
-import { FormGroup } from '@angular/forms';
+import { BandViewModel } from 'src/app/models/band/BandViewModel';
 
-export class BandEditStateModel 
-{
-    Band: UpsertBandCommand;
+export class BandEditStateModel {
+    UpsertCommand: UpsertBandCommand;
     BandEditForm: any;
+    BandResponse: BandViewModel;
 }
