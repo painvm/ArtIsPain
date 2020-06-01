@@ -33,9 +33,13 @@ import { environment } from 'src/environments/environment';
 import { BandViewState } from './_state/states/band-view-state';
 import { BandEditState } from './_state/states/band-edit-state';
 import { NgxsFormPluginModule } from '@ngxs/form-plugin';
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 import { AlbumViewState } from './_state/states/album-view-state';
+import { AlbumEditState } from './_state/states/album-edit-state';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
 
 // Noop handler for factory function
 export function noop() {
@@ -59,7 +63,7 @@ export function noop() {
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
-    NgxsModule.forRoot([BandViewState, BandEditState, AlbumViewState], {
+    NgxsModule.forRoot([BandViewState, BandEditState, AlbumViewState, AlbumEditState], {
       developmentMode: !environment.production
     }),
     NgxsFormPluginModule.forRoot(),
@@ -74,9 +78,13 @@ export function noop() {
     MatCardModule,
     MatFormFieldModule,
     ReactiveFormsModule,
+    MatDividerModule,
+    MatListModule,
     BsDatepickerModule.forRoot(),
-    NgxsRouterPluginModule.forRoot(),
-  ],
+    NgxsStoragePluginModule.forRoot(
+      {key: ["bandEdit", "albumEdit"]}),
+      NgxsRouterPluginModule.forRoot(),
+    ],
   providers: [
     BandService,
     BandViewResolver,

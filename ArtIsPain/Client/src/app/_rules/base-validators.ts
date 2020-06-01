@@ -20,4 +20,6 @@ export class BaseValidators {
 
         }
     }
+
+    static UrlValidationPattern = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
 }

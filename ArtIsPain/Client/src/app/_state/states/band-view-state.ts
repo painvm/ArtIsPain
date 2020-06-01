@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BandService } from 'src/app/_services/band.service';
 import { Action, StateContext, State, Selector } from '@ngxs/store';
 import { GetBandById } from '../actions/get-band-by-id';
-import { BandViewModel } from 'src/app/models/band/BandViewModel';
 import { BandViewStateModel } from '../models/band-view-state-model';
+import { BandViewModel } from '../../models/band/BandViewModel';
+import { BandService } from '../../_services/band.service';
 
 @State<BandViewStateModel>({
     name: 'bandView',
@@ -23,7 +23,7 @@ export class BandViewState {
     @Action(GetBandById)
     getBandById(stateContext: StateContext<BandViewStateModel>, action: GetBandById)
     {
-        this.bandService.getById(action.Id).subscribe(
+        this.bandService.GetById(action.Id).subscribe(
             data => 
             {
                 stateContext.patchState({Band: data, BandId: data.Id})

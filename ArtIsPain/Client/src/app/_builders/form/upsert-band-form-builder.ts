@@ -1,19 +1,21 @@
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { UpsertBandCommand } from 'src/app/commands/bands/upsert.band.command';
 import { Injectable } from '@angular/core';
+import { BaseFormBuilder } from './base-form-builder';
+import { BandViewModel } from '../../models/band/BandViewModel';
 
 @Injectable({
     providedIn: 'root'
 })
 
-export class UpsertBandFormBuilder {
+export class UpsertBandFormBuilder extends BaseFormBuilder {
 
 
-    constructor(public formBuilder: FormBuilder) {
+    constructor(formBuilder: FormBuilder) {
+        super(formBuilder);
 
     }
 
-    public Initialize(): FormGroup {
+    public Initialize() {
         const title = this.formBuilder.control(null);
         const biography = this.formBuilder.control(null);
         const formationDate = this.formBuilder.control(null);
@@ -29,10 +31,10 @@ export class UpsertBandFormBuilder {
         return form;
     }
 
-    public Populate(form: FormGroup, upsertBandCommand: UpsertBandCommand) {
-        form.controls.title.setValue(upsertBandCommand.Name);
-        form.controls.formationDate.setValue(upsertBandCommand.FormationDate);
-        form.controls.disbandDate.setValue(upsertBandCommand.DisbandDate);
-        form.controls.biography.setValue(upsertBandCommand.Description);
+    public Build(form: FormGroup, band: BandViewModel) {
+        form.controls.title.setValue(band.Name);
+        form.controls.formationDate.setValue(new Date(band.FormationDate));
+        form.controls.disbandDate.setValue(new Date(band.DisbandDate));
+        form.controls.biography.setValue(band.Description);
     }
 }

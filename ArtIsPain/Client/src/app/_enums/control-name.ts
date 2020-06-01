@@ -3,4 +3,10 @@ export class ControlName {
     static BandFormationDate = 'formationDate';
     static BandDisbandDate = 'disbandDate';
     static BandBiography = 'biography';
+
+    static AlbumTitle = "title";
+    static AlbumDescription = "description";
+    static AlbumUrl = "url";
+    static AlbumStartRecordDate = "startRecordDate";
+    static AlbumReleaseDate = "releaseDate";
 }

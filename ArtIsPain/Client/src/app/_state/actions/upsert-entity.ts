@@ -1,14 +1,10 @@
-import { IAction } from 'src/app/_interfaces/i-action';
-import { ActionTypeEnum } from 'src/app/_enums/action-type-enum.enum';
 import { BaseAction } from './base-action';
+import { ActionTypeEnum } from '../../_enums/action-type-enum.enum';
 
 export abstract class UpsertEntity implements BaseAction {
 
-    readonly EntityId?: string;
 
-
-    constructor(entityId?: string) {
-        this.EntityId = entityId;
+    constructor(public EntityId?: string) {
     }
     type: ActionTypeEnum;
 

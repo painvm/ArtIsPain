@@ -1,17 +1,20 @@
 import { ControlRule } from '../control-rule';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BaseValidators } from '../base-validators';
-import { IRule } from 'src/app/_interfaces/i-rule';
 import { FormRule } from '../form-rule';
-import { ControlName } from 'src/app/_enums/control-name';
+import { Injectable } from '@angular/core';
+import { IRuleService } from '../../_interfaces/i-rule-service';
+import { IRule } from '../../_interfaces/i-rule';
+import { ControlName } from '../../_enums/control-name';
 
-export class BandEditRules {
+@Injectable({
+    providedIn: 'root'
+})
+export class BandEditRuleService implements IRuleService {
 
-    private static rules: IRule[];
+    public GetRules(form: FormGroup): IRule[] {
 
-    public static GetRules(form: FormGroup): IRule[] {
-
-        this.rules = [];
+        const rules = [];
 
         const formRule = new FormRule(
             form, BaseValidators.validateDateRange(ControlName.BandFormationDate, ControlName.BandDisbandDate));
@@ -19,8 +22,8 @@ export class BandEditRules {
         const biographyRule = new ControlRule(form, ControlName.BandBiography, Validators.maxLength(4000));
         const formationDate = new ControlRule(form, ControlName.BandFormationDate, Validators.required);
 
-        this.rules.push(formRule, titleRule, biographyRule, formationDate);
+        rules.push(formRule, titleRule, biographyRule, formationDate);
 
-        return this.rules;
+        return rules;
     }
 }

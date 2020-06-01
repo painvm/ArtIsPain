@@ -1,8 +1,8 @@
 import { State, StateContext, Action, Selector } from '@ngxs/store';
 import { AlbumViewStateModel } from '../models/album-view-state-model';
-import { AlbumViewModel } from 'src/app/models/album/AlbumViewModel';
-import { AlbumService } from 'src/app/_services/album.service';
 import { GetAlbumById } from '../actions/get-album-by-id';
+import { AlbumService } from '../../_services/album.service';
+import { AlbumViewModel } from '../../models/album/AlbumViewModel';
 
 @State<AlbumViewStateModel>({
     name: 'albumView',
@@ -19,7 +19,7 @@ export class AlbumViewState {
 
     @Action(GetAlbumById)
     getBandById(stateContext: StateContext<AlbumViewStateModel>, action: GetAlbumById) {
-        this.albumService.getById(action.Id).subscribe(
+        this.albumService.GetById(action.Id).subscribe(
             data => {
                 stateContext.patchState({ Album: data })
             });
@@ -28,5 +28,10 @@ export class AlbumViewState {
     @Selector()
     static getAlbum(state: AlbumViewStateModel) {
         return state.Album;
+    }
+
+    @Selector()
+    static getAlbumId(state: AlbumViewStateModel) {
+        return state.Album.Id;
     }
 }
