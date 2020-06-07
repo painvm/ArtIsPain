@@ -16,7 +16,7 @@ namespace ArtIsPain.Server.Controllers
     {
         private readonly IMediator _mediator;
 
-        public BandController(IMapper autoMapper, IRepository<Band> bandRepository, IMediator mediator)
+        public BandController(IMediator mediator)
         {
             _mediator = mediator;
         }
