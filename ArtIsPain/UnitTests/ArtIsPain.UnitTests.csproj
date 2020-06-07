@@ -17,7 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ArtIsPain\Server\ArtIsPain.Server.csproj" />
+    <ProjectReference Include="..\Server\ArtIsPain.Server.csproj" />
+    <ProjectReference Include="..\Shared\ArtIsPain.Shared.csproj" />
   </ItemGroup>
 
 </Project>
