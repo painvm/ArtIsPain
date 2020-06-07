@@ -45,7 +45,14 @@ Task("Dot-Net-Drop-Database")
   }
 });
 
+Task("Dot-Net-Unit-Tests")
+    .Does(() =>
+{
+    VSTest("../UnitTests/bin/Debug/netcoreapp3.1/ArtIsPain.UnitTests.dll");
+});
+
 Task("Dot-Net-Deploy-Database")
+  .IsDependentOn("Dot-Net-Unit-Tests")
   .Does(() =>
 {
   var settings = new DotNetCoreEfDatabaseUpdateSettings
