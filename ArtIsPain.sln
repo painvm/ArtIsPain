@@ -14,6 +14,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deployment", "deployment", "{993423AB-A4B7-455E-9947-602E619DE5E6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildCake", "BuildCake", "{E3E75A12-FD3C-4178-A5F5-2BED6277DD96}"
+	ProjectSection(SolutionItems) = preProject
+		ArtIsPain\BuildCake\build.ps1 = ArtIsPain\BuildCake\build.ps1
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtIsPain.UnitTests", "ArtIsPain\UnitTests\ArtIsPain.UnitTests.csproj", "{8C03BC5E-D682-4182-B340-BEE3AFFDA81F}"
 EndProject
