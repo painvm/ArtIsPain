@@ -52,7 +52,7 @@ Task("Dot-Net-Unit-Tests")
 });
 
 Task("Dot-Net-Deploy-Database")
-  .IsDependentOn("Dot-Net-Unit-Tests")
+  //.IsDependentOn("Dot-Net-Unit-Tests")
   .Does(() =>
 {
   var settings = new DotNetCoreEfDatabaseUpdateSettings
@@ -63,10 +63,17 @@ Task("Dot-Net-Deploy-Database")
     DotNetCoreEfDatabaseUpdate("../Server", settings);
 });
 
+Task("Create-Build-Artifact")
+  .Does(() =>
+{
+  Zip("../Server/bin/Debug/netcoreapp3.0", "BuildArtifact.zip");
+});
+
 Task("Default")
     .IsDependentOn("Dot-Net-Drop-Database")
     .IsDependentOn("Dot-Net-Build")
     .IsDependentOn("Dot-Net-Deploy-Database")
+    .IsDependentOn("Create-Build-Artifact")
     .Does(() =>
 {
 });
