@@ -25,7 +25,7 @@ namespace Server.Filters
             {
                 UpsertAlbumCommand upsertAlbumCommand = param.Value as UpsertAlbumCommand;
 
-                if (upsertAlbumCommand.Songs.Count == 0)
+                if (upsertAlbumCommand.Songs != null && upsertAlbumCommand.Songs.Count == 0)
                 {
                     hasValidationPassed = false;
                     context.Result = new NotFoundObjectResult("Album should contain at least one song.");

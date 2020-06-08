@@ -47,7 +47,8 @@ export class UpsertAlbumFormBuilder extends BaseFormBuilder {
         album.Songs.forEach(song => {
             array.push(this.formBuilder.group({
                 songTitle: this.formBuilder.control(song.Title),
-                editMode: this.formBuilder.control(true)
+                editMode: this.formBuilder.control(true),
+                order: this.formBuilder.control(song.Order)
             }))
         })
 }}

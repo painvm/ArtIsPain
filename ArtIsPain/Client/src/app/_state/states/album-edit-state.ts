@@ -49,7 +49,6 @@ export class AlbumEditState {
 
     @Action(ApplyAlbumEditValidationRules)
     applyValidationRules(stateContext: StateContext<AlbumEditStateModel>, action: ApplyAlbumEditValidationRules) {
-
         const form = action.Form;
         this.ruleService.GetRules(form).forEach(x => x.ApplySpecificControlRules());
     }
