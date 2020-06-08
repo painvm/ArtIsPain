@@ -52,6 +52,7 @@ Task("Dot-Net-Unit-Tests")
 });
 
 Task("Dot-Net-Deploy-Database")
+  .IsDependentOn("Dot-Net-Add-Migration")
   //.IsDependentOn("Dot-Net-Unit-Tests")
   .Does(() =>
 {
@@ -61,6 +62,17 @@ Task("Dot-Net-Deploy-Database")
     };
 
     DotNetCoreEfDatabaseUpdate("../Server", settings);
+});
+
+Task("Dot-Net-Add-Migration")
+  .Does(() =>
+{
+  DotNetCoreEfMigrationAddSettings settings = new DotNetCoreEfMigrationAddSettings{
+    Context = "DataContext",
+    Migration = "Deployment_" + DateTime.Now.ToString("DD_mm_YYYY")
+  };
+
+  DotNetCoreEfMigrationAdd("../Server/", settings);
 });
 
 Task("Create-Build-Artifact")
