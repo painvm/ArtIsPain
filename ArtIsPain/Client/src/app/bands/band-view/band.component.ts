@@ -1,9 +1,10 @@
 import { ActivatedRoute } from '@angular/router';
-import { BandViewModel } from 'src/app/models/band/BandViewModel';
 import { Observable } from 'rxjs';
-import { BandViewState } from 'src/app/_state/states/band-view-state';
 import { Select, Store } from '@ngxs/store';
 import { OnInit, Component } from '@angular/core';
+import { BandViewState } from '../../_state/states/band-view-state';
+import { BandViewModel } from '../../models/band/BandViewModel';
+import { distinctUntilChanged, take } from 'rxjs/operators';
 
 
 @Component({
@@ -15,13 +16,22 @@ import { OnInit, Component } from '@angular/core';
 export class BandViewComponent implements OnInit {
   band: BandViewModel;
 
-  @Select(BandViewState.getBand) band$: Observable<BandViewModel>;
+  @Select(BandViewState.getBand) bandResponse$: Observable<BandViewModel>;
+  @Select(BandViewState.isBandLoaded) isBandLoaded$: Observable<boolean>;
 
-  constructor(
-  ) {
+
+  constructor() {
   }
 
   ngOnInit() {
-    this.band$.subscribe(data => this.band = data);
+
+      this.isBandLoaded$.pipe(distinctUntilChanged()).subscribe(value => {
+        if (value) {
+          this.bandResponse$.pipe(take(1)).subscribe(
+            data => {
+              this.band = data;
+            })
+        }
+      })
+    }
   }
-}

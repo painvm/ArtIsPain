@@ -1,8 +1,9 @@
-import { UpsertAlbumCommand } from 'src/app/commands/albums/upsert-album-command';
-import { AlbumViewModel } from 'src/app/models/album/AlbumViewModel';
+import { AlbumViewModel } from "../../models/album/AlbumViewModel";
+import { UpsertAlbumCommand } from "../../commands/albums/upsert-album-command";
 
 export class AlbumEditStateModel {
     UpsertCommand: UpsertAlbumCommand;
     AlbumEditForm: any;
-    AlbumResponse: AlbumViewModel;
+  AlbumResponse: AlbumViewModel;
+  IsReadyForUpsert: boolean;
 }

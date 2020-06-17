@@ -8,6 +8,10 @@ import { BandViewModel } from '../../models/band/BandViewModel';
 })
 
 export class UpsertBandFormBuilder extends BaseFormBuilder {
+    
+    AddSubArrayElement(formArray: import("@angular/forms").FormArray): void {
+        throw new Error("Method not implemented.");
+    }
 
 
     constructor(formBuilder: FormBuilder) {

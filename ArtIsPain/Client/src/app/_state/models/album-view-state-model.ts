@@ -1,5 +1,6 @@
-import { AlbumViewModel } from 'src/app/models/album/AlbumViewModel';
+import { AlbumViewModel } from "../../models/album/AlbumViewModel";
 
 export class AlbumViewStateModel {
     Album: AlbumViewModel;
+    IsAlbumLoaded: boolean;
 }

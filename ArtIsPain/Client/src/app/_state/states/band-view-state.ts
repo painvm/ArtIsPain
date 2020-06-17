@@ -4,12 +4,14 @@ import { GetBandById } from '../actions/get-band-by-id';
 import { BandViewStateModel } from '../models/band-view-state-model';
 import { BandViewModel } from '../../models/band/BandViewModel';
 import { BandService } from '../../_services/band.service';
+import { take } from 'rxjs/operators';
 
 @State<BandViewStateModel>({
     name: 'bandView',
     defaults: {
         Band:  new BandViewModel(),
-        BandId: null
+        BandId: null,
+        IsBandLoaded: false
     }
 })
 
@@ -23,16 +25,23 @@ export class BandViewState {
     @Action(GetBandById)
     getBandById(stateContext: StateContext<BandViewStateModel>, action: GetBandById)
     {
-        this.bandService.GetById(action.Id).subscribe(
+        stateContext.patchState({IsBandLoaded: false})
+        
+        this.bandService.GetById(action.Id).pipe(take(1)).subscribe(
             data => 
             {
-                stateContext.patchState({Band: data, BandId: data.Id})
+                stateContext.patchState({Band: data, BandId: data.Id, IsBandLoaded: true})
             });
     }
 
     @Selector()
     static getBand(state: BandViewStateModel){
         return state.Band;
+    }
+
+    @Selector()
+    static isBandLoaded(state: BandViewStateModel){
+        return state.IsBandLoaded;
     }
 
     @Selector()

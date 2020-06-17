@@ -1,6 +1,9 @@
 ﻿using ArtIsPain.Shared.Interfaces;
+using EFCore.BulkExtensions;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -66,6 +69,12 @@ namespace ArtIsPain.Server.Data.Repositories
             }
 
             return getByIdQuery.Where(x => x.Id == id);
+        }
+
+        public override async Task BulkDelete(IQueryable<TEntity> entities)
+        {
+             _dataContext.BulkDelete(entities.ToList());
+            await _dataContext.SaveChangesAsync();
         }
     }
 }

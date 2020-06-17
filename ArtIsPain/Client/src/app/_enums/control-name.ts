@@ -9,4 +9,7 @@ export class ControlName {
     static AlbumUrl = "url";
     static AlbumStartRecordDate = "startRecordDate";
     static AlbumReleaseDate = "releaseDate";
+
+    static SongArray= "songs";
+    static SongTitle = "songTitle";
 }

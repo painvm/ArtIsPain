@@ -1,4 +1,4 @@
-import { FormControl, ValidatorFn, Validators, AbstractControl, FormGroup } from '@angular/forms';
+import { FormControl, ValidatorFn, Validators, AbstractControl, FormGroup, FormArray } from '@angular/forms';
 import { isDateValid } from 'ngx-bootstrap/chronos/utils/type-checks';
 
 export class BaseValidators {
@@ -14,12 +14,20 @@ export class BaseValidators {
                 console.log(startDateControl.errors);
                 return { 'invalidDateRange': { value: true } }
             }
-            else {
                 return null;
-            }
 
         }
     }
+
+    static validateFormArrayLength(arrayControlName: string): ValidatorFn {
+        return (form: FormGroup): { [key: string]: any } | null => {
+
+            const arrayControl = form.controls[arrayControlName] as FormArray
+            if (arrayControl.length === 0 || arrayControl.controls.find(c => (c as any).editMode)){
+                return { 'invalidSize': { value: true } }
+            }
+            return null;
+        }}
 
     static UrlValidationPattern = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
 }

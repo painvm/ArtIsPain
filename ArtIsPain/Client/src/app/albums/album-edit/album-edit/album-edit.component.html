@@ -1,5 +1,5 @@
 <div class="container">
-  <form class="align-center" name="editForm" [formGroup]="albumUpsertForm">
+  <form class="align-center" name="editForm" [formGroup]="albumUpsertForm" ngxsForm="albumEdit.AlbumEditForm">
     <div class="row">
       <div class="col-6">
         <mat-form-field class="example-full-width">
@@ -9,18 +9,19 @@
         </mat-form-field>
       </div>
       <div class="col-3" formArrayName="songs">
+        <i class="fa fa-plus" (click)="addSong()"></i>
         <div cdkDropList (cdkDropListDropped)="onSongPositionChanged($event)">
           <div cdkDrag *ngFor="let song of songs.controls; let i = index" [formGroupName]="i">
             <mat-card *ngIf="!song.editMode">{{song.value.songTitle}}
               <i class="fa fa-pencil-square mr-1" (click)="configureEditMode(song)"></i>
               <i class="fa fa-trash-o" (click)="removeSong(i)"></i>
             </mat-card>
-            <div *ngIf="song.editMode">
+            <div *ngIf="song.editMode && !song.id">
             <mat-form-field class="example-full-width">
               <mat-label>Song title</mat-label>
               <input matInput formControlName="songTitle" />
             </mat-form-field>
-            <i class="fa fa-close" (click)="configureEditMode(song)"></i>
+            <i class="fa fa-close" (click)="configureEditMode(song, song.id !== null)"></i>
         </div>
           </div>
         </div>

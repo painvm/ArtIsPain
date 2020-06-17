@@ -46,6 +46,7 @@ namespace ArtIsPain.Server
             services.AddScoped<IRepository<Band>, BandRepository>();
             services.AddScoped<IRepository<Writer>, WriterRepository>();
             services.AddScoped<IRepository<MusicalAlbum>, AlbumRepository>();
+            services.AddScoped<IRepository<Song>, SongRepository>();
             services.AddScoped<IRepository<PoetryVolume>, PoetryVolumeRepository>();
 
             services.AddScoped<IMultiAuthorizedRepository<PoetryVolumeAuthorship>, PoetryVolumeAuthorshipRepository>();
@@ -60,6 +61,7 @@ namespace ArtIsPain.Server
             services.AddAutoMapper(typeof(PoetryVolumeRepository));
             services.AddAutoMapper(typeof(WriterRepository));
             services.AddAutoMapper(typeof(AlbumRepository));
+            services.AddAutoMapper(typeof(SongRepository));
 
             #endregion AutoMapper
 

@@ -21,9 +21,10 @@ export class AlbumEditRuleService implements IRuleService {
         const releaseDate = new ControlRule(form, ControlName.AlbumReleaseDate, Validators.required);
         const urlRule = new ControlRule(form, ControlName.AlbumUrl, Validators.pattern(BaseValidators.UrlValidationPattern));
 
+        const songsRule = new FormRule(form, BaseValidators.validateFormArrayLength(ControlName.SongArray));
         const formRule = new FormRule(form, BaseValidators.validateDateRange(ControlName.AlbumStartRecordDate, ControlName.AlbumReleaseDate));
 
-        rules.push(titleRule, releaseDate, urlRule, formRule)
+        rules.push(titleRule, releaseDate, urlRule, formRule, songsRule)
         return rules;
     }
 }
