@@ -18,6 +18,11 @@ using Newtonsoft.Json.Serialization;
 using Server.Filters;
 using System.Linq;
 using System.Reflection;
+using Microsoft.OpenApi.Models;
+using System.IO;
+using System;
+using Swashbuckle.AspNetCore.Filters;
+using ArtIsPain.Server.RequestExamples;
 
 namespace ArtIsPain.Server
 {
@@ -90,6 +95,27 @@ namespace ArtIsPain.Server
             services.AddSpaStaticFiles(configuration => {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddSwaggerExamplesFromAssemblies(Assembly.GetEntryAssembly());
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo 
+                {
+                     Title = "ArtisAPI",
+                     Version = "v1",
+                     Description = "Pre-Alpha API library build of upcoming platform for all the people involved in art related areas" 
+                });
+
+                c.OperationFilter<AddResponseHeadersFilter>();
+
+                c.ExampleFilters();
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -97,6 +123,14 @@ namespace ArtIsPain.Server
         {
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseResponseCompression();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = "swagger";
+            });
 
             if (env.IsDevelopment())
             {
