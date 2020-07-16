@@ -9,7 +9,6 @@ using ArtIsPain.Server.ViewModels.Band;
 using ArtIsPain.Shared.Models;
 using ArtIsPain.UnitTests.Providers;
 using AutoMapper;
-using Faker;
 using FluentAssertions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
