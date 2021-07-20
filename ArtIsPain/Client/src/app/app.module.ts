@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -15,7 +15,7 @@ import { BandEditResolver } from './_resolvers/band-edit-resolver';
 import { AlbumViewResolver } from './_resolvers/album-view-resolver';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
@@ -26,11 +26,25 @@ import { MatButtonModule } from '@angular/material/button';
 import { AlbumEditComponent } from './albums/album-edit/album-edit/album-edit.component';
 import { AlbumEditResolver } from './_resolvers/album-edit-resolver';
 import { SongPreviewCardComponent } from './songs/song-preview-card/song-preview-card.component';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { BaseResolver } from './_resolvers/base-resolver';
-import { BaseGetByIdResolver } from './_resolvers/base-get-by-id-resolver';
-import { BaseEditResolver } from './_resolvers/base-edit-resolver';
+import { NgxsModule } from '@ngxs/store';
+import { environment } from 'src/environments/environment';
+import { BandViewState } from './_state/states/band-view-state';
+import { BandEditState } from './_state/states/band-edit-state';
+import { NgxsFormPluginModule } from '@ngxs/form-plugin';
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
+import { AlbumViewState } from './_state/states/album-view-state';
+import { AlbumEditState } from './_state/states/album-edit-state';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
+
+// Noop handler for factory function
+export function noop() {
+  return function () { };
+}
 
 @NgModule({
   declarations: [
@@ -40,7 +54,7 @@ import { BaseEditResolver } from './_resolvers/base-edit-resolver';
     BandsComponent,
     BandEditComponent,
     AlbumEditComponent,
-    SongPreviewCardComponent
+    SongPreviewCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,18 +63,28 @@ import { BaseEditResolver } from './_resolvers/base-edit-resolver';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
+    NgxsModule.forRoot([BandViewState, BandEditState, AlbumViewState, AlbumEditState], {
+      developmentMode: !environment.production
+    }),
+    NgxsFormPluginModule.forRoot(),
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
     BrowserAnimationsModule,
     MatInputModule,
     MatMenuModule,
+    NgxsLoggerPluginModule.forRoot(),
     MatIconModule,
     MatCardModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    BsDatepickerModule.forRoot()
-  ],
+    MatDividerModule,
+    MatListModule,
+    BsDatepickerModule.forRoot(),
+    NgxsStoragePluginModule.forRoot(
+      {key: ["bandEdit", "albumEdit"]}),
+      NgxsRouterPluginModule.forRoot(),
+    ],
   providers: [
     BandService,
     BandViewResolver,
@@ -68,8 +92,8 @@ import { BaseEditResolver } from './_resolvers/base-edit-resolver';
     AlbumViewResolver,
     AlbumEditResolver,
     MatDatepickerModule,
-    MatFormFieldModule
+    MatFormFieldModule,
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

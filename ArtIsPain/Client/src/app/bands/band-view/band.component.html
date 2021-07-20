@@ -10,15 +10,17 @@
       />
     </div>
   </div>
-  <div class="container">
+  <div class="container" *ngIf="this.band && this.band.Id">
     <div class="row">
       <div class="col-4"></div>
       <div class="col-4 text-center">
         <h2 class="d-inline m-2">{{ band.Name }}</h2>
-        <a class="d-inline text-secondary fa fa-book" [routerLink]="['/bands/', band.Id, 'edit']"></a>
+        <a
+          class="d-inline text-secondary fa fa-book"
+          [routerLink]="['/bands/edit/', band.Id]"
+        ></a>
       </div>
-      <div class="col-4">
-      </div>
+      <div class="col-4"></div>
     </div>
   </div>
 </div>
@@ -27,10 +29,11 @@
   <div class="row">
     <div class="col-12 mb-4">
       <h4><strong>Discography</strong></h4>
+      <a class="fa fa-plus float-right" [routerLink]="['/albums/create']" [state]="{bandId: band.Id}"></a>
     </div>
     <div class="row">
       <div class="col-md-3 col-sm-6 mb-4" *ngFor="let album of band.Albums">
-        <a [routerLink]="['/albums', album.Id]">
+        <a [routerLink]="['/albums/view/', album.Id]">
           <img class="img-fluid" src="http://placehold.it/500x300" alt="" />
         </a>
         <p>{{ album.Title }}</p>

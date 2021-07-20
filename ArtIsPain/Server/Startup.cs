@@ -3,25 +3,26 @@ using ArtIsPain.Server.Data.Interfaces;
 using ArtIsPain.Server.Data.Repositories;
 using ArtIsPain.Server.Data.Seed;
 using ArtIsPain.Server.Filters;
-using ArtIsPain.Server.Handlers.Album;
 using ArtIsPain.Shared.Models;
 using AutoMapper;
 using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Server.Filters;
 using System.Linq;
 using System.Reflection;
-using System.Text.Json;
-using System.Threading;
+using Microsoft.OpenApi.Models;
+using System.IO;
+using System;
+using Swashbuckle.AspNetCore.Filters;
+using ArtIsPain.Server.RequestExamples;
 
 namespace ArtIsPain.Server
 {
@@ -50,6 +51,7 @@ namespace ArtIsPain.Server
             services.AddScoped<IRepository<Band>, BandRepository>();
             services.AddScoped<IRepository<Writer>, WriterRepository>();
             services.AddScoped<IRepository<MusicalAlbum>, AlbumRepository>();
+            services.AddScoped<IRepository<Song>, SongRepository>();
             services.AddScoped<IRepository<PoetryVolume>, PoetryVolumeRepository>();
 
             services.AddScoped<IMultiAuthorizedRepository<PoetryVolumeAuthorship>, PoetryVolumeAuthorshipRepository>();
@@ -64,6 +66,7 @@ namespace ArtIsPain.Server
             services.AddAutoMapper(typeof(PoetryVolumeRepository));
             services.AddAutoMapper(typeof(WriterRepository));
             services.AddAutoMapper(typeof(AlbumRepository));
+            services.AddAutoMapper(typeof(SongRepository));
 
             #endregion AutoMapper
 
@@ -76,6 +79,7 @@ namespace ArtIsPain.Server
             {
                 options.Filters.Add(typeof(RequestValidationFilter));
                 options.Filters.Add(typeof(UpsertBandCommandFilter));
+                options.Filters.Add(typeof(UpsertAlbumCommandFilter));
             })
                 .AddFluentValidation(options => options.RegisterValidatorsFromAssemblyContaining<Startup>())
                 .AddNewtonsoftJson(opt => opt.SerializerSettings.ContractResolver = new DefaultContractResolver());
@@ -87,6 +91,31 @@ namespace ArtIsPain.Server
             });
 
             services.AddCors();
+
+            services.AddSpaStaticFiles(configuration => {
+                configuration.RootPath = "ClientApp/build";
+            });
+
+            services.AddSwaggerExamplesFromAssemblies(Assembly.GetEntryAssembly());
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo 
+                {
+                     Title = "ArtisAPI",
+                     Version = "v1",
+                     Description = "Pre-Alpha API library build of upcoming platform for all the people involved in art related areas" 
+                });
+
+                c.OperationFilter<AddResponseHeadersFilter>();
+
+                c.ExampleFilters();
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -94,6 +123,14 @@ namespace ArtIsPain.Server
         {
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseResponseCompression();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = "swagger";
+            });
 
             if (env.IsDevelopment())
             {

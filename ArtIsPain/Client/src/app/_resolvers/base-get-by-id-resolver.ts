@@ -5,17 +5,18 @@ import { BaseResolver } from './base-resolver';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { GetById } from '../_state/actions/get-by-id';
+import { Store } from '@ngxs/store';
+import { IAction } from '../_interfaces/i-action';
 
 @Injectable()
 export abstract class BaseGetByIdResolver<T extends IViewModel> extends BaseResolver<T> {
-    constructor(private service: IService<T>) {
-        super();
+    constructor(store: Store, action: GetById) {
+        super(store, action);
     }
 
-    performRequest(route: ActivatedRouteSnapshot): Observable<T> {
-        return this.service.getById(route.params.id).pipe(
-            catchError( error => {
-                console.log(error);
-                return of(null);
-            }));
+
+    performRequest(store: Store, route: ActivatedRouteSnapshot, action: GetById): Observable<T> {
+        action.Id = route.params.id;
+        return store.dispatch(action);
     }}

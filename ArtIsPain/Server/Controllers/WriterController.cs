@@ -1,8 +1,12 @@
 ﻿using ArtIsPain.Server.Commands.Writers;
+using ArtIsPain.Server.RequestExamples;
 using ArtIsPain.Server.ViewModels.Writer;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Server.RequestExamples;
+using Swashbuckle.AspNetCore.Filters;
 using System;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Controllers
@@ -18,6 +22,9 @@ namespace ArtIsPain.Server.Controllers
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Gets writer profile by id
+        /// </summary>
         [HttpGet("{writerId}")]
         public async Task<WriterViewModel> GetBandById(Guid writerId)
         {
@@ -26,6 +33,11 @@ namespace ArtIsPain.Server.Controllers
             return await _mediator.Send(request);
         }
 
+        /// <summary>
+        /// Creates a new writer profile, or updates already existing one
+        /// </summary>
+        [SwaggerRequestExample(typeof(UpsertWriterCommand), typeof(UpsertWriterCommandRequestExample))]
+        [SwaggerResponseExample(200, typeof(UpsertWriterCommandResponseExample))]
         [HttpPost]
         public async Task<WriterViewModel> UpsertWriter(UpsertWriterCommand request)
         {

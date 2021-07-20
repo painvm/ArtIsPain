@@ -11,6 +11,11 @@ namespace ArtIsPain.Server.Data.Repositories
         {
         }
 
+        public override Task BulkDelete(IQueryable<PoetryVolumeAuthorship> entities)
+        {
+            throw new NotImplementedException();
+        }
+
         public override Task<PoetryVolumeAuthorship> Delete(Guid id)
         {
             throw new NotImplementedException();

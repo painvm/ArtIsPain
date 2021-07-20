@@ -1,147 +1,72 @@
 <div class="container">
-  <form class="align-center" name="editForm" (ngSubmit)="upsertAlbum()">
+  <form class="align-center" name="editForm" [formGroup]="albumUpsertForm" ngxsForm="albumEdit.AlbumEditForm">
     <div class="row">
       <div class="col-6">
         <mat-form-field class="example-full-width">
           <mat-label>Title</mat-label>
-          <input
-            matInput
-            placeholder="Ex. Pizza"
-            id="title"
-            name="title"
-            required
-            [(ngModel)]="album.Title"
-          />
+          <input matInput placeholder="Ex. Pizza" id="title" name="title"
+            formControlName='title' />
         </mat-form-field>
       </div>
-      <div class="col-3">
-        <div
-          cdkDropList
-          class="example-list"
-          (cdkDropListDropped)="drop($event)"
-        >
-          <mat-card
-            cdkDrag
-            *ngFor="let song of draftSongs"
-            [cdkDragDisabled]="isEditSongMode"
-          >
-            <p *ngIf="!song.IsEditMode">
-              {{ song.Order + song.Title }}
-              <i class="fa fa-pencil-square" (click)="showInput(song)"></i>
-            </p>
-            <input
-              *ngIf="song.IsEditMode"
-              matInput
-              [(ngModel)]="song.Title"
-              [ngModelOptions]="{ standalone: true }"
-            />
-            <mat-card-actions *ngIf="song.IsEditMode" class="mat-card-actions">
-              <button
-                (click)="updateSong(song)"
-                class="mat-focus-indicator mat-flat-button mat-button-base mat-primary mr-2"
-              >
-                Save
-              </button>
-              <button
-                (click)="cancelEditSong(song)"
-                class="mat-focus-indicator mat-flat-button mat-button-base mat-accent"
-              >
-                Cancel
-              </button>
-            </mat-card-actions>
-          </mat-card>
-          <mat-card *ngIf="potentialSong">
-            <input
-              class="d-inline"
-              matInput
-              [(ngModel)]="potentialSong.Title"
-              [ngModelOptions]="{ standalone: true }"
-            />
-            <mat-card-actions class="mat-card-actions">
-              <button
-                (click)="addSong()"
-                class="mat-focus-indicator mat-flat-button mat-button-base mat-primary mr-2"
-              >
-                Save
-              </button>
-              <button
-                (click)="resetSongTemplate()"
-                class="mat-focus-indicator mat-flat-button mat-button-base mat-accent"
-              >
-                Cancel
-              </button>
-            </mat-card-actions>
-          </mat-card>
+      <div class="col-3" formArrayName="songs">
+        <i class="fa fa-plus" (click)="addSong()"></i>
+        <div cdkDropList (cdkDropListDropped)="onSongPositionChanged($event)">
+          <div cdkDrag *ngFor="let song of songs.controls; let i = index" [formGroupName]="i">
+            <mat-card *ngIf="!song.editMode">{{song.value.songTitle}}
+              <i class="fa fa-pencil-square mr-1" (click)="configureEditMode(song)"></i>
+              <i class="fa fa-trash-o" (click)="removeSong(i)"></i>
+            </mat-card>
+            <div *ngIf="song.editMode && !song.id">
+            <mat-form-field class="example-full-width">
+              <mat-label>Song title</mat-label>
+              <input matInput formControlName="songTitle" />
+            </mat-form-field>
+            <i class="fa fa-close" (click)="configureEditMode(song, song.id !== null)"></i>
+        </div>
+          </div>
         </div>
       </div>
-      <div class="col-1">
-        <div class="fa fa-plus" (click)="createSongTemplate()"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <mat-form-field appearance="fill">
+          <mat-label>Biography</mat-label>
+          <textarea matInput cdkTextareaAutosize="true" rows="10" cols="50" name="description"
+            formControlName="description">
+        </textarea>
+        </mat-form-field>
       </div>
     </div>
 
     <div class="row">
-      <mat-form-field appearance="fill">
-        <mat-label>Biography</mat-label>
-        <textarea
-          matInput
-          cdkTextareaAutosize="true"
-          rows="10"
-          cols="50"
-          name="description"
-          [(ngModel)]="album.Description"
-        >
-        </textarea>
-      </mat-form-field>
-    </div>
-
-    <div class="row">
-      <mat-form-field class="example-full-width">
-        <mat-label>Album external source</mat-label>
-        <input
-          matInput="url"
-          placeholder="Ex. Pizza"
-          id="url"
-          name="url"
-          required
-          [(ngModel)]="album.Url"
-        />
-      </mat-form-field>
+      <div class="col-12">
+        <mat-form-field>
+          <mat-label>Album external source</mat-label>
+          <input matInput="url" placeholder="Ex. Pizza" id="url" name="url" formControlName="url" />
+        </mat-form-field>
+      </div>
     </div>
 
     <div class="row">
       <mat-form-field>
         <mat-label>Start record date</mat-label>
-        <input
-          matInput
-          [matDatepicker]="formationDatePicker"
-          [(ngModel)]="album.StartRecordDate"
-          required
-          name="formationDate"
-        />
-        <mat-datepicker-toggle
-          matSuffix
-          [for]="formationDatePicker"
-        ></mat-datepicker-toggle>
+        <input matInput [matDatepicker]="formationDatePicker" formControlName="startRecordDate"
+          name="startRecordDate" />
+        <mat-datepicker-toggle matSuffix [for]="formationDatePicker"></mat-datepicker-toggle>
         <mat-datepicker #formationDatePicker startView="year"></mat-datepicker>
       </mat-form-field>
     </div>
 
-    <div class="row">
-      <mat-form-field>
-        <mat-label>Release date</mat-label>
-        <input
-          matInput
-          [matDatepicker]="picker"
-          [(ngModel)]="album.ReleaseDate"
-          name="disbandDate"
-        />
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker startView="year"></mat-datepicker>
-      </mat-form-field>
-    </div>
+    <mat-form-field>
+      <mat-label>Release date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="releaseDate" name="releaseDate" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker startView="year"></mat-datepicker>
+    </mat-form-field>
 
-    <button class="btn btn-primary btn-lg btn-block" type="submit">
-      Continue to checkout
+    <button class="btn btn-primary" type="submit" (click)="upsertAlbum()" [disabled]="!albumUpsertForm.valid">
+      Save
     </button>
   </form>
 </div>

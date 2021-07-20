@@ -1,5 +1,5 @@
 import { AlbumPreviewModel } from '../album/AlbumPreviewModel';
-import { IViewModel } from 'src/app/_interfaces/i-view-model';
+import { IViewModel } from '../../_interfaces/i-view-model';
 
 export class BandViewModel implements IViewModel {
     Id: string;

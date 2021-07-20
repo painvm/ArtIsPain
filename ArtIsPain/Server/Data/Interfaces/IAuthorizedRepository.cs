@@ -1,5 +1,4 @@
-﻿using ArtIsPain.Shared;
-using ArtIsPain.Shared.Interfaces;
+﻿using ArtIsPain.Shared.Interfaces;
 using System;
 using System.Linq;
 

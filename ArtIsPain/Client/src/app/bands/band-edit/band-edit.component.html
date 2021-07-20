@@ -1,15 +1,18 @@
 <div class="container">
-  <form class="align-center" name="editForm" (ngSubmit)="upsertBand()">
+  <form
+    class="align-center"
+    [formGroup]="bandUpsertForm"
+    (ngSubmit)="upsertBand()"
+    ngxsForm="bandEdit.BandEditForm"
+  >
     <div class="row">
       <mat-form-field class="example-full-width">
         <mat-label>Title</mat-label>
         <input
           matInput
           placeholder="Ex. Pizza"
-          id="name"
-          name="name"
-          required
-          [(ngModel)]="band.Name"
+          name="title"
+          formControlName="title"
         />
       </mat-form-field>
     </div>
@@ -19,38 +22,46 @@
         <mat-label>Biography</mat-label>
         <textarea
           matInput
-          cdkTextareaAutosize="true"
-          rows="10"
-          cols="50"
+          cols="100"
           name="description"
-          [(ngModel)]="band.Description"
+          formControlName="biography"
         >
         </textarea>
       </mat-form-field>
     </div>
 
     <div class="row">
-      <mat-form-field>
+      <mat-form-field class="mr-3">
         <mat-label>Formation date</mat-label>
         <input
           matInput
           [matDatepicker]="formationDatePicker"
-          [(ngModel)]="band.FormationDate"
-          required
+          formControlName="formationDate"
           name="formationDate"
         />
-        <mat-datepicker-toggle matSuffix [for]="formationDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="formationDatePicker"
+        ></mat-datepicker-toggle>
         <mat-datepicker #formationDatePicker startView="year"></mat-datepicker>
+        <mat-error *ngIf="this.bandUpsertForm.hasError('invalidDateRange')">
+          Formation date can't be more than disband date
+        </mat-error>
+        <mat-error
+          *ngIf="
+            this.bandUpsertForm.controls['formationDate'].hasError('required')
+          "
+        >
+          Formation date is a mandatory field
+        </mat-error>
       </mat-form-field>
-    </div>
 
-    <div class="row" *ngIf="band.DisbandDate">
       <mat-form-field>
         <mat-label>Disband date</mat-label>
         <input
           matInput
           [matDatepicker]="picker"
-          [(ngModel)]="band.DisbandDate"
+          formControlName="disbandDate"
           name="disbandDate"
         />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -58,8 +69,14 @@
       </mat-form-field>
     </div>
 
-    <button class="btn btn-primary btn-lg btn-block" type="submit">
-      Continue to checkout
-    </button>
+    <div class="row mt-4">
+      <button
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="!bandUpsertForm.valid"
+      >
+        Save
+      </button>
+    </div>
   </form>
 </div>

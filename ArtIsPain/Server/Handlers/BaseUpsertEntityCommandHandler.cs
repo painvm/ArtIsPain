@@ -1,12 +1,11 @@
 ﻿using ArtIsPain.Server.Commands;
 using ArtIsPain.Server.Data.Interfaces;
 using ArtIsPain.Server.ViewModels;
-using ArtIsPain.Shared;
 using ArtIsPain.Shared.Interfaces;
 using AutoMapper;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -41,5 +40,6 @@ namespace ArtIsPain.Server.Handlers
 
             return result;
         }
+
     }
 }

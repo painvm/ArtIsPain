@@ -18,6 +18,9 @@ namespace ArtIsPain.Server.Controllers
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Gets poetry collection by id
+        /// </summary>
         [HttpGet("{poetryVolumeId}")]
         public async Task<PoetryVolumeViewModel> GetPoetryVolumeById(Guid poetryVolumeId)
         {
@@ -26,6 +29,9 @@ namespace ArtIsPain.Server.Controllers
             return await _mediator.Send(request);
         }
 
+       /// <summary>
+        /// Creates a new poetry collection or updates already existing one
+        /// </summary>
         [HttpPost]
         public async Task<PoetryVolumeViewModel> UpsertPoetryVolume(UpsertPoetryVolumeCommand request)
         {

@@ -22,7 +22,8 @@ namespace ArtIsPain.Server.Map
                  .ForMember(dst => dst.Id, opt => opt.NullSubstitute(Guid.NewGuid()));
 
             CreateMap<Band, BandPreviewModel>()
-                .ForMember(dst => dst.TimePeriod, opt => opt.MapFrom(src => $"{src.StartActivityDate}" + $"{(src.EndActivityDate.HasValue ? " - " + src.EndActivityDate.Value : null)}"));
+                .ForMember(dst => dst.Id, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dst => dst.Title, opt => opt.MapFrom(src => src.Title));
         }
     }
 }

@@ -16,11 +16,14 @@ namespace ArtIsPain.Server.Controllers
     {
         private readonly IMediator _mediator;
 
-        public BandController(IMapper autoMapper, IRepository<Band> bandRepository, IMediator mediator)
+        public BandController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Gets musical band by id
+        /// </summary>
         [HttpGet("{bandId}")]
         public async Task<BandViewModel> GetBandById(Guid bandId)
         {
@@ -29,10 +32,10 @@ namespace ArtIsPain.Server.Controllers
             return await _mediator.Send(request);
         }
 
+        /// <summary>
+        /// Creates a new musical band profile or updates already existing one
+        /// </summary>
         [HttpPost]
-        public async Task<BandViewModel> UpsertBand(UpsertBandCommand request)
-        {
-            return await _mediator.Send(request);
-        }
+        public async Task<BandViewModel> UpsertBand(UpsertBandCommand request) => await _mediator.Send(request);
     }
 }

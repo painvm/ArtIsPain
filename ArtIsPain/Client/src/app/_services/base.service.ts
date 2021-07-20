@@ -3,9 +3,9 @@ import { IService } from '../_interfaces/iservice';
 import { IViewModel } from '../_interfaces/i-view-model';
 import { Observable } from 'rxjs';
 import { IUpsertEntityCommand } from '../_interfaces/i-upsert-entity-command';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment'
 import { HttpClient } from '@angular/common/http';
-import { ApiPath } from '../enums/api-path.enum';
+import { ApiPath } from '../_enums/api-path.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -17,14 +17,14 @@ export class BaseService<T extends IViewModel> implements IService<T> {
 
 constructor(private httpClient: HttpClient) { }
 
-  getById(id: number): Observable<T>
+  GetById(id: string): Observable<T>
   {
-    const requestUrl = this.BaseUrl.concat(this.Path.concat(id.toString()));
+    const requestUrl = this.BaseUrl.concat(this.Path.concat(id));
 
     return this.httpClient.get<T>(requestUrl);
   }
 
-  upsert(upsertEntityCommand: IUpsertEntityCommand): Observable<T>
+  Upsert(upsertEntityCommand: IUpsertEntityCommand): Observable<T>
   {
     const requestUrl = this.BaseUrl.concat(this.Path);
 

@@ -1,7 +1,6 @@
 ﻿using ArtIsPain.Server.Commands;
 using ArtIsPain.Server.Data.Interfaces;
 using ArtIsPain.Server.ViewModels;
-using ArtIsPain.Shared;
 using ArtIsPain.Shared.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -11,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Filters.BaseFilters
 {
-    public class UpsertEntityCommandFilter<TRequest, TEntity> : EntityCommandValidator<TRequest, TEntity>
+    public class UpsertEntityCommandFilter<TRequest, TEntity> : EntityCommandFilter<TRequest, TEntity>
                                                                    where TRequest : class, IUpsertEntityCommand<IViewModel>
                                                                    where TEntity : class, IEntity
     {

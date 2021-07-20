@@ -339,3 +339,4 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 /ArtIsPain/Server/Migrations
+ArtIsPain/BuildCake/.vscode/launch.json

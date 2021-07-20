@@ -16,6 +16,8 @@ namespace ArtIsPain.Server.Data.Repositories
             _dataContext = dataContext;
         }
 
+        public abstract Task BulkDelete(IQueryable<TEntity> entities);
+
         public abstract Task<TEntity> Delete(Guid id);
 
         public IQueryable<TEntity> GetAll()

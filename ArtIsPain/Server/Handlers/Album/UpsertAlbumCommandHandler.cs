@@ -1,11 +1,14 @@
 ﻿using ArtIsPain.Server.Commands.Album;
 using ArtIsPain.Server.Data.Interfaces;
-using ArtIsPain.Server.Data.Repositories;
 using ArtIsPain.Server.ViewModels.Album;
-using ArtIsPain.Server.ViewModels.Band;
 using ArtIsPain.Shared.Models;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using Server.Commands.Album;
+using Server.ViewModels.Album.Song;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,22 +16,22 @@ using BandEntity = ArtIsPain.Shared.Models.Band;
 
 namespace ArtIsPain.Server.Handlers.Album
 {
-    public class UpsertAlbumCommandHandler : BaseUpsertEntityCommandHandler<MusicalAlbum, UpsertAlbumCommand, AlbumViewModel>
+    public class UpsertAlbumCommandHandler : BaseUpsertParentEntityHandler<MusicalAlbum, Song, UpsertAlbumCommand, SongPreviewModel, AlbumViewModel>
     {
-        private readonly IRepository<BandEntity> _bandRepository;
-
         public UpsertAlbumCommandHandler(
             IMapper autoMapper,
             IRepository<MusicalAlbum> albumRepository,
-            IRepository<BandEntity> bandRepository)
-            : base(autoMapper, albumRepository)
+            IRepository<Song> songRepository)
+            : base(autoMapper, albumRepository, songRepository)
         {
-            _bandRepository = bandRepository;
         }
 
         protected override async Task<AlbumViewModel> Send(UpsertAlbumCommand request, CancellationToken cancellationToken)
         {
-            AlbumViewModel result = await base.Send(request, cancellationToken, null);
+            Func<IQueryable<MusicalAlbum>, IQueryable<MusicalAlbum>> bandJoinQuery =
+                x => x.Include(b => b.Band);
+
+            AlbumViewModel result = await base.Send(request, x => x.Songs, cancellationToken, bandJoinQuery);
 
             return result;
         }

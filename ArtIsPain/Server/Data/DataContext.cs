@@ -17,7 +17,7 @@ namespace ArtIsPain.Server.Data
 
         #region DbSets
 
-        public DbSet<Band> Bands { get; set; }
+        public virtual DbSet<Band> Bands { get; set; }
 
         public DbSet<Poetry> Poetries { get; set; }
 

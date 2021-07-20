@@ -1,128 +1,126 @@
-import { Component, OnInit } from "@angular/core";
-import { AlbumService } from "src/app/_services/album.service";
-import { ActivatedRoute, Router } from "@angular/router";
-import { AlbumViewModel } from "src/app/models/album/AlbumViewModel";
-import { UpsertAlbumCommand } from "src/app/commands/albums/upsert-album-command";
-import { UpsertSongCommand } from "src/app/commands/albums/upsert-song-command";
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { ActivatedRoute, Router, ActivatedRouteSnapshot } from "@angular/router";
 import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
-import { SongPreviewModel } from "src/app/models/song/song-preview-model";
+import { FormGroup, FormArray } from '@angular/forms';
+import { Select, Store, Actions, ofActionCompleted, ofActionSuccessful } from '@ngxs/store';
+import { ApplyAlbumEditValidationRules } from "../../../_state/actions/apply-album-edit-validation-rules";
+import { AlbumViewModel } from "../../../models/album/AlbumViewModel";
+import { UpsertSongCommand } from "../../../commands/albums/upsert-song-command";
+import { UpsertAlbumFormBuilder } from "../../../_builders/form/upsert-album-form-builder";
+import { AlbumService } from "../../../_services/album.service";
+import { AlbumEditState } from "../../../_state/states/album-edit-state";
+import { UpsertAlbum } from "../../../_state/actions/upsert-album";
+import { tap, takeUntil, map, distinctUntilChanged, take, distinctUntilKeyChanged, takeWhile } from "rxjs/operators";
+import { Subscription } from "rxjs/internal/Subscription";
+import { Observable } from "rxjs/internal/Observable";
+import { GetAlbumByIdForEdit } from "../../../_state/actions/get-album-by-id-for-edit";
+import { Subject } from "rxjs";
+import { Navigate } from "@ngxs/router-plugin";
 
 @Component({
   selector: "app-album-edit",
   templateUrl: "./album-edit.component.html",
   styleUrls: ["./album-edit.component.css"],
 })
-export class AlbumEditComponent implements OnInit {
-  album: UpsertAlbumCommand;
+export class AlbumEditComponent implements OnInit, OnDestroy {
+  album: AlbumViewModel;
   draftSongs: UpsertSongCommand[];
 
   potentialSong: UpsertSongCommand;
 
   isEditSongMode: boolean;
 
+  albumUpsertForm: FormGroup;
+
   constructor(
+    private store: Store,
+    private formBuilder: UpsertAlbumFormBuilder,
     private route: ActivatedRoute,
-    private router: Router,
-    private albumService: AlbumService
-  ) {}
+    private actions$: Actions
+  ) {
+
+
+
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  private destroy$ = new Subject<void>();
+
+
+  @Select(AlbumEditState.getAlbumResponse) albumResponse$: Observable<AlbumViewModel>;
+  @Select(AlbumEditState.isAlbumLoaded) isAlbumLoaded$: Observable<boolean>;
 
   ngOnInit() {
-    this.route.data.subscribe((data) => {
-      this.album = this.buildUpsertAlbumCommand(data.album);
-      this.album.Songs.sort((a, b) => a.Order - b.Order);
+    this.initializeRouteHandler();
 
-      this.draftSongs = JSON.parse(JSON.stringify(this.album.Songs));
+    this.albumUpsertForm = this.formBuilder.Initialize();
+
+    this.isAlbumLoaded$.pipe(takeWhile(() => this.album === undefined)).subscribe(value => {
+      if (value) {
+        this.albumResponse$.pipe(take(1)).subscribe(
+          data => {
+            this.album = data;
+            this.formBuilder.Build(this.albumUpsertForm, this.album);
+            this.store.dispatch(new ApplyAlbumEditValidationRules(this.albumUpsertForm))
+          })
+      }
+    })
+  }
+
+  applyOrder() {
+    this.songs.controls.forEach((song) => {
+      song.value.order = this.songs.controls.indexOf(song) + 1;
     });
   }
 
-  buildUpsertAlbumCommand(albumModel: AlbumViewModel): UpsertAlbumCommand {
-    const upsertAlbumCommand = new UpsertAlbumCommand();
-
-    upsertAlbumCommand.EntityId = albumModel.Id;
-    upsertAlbumCommand.BandId = albumModel.Band.Id;
-    upsertAlbumCommand.Url = albumModel.Url;
-    upsertAlbumCommand.Description = albumModel.Description;
-    upsertAlbumCommand.StartRecordDate = albumModel.StartRecordDate
-      ? new Date(albumModel.StartRecordDate)
-      : null;
-    upsertAlbumCommand.ReleaseDate = albumModel.ReleaseDate;
-    upsertAlbumCommand.Title = albumModel.Title;
-
-    const albumSongs = new Array<UpsertSongCommand>();
-
-    albumModel.Songs.forEach((song) => {
-      const songToUpsert = new UpsertSongCommand();
-
-      songToUpsert.EntityId = song.Id;
-      songToUpsert.AlbumId = song.AlbumId;
-      songToUpsert.Order = song.Order;
-      songToUpsert.Title = song.Title;
-
-      albumSongs.push(songToUpsert);
-    });
-
-    upsertAlbumCommand.Songs = albumSongs;
-
-    return upsertAlbumCommand;
-  }
-
-  upsertAlbum() {
-    this.album.Songs = [...this.draftSongs];
-
-    this.albumService.upsert(this.album).subscribe((data) => {
-      this.router.navigate(["/albums/" + data.Id]);
-    });
-  }
-
-  reorderSongs() {
-    this.draftSongs.forEach((song) => {
-      song.Order = this.draftSongs.indexOf(song) + 1;
-    });
-  }
-
-  drop(event: CdkDragDrop<string[]>) {
-    if (!this.draftSongs.find((x) => x.IsEditMode)) {
-      moveItemInArray(this.draftSongs, event.previousIndex, event.currentIndex);
-      this.reorderSongs();
-    }
-  }
-
-  createSongTemplate() {
-    this.potentialSong = new UpsertSongCommand();
-
-    if (this.album.EntityId != null) {
-      this.potentialSong.AlbumId = this.album.EntityId;
-    }
-
-    if (this.draftSongs && this.draftSongs.length > 0) {
-      this.potentialSong.Order =
-        this.draftSongs[this.draftSongs.length - 1].Order + 1;
-    }
-  }
-
-  resetSongTemplate() {
-    this.potentialSong = null;
+  onSongPositionChanged(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.songs.controls, event.previousIndex, event.currentIndex);
+    this.applyOrder();
   }
 
   addSong() {
-    this.draftSongs.push(this.potentialSong);
-    this.resetSongTemplate();
+    this.configureEditMode(this.formBuilder.AddSubArrayElement(this.songs))
+    this.applyOrder();
   }
 
-  showInput(song: UpsertSongCommand) {
-    if (!this.draftSongs.find((x) => x.IsEditMode)) {
-      song.IsEditMode = !song.IsEditMode;
-      this.isEditSongMode = true;
+  removeSong(songIndex: number) {
+    this.songs.removeAt(songIndex)
+  }
+
+  configureEditMode(song: any, removeWhenEmpty: boolean = false) {
+    song.editMode = !song.editMode;
+
+    if (removeWhenEmpty && (!song.controls.songTitle.value || song.controls.songTitle.value === "")) {
+      this.removeSong(this.songs.value.indexOf(song))
     }
+
+    this.albumUpsertForm.updateValueAndValidity()
   }
 
-  cancelEditSong(song: UpsertSongCommand) {
-    song.IsEditMode = !song.IsEditMode;
-    this.draftSongs = JSON.parse(JSON.stringify(this.album.Songs));
-    this.isEditSongMode = false;
+  upsertAlbum() {
+    this.store.dispatch(new UpsertAlbum(this.album?.Id));
   }
 
-  updateSong(song: UpsertSongCommand) {
-    song.IsEditMode = !song.IsEditMode;
+  get songs(): FormArray {
+    return this.albumUpsertForm.get('songs') as FormArray;
+  }
+
+  initializeRouteHandler() {
+    this.actions$.pipe(ofActionSuccessful(UpsertAlbum), takeUntil(this.destroy$))
+      .subscribe(() =>
+
+        this.isAlbumLoaded$.pipe(takeUntil(this.destroy$)).subscribe(value => {
+          if (value) {
+            this.albumResponse$.pipe(take(1)).subscribe(
+              data => {
+                const albumId = data.Id;
+                this.store.dispatch(new Navigate(['/albums/view/' + albumId]))
+              });
+          }
+        }))
   }
 }
