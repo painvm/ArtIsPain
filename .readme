@@ -1,0 +1,34 @@
+# ArtIsPain
+
+ArtIsPan is an art-oriented application that provides artists to keep information about their projects well-organized, human-readable and easy accessable.
+
+## Getting started
+
+### Prerequisites
+
+In order to setup local environment, the following things must be installed before:
+
+* [Visual Studio 2019, with .NET Core cross-platform development kit selected](https://visualstudio.microsoft.com/)
+* [Node.js, 12.18.13 or later, including NPM](https://nodejs.org/)
+* [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/visual-studio-sdks)
+* [SQL Server 2018 or later](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
+
+### Installing
+
+## Usage
+
+```python
+import foobar
+
+foobar.pluralize('word') # returns 'words'
+foobar.pluralize('goose') # returns 'geese'
+foobar.singularize('phenomena') # returns 'phenomenon'
+```
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)

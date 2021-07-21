@@ -44,6 +44,7 @@ export class BandEditComponent implements OnInit, OnDestroy, AfterViewInit {
           data => {
             this.band = data;
             this.formBuilder.Build(this.bandUpsertForm, this.band);
+
             this.store.dispatch(new ApplyBandEditValidationRules(this.bandUpsertForm))
           })
       }

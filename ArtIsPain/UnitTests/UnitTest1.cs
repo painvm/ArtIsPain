@@ -1,24 +1,6 @@
-using ArtIsPain.Server.Commands.Band;
-using ArtIsPain.Server.Controllers;
-using ArtIsPain.Server.Data;
-using ArtIsPain.Server.Data.Interfaces;
-using ArtIsPain.Server.Data.Repositories;
-using ArtIsPain.Server.Handlers.Band;
-using ArtIsPain.Server.ViewModels.Album;
-using ArtIsPain.Server.ViewModels.Band;
-using ArtIsPain.Shared.Models;
-using ArtIsPain.UnitTests.Providers;
-using AutoMapper;
 using FluentAssertions;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 using System;
-using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace ArtIsPain.UnitTests

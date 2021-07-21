@@ -36,9 +36,12 @@ export class UpsertBandFormBuilder extends BaseFormBuilder {
     }
 
     public Build(form: FormGroup, band: BandViewModel) {
-        form.controls.title.setValue(band.Name);
-        form.controls.formationDate.setValue(new Date(band.FormationDate));
-        form.controls.disbandDate.setValue(new Date(band.DisbandDate));
-        form.controls.biography.setValue(band.Description);
+
+        if(band){
+            form.controls.title.setValue(band.Name);
+            form.controls.formationDate.setValue(new Date(band.FormationDate));
+            form.controls.disbandDate.setValue(new Date(band.DisbandDate));
+            form.controls.biography.setValue(band.Description);
+        }
     }
 }

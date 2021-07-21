@@ -29,10 +29,8 @@ import { SongPreviewCardComponent } from './songs/song-preview-card/song-preview
 import { MatCardModule } from '@angular/material/card';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgxsModule } from '@ngxs/store';
-import { environment } from 'src/environments/environment';
 import { BandViewState } from './_state/states/band-view-state';
 import { BandEditState } from './_state/states/band-edit-state';
-import { NgxsFormPluginModule } from '@ngxs/form-plugin';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
@@ -40,6 +38,7 @@ import { AlbumViewState } from './_state/states/album-view-state';
 import { AlbumEditState } from './_state/states/album-edit-state';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
+import { environment } from '../environments/environment';
 
 // Noop handler for factory function
 export function noop() {

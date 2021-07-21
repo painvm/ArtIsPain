@@ -24,7 +24,7 @@
     "@fortawesome/angular-fontawesome": "^0.6.0",
     "@fortawesome/fontawesome-free": "^5.12.1",
     "@nartc/automapper": "^5.0.11",
-    "@ngxs/form-plugin": "^3.6.2",
+    "@ngxs/form-plugin": "^3.7.2",
     "@ngxs/logger-plugin": "^3.6.2",
     "@ngxs/router-plugin": "^3.6.2",
     "@ngxs/storage-plugin": "^3.6.2",

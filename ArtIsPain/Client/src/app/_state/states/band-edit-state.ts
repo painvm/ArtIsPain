@@ -9,7 +9,9 @@ import { UpsertBandCommandBuilder } from '../../_builders/command/upsert-band-co
 import { BandEditRuleService } from '../../_rules/band/band-edit-rule-service';
 import { UpsertBandFormBuilder } from '../../_builders/form/upsert-band-form-builder';
 import { catchError, tap, take } from 'rxjs/operators';
+import { NgxsFormPluginModule } from '@ngxs/form-plugin';
 import { Navigate } from '@ngxs/router-plugin';
+import { stat } from 'fs';
 
 @State<BandEditStateModel>({
     name: 'bandEdit',
@@ -56,6 +58,7 @@ export class BandEditState implements NgxsOnInit {
     getBandById(stateContext: StateContext<BandEditStateModel>, action: GetBandByIdForEdit) {
 
         stateContext.patchState({ IsBandLoaded: false})
+        stateContext.dispatch(new ResetForm())
 
         if (action.Id != null) {
 
@@ -63,6 +66,11 @@ export class BandEditState implements NgxsOnInit {
                 data => {
                     stateContext.patchState({ BandResponse: data, IsBandLoaded: true})
                 });
+        }
+
+        else
+        {
+            stateContext.patchState({ BandResponse: null, IsBandLoaded: true})
         }
     }
 
@@ -83,7 +91,7 @@ export class BandEditState implements NgxsOnInit {
         const upsertBandCommand = this.commandBuilder.Build(currentForm, action.EntityId);
 
         return this.bandService.Upsert(upsertBandCommand).pipe(
-            catchError(() =>{throw Error()}), tap(data => {
-            stateContext.patchState({ BandResponse: data});
+            catchError((x) =>{throw Error(x)}), tap(data => {
+            stateContext.patchState({ BandResponse: data, IsBandLoaded: true});
         }))
 }}
