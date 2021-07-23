@@ -28,7 +28,7 @@
     "@ngxs/logger-plugin": "^3.6.2",
     "@ngxs/router-plugin": "^3.6.2",
     "@ngxs/storage-plugin": "^3.6.2",
-    "@ngxs/store": "^3.6.2",
+    "@ngxs/store": "^3.7.2",
     "bootstrap": "^4.4.1",
     "font-awesome": "^4.7.0",
     "ngx-bootstrap": "^5.5.0",

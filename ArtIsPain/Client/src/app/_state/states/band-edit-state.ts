@@ -9,7 +9,7 @@ import { UpsertBandCommandBuilder } from '../../_builders/command/upsert-band-co
 import { BandEditRuleService } from '../../_rules/band/band-edit-rule-service';
 import { UpsertBandFormBuilder } from '../../_builders/form/upsert-band-form-builder';
 import { catchError, tap, take } from 'rxjs/operators';
-import { NgxsFormPluginModule } from '@ngxs/form-plugin';
+import { NgxsFormPluginModule, ResetForm } from '@ngxs/form-plugin';
 import { Navigate } from '@ngxs/router-plugin';
 import { stat } from 'fs';
 
@@ -58,7 +58,7 @@ export class BandEditState implements NgxsOnInit {
     getBandById(stateContext: StateContext<BandEditStateModel>, action: GetBandByIdForEdit) {
 
         stateContext.patchState({ IsBandLoaded: false})
-        stateContext.dispatch(new ResetForm())
+        stateContext.dispatch(new ResetForm({path: "bandEdit.BandEditForm"}))
 
         if (action.Id != null) {
 

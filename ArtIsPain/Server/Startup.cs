@@ -22,7 +22,6 @@ using Microsoft.OpenApi.Models;
 using System.IO;
 using System;
 using Swashbuckle.AspNetCore.Filters;
-using ArtIsPain.Server.RequestExamples;
 
 namespace ArtIsPain.Server
 {
@@ -73,7 +72,7 @@ namespace ArtIsPain.Server
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
             services.AddDbContext<DataContext>(
-                db => db.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                db => db.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMvc(options =>
             {
@@ -135,7 +134,6 @@ namespace ArtIsPain.Server
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBlazorDebugging();
             }
 
             app.UseStaticFiles();

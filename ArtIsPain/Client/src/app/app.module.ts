@@ -39,6 +39,7 @@ import { AlbumEditState } from './_state/states/album-edit-state';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import { environment } from '../environments/environment';
+import { NgxsFormPluginModule } from '@ngxs/form-plugin';
 
 // Noop handler for factory function
 export function noop() {

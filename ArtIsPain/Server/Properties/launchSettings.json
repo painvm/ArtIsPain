@@ -18,10 +18,10 @@
     "ArtIsPain.Server": {
       "commandName": "Project",
       "launchBrowser": true,
+      "applicationUrl": "http://localhost:57294/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "http://localhost:57294/"
+      }
     }
   }
 }
