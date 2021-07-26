@@ -10,7 +10,8 @@ namespace ArtIsPain.Server.Data
     {
         private readonly IEnumerable<ISeedDataBuilder> _seedDataBuilders;
 
-        public DataContext(DbContextOptions<DataContext> options, IEnumerable<ISeedDataBuilder> seedDataBuilders) : base(options)
+        public DataContext(DbContextOptions<DataContext> options,
+            IEnumerable<ISeedDataBuilder> seedDataBuilders) : base(options)
         {
             _seedDataBuilders = seedDataBuilders;
         }
@@ -29,7 +30,8 @@ namespace ArtIsPain.Server.Data
 
         public DbSet<Photo> Photos { get; set; }
 
-        public DbSet<PoetryVolumeAuthorship> PoetryVolumeAuthorships { get; set; }
+        public DbSet<PoetryVolumeAuthorship>
+            PoetryVolumeAuthorships { get; set; }
 
         public DbSet<Writer> Writers { get; set; }
 
@@ -39,7 +41,9 @@ namespace ArtIsPain.Server.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            modelBuilder
+                .ApplyConfigurationsFromAssembly(
+                Assembly.GetExecutingAssembly());
 
             foreach (var dataBuilder in _seedDataBuilders)
             {
@@ -47,6 +51,11 @@ namespace ArtIsPain.Server.Data
 
                 modelBuilder.Entity(data.ElementType).HasData(data);
             }
+
+            modelBuilder.Entity<Artist>().Property(p => p.StartActivityDate)
+                .HasColumnType("date");
+            modelBuilder.Entity<Artist>().Property(p => p.EndActivityDate)
+                .HasColumnType("date");
         }
     }
 }

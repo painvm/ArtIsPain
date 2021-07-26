@@ -36,6 +36,9 @@ namespace ArtIsPain.Server.Controllers
         /// Creates a new musical band profile or updates already existing one
         /// </summary>
         [HttpPost]
-        public async Task<BandViewModel> UpsertBand(UpsertBandCommand request) => await _mediator.Send(request);
+        public async Task<BandViewModel> UpsertBand(UpsertBandCommand request)
+        {
+            return await _mediator.Send(request);
+        }
     }
 }

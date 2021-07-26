@@ -10,8 +10,6 @@ import { BandEditRuleService } from '../../_rules/band/band-edit-rule-service';
 import { UpsertBandFormBuilder } from '../../_builders/form/upsert-band-form-builder';
 import { catchError, tap, take } from 'rxjs/operators';
 import { NgxsFormPluginModule, ResetForm } from '@ngxs/form-plugin';
-import { Navigate } from '@ngxs/router-plugin';
-import { stat } from 'fs';
 
 @State<BandEditStateModel>({
     name: 'bandEdit',

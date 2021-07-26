@@ -11,10 +11,10 @@ namespace ArtIsPain.Server.Commands.Band
         public string Description { get; set; }
 
         /// <example>1947-01-12T00:00:00</example>
-        public DateTime FormationDate { get; set; }
+        public DateTimeOffset FormationDate { get; set; }
 
         /// <example>2016-01-12T00:00:00</example>
-        public DateTime? DisbandDate { get; set; }
+        public DateTimeOffset? DisbandDate { get; set; }
 
         /// <example>David Bowie</example>
         public string Name { get; set; }

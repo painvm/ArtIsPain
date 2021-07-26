@@ -67,6 +67,7 @@ export class BandEditComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   upsertBand() {
-    this.store.dispatch(new UpsertBand(this.band.Id));
+    this.store.dispatch(new UpsertBand(this.band ? this.band.Id : null))
+    .subscribe(() => this.bandUpsertForm.reset());;
   }
 }

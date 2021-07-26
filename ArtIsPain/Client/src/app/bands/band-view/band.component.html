@@ -1,3 +1,4 @@
+<div *ngIf="this.isPageLoaded">
 <div class="jumbotron jumbotron-fluid">
   <div class="d-flex justify-content-center bd-highlight">
     <div class="p-2 bd-highlight">
@@ -10,14 +11,14 @@
       />
     </div>
   </div>
-  <div class="container" *ngIf="this.band && this.band.Id">
+  <div class="container">
     <div class="row">
       <div class="col-4"></div>
       <div class="col-4 text-center">
-        <h2 class="d-inline m-2">{{ band.Name }}</h2>
+        <h2 class="d-inline m-2">{{ entity.Name }}</h2>
         <a
           class="d-inline text-secondary fa fa-book"
-          [routerLink]="['/bands/edit/', band.Id]"
+          [routerLink]="['/bands/edit/', entity.Id]"
         ></a>
       </div>
       <div class="col-4"></div>
@@ -29,10 +30,10 @@
   <div class="row">
     <div class="col-12 mb-4">
       <h4><strong>Discography</strong></h4>
-      <a class="fa fa-plus float-right" [routerLink]="['/albums/create']" [state]="{bandId: band.Id}"></a>
+      <a class="fa fa-plus float-right" [routerLink]="['/albums/create']" [state]="{bandId: entity.Id}"></a>
     </div>
     <div class="row">
-      <div class="col-md-3 col-sm-6 mb-4" *ngFor="let album of band.Albums">
+      <div class="col-md-3 col-sm-6 mb-4" *ngFor="let album of entity.Albums">
         <a [routerLink]="['/albums/view/', album.Id]">
           <img class="img-fluid" src="http://placehold.it/500x300" alt="" />
         </a>
@@ -48,22 +49,23 @@
     <div class="row">
       <div class="col-12">
         <h3>
-          <strong>About {{ band.Name }}</strong>
+          <strong>About {{ entity.Name }}</strong>
         </h3>
       </div>
     </div>
     <div class="row mt-5">
       <div class="col-6">
-        {{ band.Description }}
+        {{ entity.Description }}
       </div>
       <div class="col-6">
         <strong class="text-muted">Formed</strong>
-        <p>{{ band.FormationDate | date: "yyyy" }}</p>
-        <div *ngIf="band.DisbandDate">
+        <p>{{ entity.FormationDate | date: "yyyy" }}</p>
+        <div *ngIf="entity.DisbandDate">
           <strong class="text-muted">Disbanded</strong>
-          <p>{{ band.DisbandDate | date: "yyyy" }}</p>
+          <p>{{ entity.DisbandDate | date: "yyyy" }}</p>
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>

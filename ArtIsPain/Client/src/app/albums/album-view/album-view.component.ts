@@ -7,40 +7,19 @@ import { AlbumViewModel } from '../../models/album/AlbumViewModel';
 import { Navigate, RouterDataResolved } from '@ngxs/router-plugin';
 import { takeUntil, distinctUntilChanged, take } from 'rxjs/operators';
 import { GetAlbumById } from '../../_state/actions/get-album-by-id';
+import { BaseComponent } from '../../base/base/base.component';
 
 @Component({
   selector: 'app-album-view',
   templateUrl: './album-view.component.html',
   styleUrls: ['./album-view.component.css']
 })
-export class AlbumViewComponent implements OnInit, OnDestroy {
+export class AlbumViewComponent extends BaseComponent  {
 
-  album: AlbumViewModel;
+  entity: AlbumViewModel;
 
-  @Select(AlbumViewState.getAlbum) albumResponse$: Observable<AlbumViewModel>;
-  @Select(AlbumViewState.isAlbumLoaded) isAlbumLoaded$: Observable<boolean>;
-
-
-  constructor() { }
-
-  ngOnInit() {
-
-    this.isAlbumLoaded$.pipe(distinctUntilChanged()).subscribe(value => {
-      if (value) {
-        this.albumResponse$.pipe(take(1)).subscribe(
-          data => {
-            this.album = data;
-          })
-      }
-    })
-  }
-
-  private destroy$ = new Subject<void>();
-
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
+  constructor(store: Store) { 
+    super(store.select(AlbumViewState.getAlbum), store.select(AlbumViewState.isAlbumLoaded))
   }
 }
 

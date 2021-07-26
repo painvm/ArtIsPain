@@ -40,7 +40,11 @@ export class UpsertBandFormBuilder extends BaseFormBuilder {
         if(band){
             form.controls.title.setValue(band.Name);
             form.controls.formationDate.setValue(new Date(band.FormationDate));
-            form.controls.disbandDate.setValue(new Date(band.DisbandDate));
+
+            if(band.DisbandDate){
+                form.controls.disbandDate.setValue(new Date(band.DisbandDate));
+            }
+
             form.controls.biography.setValue(band.Description);
         }
     }

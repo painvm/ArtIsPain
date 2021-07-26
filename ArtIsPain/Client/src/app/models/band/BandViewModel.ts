@@ -6,6 +6,6 @@ export class BandViewModel implements IViewModel {
     Name: string;
     Description: string;
     FormationDate: Date;
-    DisbandDate: Date;
+    DisbandDate?: Date;
     Albums: AlbumPreviewModel[];
 }

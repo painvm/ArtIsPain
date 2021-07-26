@@ -4,7 +4,9 @@ import { Select, Store } from '@ngxs/store';
 import { OnInit, Component } from '@angular/core';
 import { BandViewState } from '../../_state/states/band-view-state';
 import { BandViewModel } from '../../models/band/BandViewModel';
-import { distinctUntilChanged, take } from 'rxjs/operators';
+import { BaseComponent } from '../../base/base/base.component';
+import { IViewModel } from '../../_interfaces/i-view-model';
+import { IViewComponent } from '../../_interfaces/i-view-component';
 
 
 @Component({
@@ -13,25 +15,16 @@ import { distinctUntilChanged, take } from 'rxjs/operators';
   styleUrls: ['./band.component.css'],
 })
 
-export class BandViewComponent implements OnInit {
-  band: BandViewModel;
+export class BandViewComponent extends BaseComponent{
 
-  @Select(BandViewState.getBand) bandResponse$: Observable<BandViewModel>;
-  @Select(BandViewState.isBandLoaded) isBandLoaded$: Observable<boolean>;
+  entity: BandViewModel;
 
+  constructor(store: Store) {
 
-  constructor() {
+    super(store.select(BandViewState.getBand), store.select(BandViewState.isBandLoaded));
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+  }
 
-      this.isBandLoaded$.pipe(distinctUntilChanged()).subscribe(value => {
-        if (value) {
-          this.bandResponse$.pipe(take(1)).subscribe(
-            data => {
-              this.band = data;
-            })
-        }
-      })
-    }
   }

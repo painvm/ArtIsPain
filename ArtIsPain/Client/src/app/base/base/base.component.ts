@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Actions } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { distinctUntilChanged, take } from 'rxjs/operators';
+import { IViewComponent } from '../../_interfaces/i-view-component';
 import { IViewModel } from '../../_interfaces/i-view-model';
 
 @Component({
@@ -8,13 +10,37 @@ import { IViewModel } from '../../_interfaces/i-view-model';
   templateUrl: './base.component.html',
   styleUrls: ['./base.component.css']
 })
-export abstract class BaseComponent implements OnInit {
+export class BaseComponent implements OnInit, OnDestroy {
 
   constructor(
-    entityStream: Observable<IViewModel>,
-    entityLoadedFlagStream: Observable<boolean>) { }
+    public entityStream$: Observable<IViewModel>,
+    public entityLoadedFlagStream$: Observable<boolean>) { 
 
-  ngOnInit() {
-  }
+      this.entityLoadedFlagStream$.pipe(distinctUntilChanged()).subscribe(value => {
+        if (value) {
+          this.entityStream$.pipe(take(1)).subscribe(
+            data => {
+              this.entity = data;
+              this.isPageLoaded = true;
+            })
+        }
+      })
+
+    }
+
+    isPageLoaded: boolean = false;
+    entity: IViewModel;
+
+    ngOnInit() {
+
+
+    }
+
+    private destroy$ = new Subject<void>();
+
+    ngOnDestroy(): void {
+      this.destroy$.next();
+      this.destroy$.complete();
+    }
 
 }

@@ -40,6 +40,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import { environment } from '../environments/environment';
 import { NgxsFormPluginModule } from '@ngxs/form-plugin';
+import { BaseComponent } from './base/base/base.component';
 
 // Noop handler for factory function
 export function noop() {
@@ -49,6 +50,7 @@ export function noop() {
 @NgModule({
   declarations: [
     AppComponent,
+    BaseComponent,
     AlbumViewComponent,
     BandViewComponent,
     BandsComponent,
