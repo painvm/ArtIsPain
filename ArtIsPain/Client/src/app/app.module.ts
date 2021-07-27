@@ -40,7 +40,8 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import { environment } from '../environments/environment';
 import { NgxsFormPluginModule } from '@ngxs/form-plugin';
-import { BaseComponent } from './base/base/base.component';
+import { BaseComponent } from './base/base-view/base.component';
+import { BaseEditComponent } from './base/base-edit/base-edit/base-edit.component';
 
 // Noop handler for factory function
 export function noop() {
@@ -53,10 +54,12 @@ export function noop() {
     BaseComponent,
     AlbumViewComponent,
     BandViewComponent,
+    BaseEditComponent,
     BandsComponent,
     BandEditComponent,
     AlbumEditComponent,
     SongPreviewCardComponent,
+    BaseEditComponent,
   ],
   imports: [
     BrowserModule,

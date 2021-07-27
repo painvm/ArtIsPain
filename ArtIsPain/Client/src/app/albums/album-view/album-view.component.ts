@@ -7,7 +7,7 @@ import { AlbumViewModel } from '../../models/album/AlbumViewModel';
 import { Navigate, RouterDataResolved } from '@ngxs/router-plugin';
 import { takeUntil, distinctUntilChanged, take } from 'rxjs/operators';
 import { GetAlbumById } from '../../_state/actions/get-album-by-id';
-import { BaseComponent } from '../../base/base/base.component';
+import { BaseComponent } from '../../base/base-view/base.component';
 
 @Component({
   selector: 'app-album-view',

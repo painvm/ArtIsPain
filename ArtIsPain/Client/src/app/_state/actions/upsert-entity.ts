@@ -6,6 +6,8 @@ export abstract class UpsertEntity implements BaseAction {
 
     constructor(public EntityId?: string) {
     }
+
     type: ActionTypeEnum;
+    redirectPath: string;
 
 }

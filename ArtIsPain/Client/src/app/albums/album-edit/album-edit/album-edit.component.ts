@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from "@angular/core";
 import { ActivatedRoute, Router, ActivatedRouteSnapshot } from "@angular/router";
 import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
 import { FormGroup, FormArray } from '@angular/forms';
@@ -16,13 +16,15 @@ import { Observable } from "rxjs/internal/Observable";
 import { GetAlbumByIdForEdit } from "../../../_state/actions/get-album-by-id-for-edit";
 import { Subject } from "rxjs";
 import { Navigate } from "@ngxs/router-plugin";
+import { BaseEditComponent } from "../../../base/base-edit/base-edit/base-edit.component";
+import { UpsertEntity } from "../../../_state/actions/upsert-entity";
 
 @Component({
   selector: "app-album-edit",
   templateUrl: "./album-edit.component.html",
   styleUrls: ["./album-edit.component.css"],
 })
-export class AlbumEditComponent implements OnInit, OnDestroy {
+export class AlbumEditComponent extends BaseEditComponent {
   album: AlbumViewModel;
   draftSongs: UpsertSongCommand[];
 
@@ -33,29 +35,23 @@ export class AlbumEditComponent implements OnInit, OnDestroy {
   albumUpsertForm: FormGroup;
 
   constructor(
-    private store: Store,
-    private formBuilder: UpsertAlbumFormBuilder,
-    private route: ActivatedRoute,
-    private actions$: Actions
+    changeEditDetector: ChangeDetectorRef,
+    public store: Store,
+    public formBuilder: UpsertAlbumFormBuilder,
+    actions$: Actions
   ) {
-
-
-
+    super(changeEditDetector,
+      actions$, 
+      store, 
+      store.select(AlbumEditState.getAlbumResponse),
+      store.select(AlbumEditState.isAlbumLoaded),
+      UpsertAlbum)
   }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
-
-  private destroy$ = new Subject<void>();
-
 
   @Select(AlbumEditState.getAlbumResponse) albumResponse$: Observable<AlbumViewModel>;
   @Select(AlbumEditState.isAlbumLoaded) isAlbumLoaded$: Observable<boolean>;
 
   ngOnInit() {
-    this.initializeRouteHandler();
 
     this.albumUpsertForm = this.formBuilder.Initialize();
 
@@ -107,20 +103,5 @@ export class AlbumEditComponent implements OnInit, OnDestroy {
 
   get songs(): FormArray {
     return this.albumUpsertForm.get('songs') as FormArray;
-  }
-
-  initializeRouteHandler() {
-    this.actions$.pipe(ofActionSuccessful(UpsertAlbum), takeUntil(this.destroy$))
-      .subscribe(() =>
-
-        this.isAlbumLoaded$.pipe(takeUntil(this.destroy$)).subscribe(value => {
-          if (value) {
-            this.albumResponse$.pipe(take(1)).subscribe(
-              data => {
-                const albumId = data.Id;
-                this.store.dispatch(new Navigate(['/albums/view/' + albumId]))
-              });
-          }
-        }))
   }
 }
