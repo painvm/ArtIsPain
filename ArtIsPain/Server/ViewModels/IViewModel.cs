@@ -2,7 +2,7 @@
 
 namespace ArtIsPain.Server.ViewModels
 {
-    public interface IViewModel
+    public interface IViewModel: IResponse
     {
         public Guid Id { get; set; }
     }

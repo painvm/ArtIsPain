@@ -1,7 +1,7 @@
-import { IViewModel } from 'src/app/_interfaces/i-view-model';
+import { IViewModel } from "../../_interfaces/i-view-model";
 
 export class BandPreviewModel implements IViewModel {
     Id: string;
-    Title: string;
+    Name: string;
     TimePeriod: string;
 }

@@ -21,15 +21,15 @@ export class BandEditComponent extends BaseEditComponent {
   constructor(changeDetector: ChangeDetectorRef,
     store: Store,
     public formBuilder: UpsertBandFormBuilder,
-    actions$: Actions) { 
+    actions$: Actions) {
 
-      super(changeDetector,
-        actions$, 
-        store, 
-        store.select(BandEditState.getBandResponse),
-        store.select(BandEditState.isBandLoaded),
-        new UpsertBand())
-    }
+    super(changeDetector,
+      actions$,
+      store,
+      store.select(BandEditState.getBandResponse),
+      store.select(BandEditState.isBandLoaded),
+      UpsertBand)
+  }
 
   ngOnInit() {
 
@@ -50,6 +50,6 @@ export class BandEditComponent extends BaseEditComponent {
 
   upsertBand() {
     this.store.dispatch(new UpsertBand(this.band ? this.band.Id : null))
-    .subscribe(() => this.bandUpsertForm.reset());;
+      .subscribe(() => this.bandUpsertForm.reset());;
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Actions } from '@ngxs/store';
 import { Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, take } from 'rxjs/operators';
+import { IResponse } from '../../_interfaces/i-response';
 import { IViewComponent } from '../../_interfaces/i-view-component';
 import { IViewModel } from '../../_interfaces/i-view-model';
 
@@ -13,7 +14,7 @@ import { IViewModel } from '../../_interfaces/i-view-model';
 export class BaseComponent implements OnInit, OnDestroy {
 
   constructor(
-    public entityStream$: Observable<IViewModel>,
+    public entityStream$: Observable<IResponse>,
     public entityLoadedFlagStream$: Observable<boolean>) { 
 
       this.entityLoadedFlagStream$.pipe(distinctUntilChanged()).subscribe(value => {
@@ -29,7 +30,7 @@ export class BaseComponent implements OnInit, OnDestroy {
     }
 
     isPageLoaded: boolean = false;
-    entity: IViewModel;
+    entity: IResponse;
 
     ngOnInit() {
 

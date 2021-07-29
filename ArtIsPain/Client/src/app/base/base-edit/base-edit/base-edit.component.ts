@@ -14,26 +14,26 @@ import { UpsertEntity } from '../../../_state/actions/upsert-entity';
   styleUrls: ['./base-edit.component.css']
 })
 export class BaseEditComponent implements OnInit, OnDestroy, AfterViewInit {
-    
+
 
   redirectPath: string;
 
-    constructor(private changeDetector: ChangeDetectorRef,
-      private actions$: Actions,
-      public store: Store,
-      public entityStream$: Observable<IViewModel>,
+  constructor(private changeDetector: ChangeDetectorRef,
+    private actions$: Actions,
+    public store: Store,
+    public entityStream$: Observable<IViewModel>,
     public entityLoadedFlagStream$: Observable<boolean>,
     public upsertEntityAction: UpsertEntity
-    ) { 
+  ) {
 
-      this.initializeRouteHandler()
+    this.initializeRouteHandler()
 
-    }
-    
-    ngAfterViewInit(): void {
-      this.changeDetector.detectChanges();
-    }
-  
+  }
+
+  ngAfterViewInit(): void {
+    this.changeDetector.detectChanges();
+  }
+
 
   private destroy$ = new Subject<void>();
 

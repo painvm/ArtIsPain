@@ -42,6 +42,9 @@ import { environment } from '../environments/environment';
 import { NgxsFormPluginModule } from '@ngxs/form-plugin';
 import { BaseComponent } from './base/base-view/base.component';
 import { BaseEditComponent } from './base/base-edit/base-edit/base-edit.component';
+import { BandSearchComponent } from './bands/band-search/band-search/band-search.component';
+import { BandSearchResolver } from './_resolvers/band-search-resolver';
+import { BandSearchState } from './_state/states/band-search-state';
 
 // Noop handler for factory function
 export function noop() {
@@ -60,6 +63,7 @@ export function noop() {
     AlbumEditComponent,
     SongPreviewCardComponent,
     BaseEditComponent,
+    BandSearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,7 +72,7 @@ export function noop() {
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
-    NgxsModule.forRoot([BandViewState, BandEditState, AlbumViewState, AlbumEditState], {
+    NgxsModule.forRoot([BandViewState, BandEditState, AlbumViewState, AlbumEditState, BandSearchState], {
       developmentMode: !environment.production
     }),
     NgxsFormPluginModule.forRoot(),
@@ -96,6 +100,7 @@ export function noop() {
     BandEditResolver,
     AlbumViewResolver,
     AlbumEditResolver,
+    BandSearchResolver,
     MatDatepickerModule,
     MatFormFieldModule,
   ],

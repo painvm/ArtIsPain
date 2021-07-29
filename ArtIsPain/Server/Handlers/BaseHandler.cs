@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ArtIsPain.Server.Handlers
 {
-    public abstract class BaseHandler<TEntity, TRequest, TResponse> : IRequestHandler<TRequest, TResponse> where TResponse : IViewModel
+    public abstract class BaseHandler<TEntity, TRequest, TResponse> : IRequestHandler<TRequest, TResponse> where TResponse : IResponse
                                                                                                                         where TRequest : IRequest<TResponse>
                                                                                                                         where TEntity : class
     {

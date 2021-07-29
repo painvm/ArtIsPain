@@ -15,7 +15,7 @@ import { IViewComponent } from '../../_interfaces/i-view-component';
   styleUrls: ['./band.component.css'],
 })
 
-export class BandViewComponent extends BaseComponent{
+export class BandViewComponent extends BaseComponent {
 
   entity: BandViewModel;
 

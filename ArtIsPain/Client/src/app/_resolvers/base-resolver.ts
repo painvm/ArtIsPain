@@ -5,9 +5,10 @@ import { catchError } from 'rxjs/operators';
 import { IViewModel } from '../_interfaces/i-view-model';
 import { IAction } from '../_interfaces/i-action';
 import { Store } from '@ngxs/store';
+import { IResponse } from '../_interfaces/i-response';
 
 @Injectable()
-export abstract class BaseResolver<T extends IViewModel> implements Resolve<T> {
+export abstract class BaseResolver<T extends IResponse> implements Resolve<T> {
     constructor(private store: Store, private action: IAction) {}
 
     abstract performRequest(store: Store, route: ActivatedRouteSnapshot, action: IAction): Observable<T>;

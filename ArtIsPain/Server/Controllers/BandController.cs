@@ -5,6 +5,8 @@ using ArtIsPain.Shared.Models;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Server.Commands.Band;
+using Server.ViewModels.Band;
 using System;
 using System.Threading.Tasks;
 
@@ -28,6 +30,17 @@ namespace ArtIsPain.Server.Controllers
         public async Task<BandViewModel> GetBandById(Guid bandId)
         {
             GetBandByIdCommand request = new GetBandByIdCommand() { EntityId = bandId };
+
+            return await _mediator.Send(request);
+        }
+
+        /// <summary>
+        /// Gets all the musical bands
+        /// </summary>
+        [HttpGet()]
+        public async Task<BandCollectionViewModel> GetBands()
+        {
+            GetBandsCommand request = new GetBandsCommand();
 
             return await _mediator.Send(request);
         }

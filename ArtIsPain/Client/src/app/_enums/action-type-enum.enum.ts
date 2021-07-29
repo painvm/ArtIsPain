@@ -11,5 +11,7 @@ export enum ActionTypeEnum {
     UpsertBand = "UpsertBand",
     UpsertAlbum = "UpsertAlbum",
 
+    SearchBands = "SearchBands",
+
     ResetAlbumEditResponse = "Reset album edit response"
 }
