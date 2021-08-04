@@ -20,9 +20,16 @@ namespace ArtIsPain.Server.Data.Repositories
 
         public abstract Task<TEntity> Delete(Guid id);
 
-        public IQueryable<TEntity> GetAll()
+        public IQueryable<TEntity> GetAll(Func<IQueryable<TEntity>, IQueryable<TEntity>> predicate = null)
         {
-            return _dataContext.Set<TEntity>().AsQueryable();
+             IQueryable<TEntity> query = _dataContext.Set<TEntity>().AsQueryable();
+
+            if(predicate != null)
+            {
+                query = predicate(query);
+            }
+
+            return query;
         }
 
         public abstract IQueryable<TEntity> GetById(Guid id, Func<IQueryable<TEntity>, IQueryable<TEntity>> include = null);

@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { ApiPath } from '../_enums/api-path.enum';
 import { ICollectionService } from '../_interfaces/i-collection-service';
 import { IResponse } from '../_interfaces/i-response';
+import { IGetEntitiesCommand } from '../_interfaces/i-get-entities-command';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +20,9 @@ export abstract class BaseCollectionService<T extends IResponse> implements ICol
 
 constructor(private httpClient: HttpClient) { }
 
-  GetAll(): Observable<T> {
+  GetAll(command: IGetEntitiesCommand): Observable<T> {
 
-    const requestUrl = this.BaseUrl.concat(this.Path);
+    const requestUrl = this.BaseUrl.concat(this.Path).concat(ApiPath.Search);
 
-    return this.httpClient.get<T>(requestUrl);
+    return this.httpClient.post<T>(requestUrl, command);
   }}

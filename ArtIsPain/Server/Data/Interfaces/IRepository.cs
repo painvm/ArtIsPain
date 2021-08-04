@@ -7,7 +7,7 @@ namespace ArtIsPain.Server.Data.Interfaces
 {
     public interface IRepository<T> where T : class
     {
-        IQueryable<T> GetAll();
+        IQueryable<T> GetAll(Func<IQueryable<T>, IQueryable<T>> searchCondition = null);
 
         IQueryable<T> GetById(Guid id, Func<IQueryable<T>, IQueryable<T>> addJoinStatement = null);
 

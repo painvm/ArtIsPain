@@ -43,7 +43,7 @@ namespace ArtIsPain.Server.Data.Repositories
 
             _dataContext.BulkInsertAsync<TEntity>(authorship);
 
-            return base.GetAll().Where(x => x.EntityId == entityId);
+            return base.GetAll(entities => entities.Where(x => x.EntityId == entityId));
         }
     }
 }

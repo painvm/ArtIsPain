@@ -9,6 +9,8 @@ import { take } from 'rxjs/operators';
 import { BandCollectionViewModel } from '../../models/band/BandCollectionViewModel';
 import { SearchBand } from '../actions/search-bands';
 import { BandCollectionService } from '../../_services/band-collection-service';
+import { SearchBandsCommandBuilder } from '../../_builders/command/search-bands-command-builder';
+import { SearchBandsCommand } from '../../commands/bands/search.bands.command';
 
 @State<BandSearchStateModel>({
     name: 'bandSearch',
@@ -21,7 +23,8 @@ import { BandCollectionService } from '../../_services/band-collection-service';
 @Injectable()
 export class BandSearchState {
    
-    constructor(private bandCollectionService: BandCollectionService) {
+    constructor(private bandCollectionService: BandCollectionService,
+        private commandBuilder: SearchBandsCommandBuilder) {
         
     }
 
@@ -29,8 +32,10 @@ export class BandSearchState {
     getBands(stateContext: StateContext<BandSearchStateModel>, action: SearchBand)
     {
         stateContext.patchState({AreBandSearchResultsLoaded: false})
+
+        const command = this.commandBuilder.Build(action.searchTerm);
         
-        this.bandCollectionService.GetAll().pipe(take(1)).subscribe(
+        this.bandCollectionService.GetAll(command).pipe(take(1)).subscribe(
             data => 
             {
                 stateContext.patchState({Data: data, AreBandSearchResultsLoaded: true})

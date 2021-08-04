@@ -8,5 +8,6 @@ namespace ArtIsPain.Server.Commands
     public interface IGetEntitiesCommand<TViewModel, TResponse> : IRequest<TResponse> where TResponse : ICollectionViewModel<TViewModel>
                                                                                       where TViewModel: IViewModel
     {
+        string SearchTerm { get; set; }
     }
 }

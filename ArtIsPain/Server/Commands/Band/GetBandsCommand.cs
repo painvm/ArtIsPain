@@ -7,5 +7,6 @@ namespace Server.Commands.Band
 {
     public class GetBandsCommand : IGetEntitiesCommand<BandViewModel, BandCollectionViewModel>
     {
+        public string SearchTerm {get; set;}
     }
 }

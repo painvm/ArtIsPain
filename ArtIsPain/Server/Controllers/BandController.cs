@@ -37,11 +37,9 @@ namespace ArtIsPain.Server.Controllers
         /// <summary>
         /// Gets all the musical bands
         /// </summary>
-        [HttpGet()]
-        public async Task<BandCollectionViewModel> GetBands()
+        [HttpPost("search")]
+        public async Task<BandCollectionViewModel> GetBands(GetBandsCommand request)
         {
-            GetBandsCommand request = new GetBandsCommand();
-
             return await _mediator.Send(request);
         }
 

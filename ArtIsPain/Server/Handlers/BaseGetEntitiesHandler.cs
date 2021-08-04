@@ -29,7 +29,10 @@ namespace ArtIsPain.Server.Handlers
 
         protected override async Task<TCollectionViewModel> Send(TRequest request, CancellationToken cancellationToken)
         {
-            IQueryable<TEntity> entities = _entityRepository.GetAll();
+            Func<IQueryable<TEntity>, IQueryable<TEntity>> searchConditionQuery = BuildSearchRequestQuery(request);
+
+            IQueryable<TEntity> entities = 
+                                _entityRepository.GetAll(searchConditionQuery);
             var results = _autoMapper.ProjectTo<TViewModel>(entities).ToListAsync();
 
             TCollectionViewModel collectionViewModel = new TCollectionViewModel
@@ -39,6 +42,8 @@ namespace ArtIsPain.Server.Handlers
             
             return collectionViewModel;
         }
+
+        protected abstract Func<IQueryable<TEntity>, IQueryable<TEntity>> BuildSearchRequestQuery(TRequest request);
 
         protected override Task<TCollectionViewModel> Send(TRequest request, CancellationToken cancellationToken, Func<IQueryable<TEntity>, IQueryable<TEntity>> include = null)
         {
